@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flight Reservation System</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eef4ff;
+}
+
+header{
+background:#003366;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+header h1{
+font-size:35px;
+}
+
+header p{
+margin-top:10px;
+}
+
+nav{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+background:#0059b3;
+}
+
+nav button{
+padding:15px 20px;
+border:none;
+background:none;
+color:white;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+}
+
+nav button:hover{
+background:#003366;
+}
+
+section{
+display:none;
+padding:30px;
+animation:fade .5s;
+}
+
+.active{
+display:block;
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+.banner{
+
+background:white;
+padding:40px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 0 10px gray;
+
+}
+
+.banner h2{
+color:#003366;
+margin-bottom:20px;
+}
+
+.banner p{
+font-size:18px;
+line-height:30px;
+}
+
+.banner button{
+
+margin-top:20px;
+padding:12px 25px;
+background:orange;
+border:none;
+color:white;
+font-size:18px;
+cursor:pointer;
+border-radius:5px;
+
+}
+
+.banner button:hover{
+
+background:#e69500;
+
+}
+
+.cards{
+
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+margin-top:30px;
+
+}
+
+.card{
+
+width:300px;
+background:white;
+padding:20px;
+margin:15px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+text-align:center;
+
+}
+
+.card img{
+
+width:100%;
+height:180px;
+border-radius:10px;
+
+}
+
+.card h3{
+
+margin:15px 0;
+color:#003366;
+
+}
+
+.card p{
+
+line-height:25px;
+
+}
+
+form{
+
+width:450px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+
+}
+
+form h2{
+
+text-align:center;
+margin-bottom:20px;
+color:#003366;
+
+}
+
+input,
+select{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid gray;
+border-radius:5px;
+
+}
+
+input[type=button],
+input[type=submit]{
+
+background:#0059b3;
+color:white;
+border:none;
+cursor:pointer;
+
+}
+
+input[type=button]:hover,
+input[type=submit]:hover{
+
+background:#003366;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
+
+}
+
+table th{
+
+background:#003366;
+color:white;
+padding:12px;
+
+}
+
+table td{
+
+border:1px solid gray;
+padding:12px;
+text-align:center;
+
+}
+
+footer{
+
+background:#003366;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>ONLINE FLIGHT RESERVATION SYSTEM</h1>
+
+<p>Book Your Flight Anytime Anywhere</p>
+
+</header>
+
+<nav>
+
+<button onclick="showSection('home')">Home</button>
+
+<button onclick="showSection('login')">Login</button>
+
+<button onclick="showSection('forgot')">Forgot Password</button>
+
+<button onclick="showSection('search')">Search Flights</button>
+
+<button onclick="showSection('booking')">Book Ticket</button>
+
+<button onclick="showSection('payment')">Payment</button>
+
+<button onclick="showSection('tickets')">My Ticket</button>
+
+<button onclick="showSection('cancel')">Cancel Ticket</button>
+
+<button onclick="showSection('feedback')">Feedback</button>
+
+<button onclick="showSection('status')">Booking Status</button>
+
+<button onclick="showSection('report')">Admin Report</button>
+
+</nav>
+
+<!-- HOME -->
+
+<section id="home" class="active">
+
+<div class="banner">
+
+<h2>Welcome to Flight Reservation System</h2>
+
+<p>
+
+Search flights, reserve seats, make payments,
+cancel tickets and print e-tickets easily.
+
+</p>
+
+<button onclick="alert('Welcome To Flight Reservation System')">
+
+Book Now
+
+</button>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05">
+
+<h3>Domestic Flights</h3>
+
+<p>
+
+Book flights across India at affordable prices.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde">
+
+<h3>International Flights</h3>
+
+<p>
+
+Travel around the world with exciting offers.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1521727857535-28d2047314ac">
+
+<h3>Special Discounts</h3>
+
+<p>
+
+Student and family discounts available.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LOGIN -->
+
+<section id="login">
+
+<form>
+
+<h2>User Login</h2>
+
+<input
+type="text"
+id="username"
+placeholder="Enter Username">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<input
+type="button"
+value="Login"
+onclick="loginUser()">
+
+</form>
+
+</section>
+
+<!-- FORGOT PASSWORD -->
+
+<section id="forgot">
+
+<form>
+
+<h2>Forgot Password</h2>
+
+<input
+type="email"
+placeholder="Enter Registered Email">
+
+<input
+type="button"
+value="Send OTP"
+onclick="alert('OTP Sent Successfully')">
+
+</form>
+
+</section>
+
+<!-- SEARCH FLIGHT -->
+
+<section id="search">
+
+<form>
+
+<h2>Search Flight</h2>
+
+<select>
+
+<option>Select From</option>
+
+<option>Chennai</option>
+
+<option>Hyderabad</option>
+
+<option>Bangalore</option>
+
+<option>Mumbai</option>
+
+<option>Delhi</option>
+
+</select>
+
+<select>
+
+<option>Select Destination</option>
+
+<option>Delhi</option>
+
+<option>Mumbai</option>
+
+<option>Kolkata</option>
+
+<option>Goa</option>
+
+<option>Dubai</option>
+
+</select>
+
+<input
+type="date">
+
+<select>
+
+<option>Economy</option>
+
+<option>Business</option>
+
+<option>First Class</option>
+
+</select>
+
+<input
+type="button"
+value="Search Flight"
+onclick="showFlights()">
+
+</form>
+
+<table id="flightTable">
+
+<tr>
+
+<th>Flight No</th>
+
+<th>Airline</th>
+
+<th>Departure</th>
+
+<th>Arrival</th>
+
+<th>Fare</th>
+
+</tr>
+
+<tr>
+
+<td>AI101</td>
+
+<td>Air India</td>
+
+<td>09:30 AM</td>
+
+<td>11:30 AM</td>
+
+<td>$120</td>
+
+</tr>
+
+<tr>
+
+<td>6E204</td>
+
+<td>IndiGo</td>
+
+<td>12:00 PM</td>
+
+<td>02:00 PM</td>
+
+<td>$95</td>
+
+</tr>
+
+<tr>
+
+<td>SG350</td>
+
+<td>SpiceJet</td>
+
+<td>04:00 PM</td>
+
+<td>06:10 PM</td>
+
+<td>$110</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<!-- BOOK TICKET -->
+
+<section id="booking">
+
+<form>
+
+<h2>Book Ticket</h2>
+
+<input
+type="text"
+placeholder="Passenger Name">
+
+<input
+type="number"
+placeholder="Age">
+
+<select>
+
+<option>Male</option>
+
+<option>Female</option>
+
+<option>Other</option>
+
+</select>
+
+<input
+type="text"
+placeholder="Passport / Aadhaar Number">
+
+<input
+type="button"
+value="Proceed To Payment"
+onclick="showSection('payment')">
+
+</form>
+
+</section>
+<!-- PAYMENT -->
+
+<section id="payment">
+
+<form>
+
+<h2>Ticket Payment</h2>
+
+<input
+type="text"
+placeholder="Card Holder Name">
+
+<input
+type="text"
+placeholder="Card Number">
+
+<input
+type="month">
+
+<input
+type="password"
+placeholder="CVV">
+
+<select>
+
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>UPI</option>
+<option>Net Banking</option>
+
+</select>
+
+<input
+type="button"
+value="Pay Now"
+onclick="paymentSuccess()">
+
+</form>
+
+</section>
+
+<!-- MY TICKETS -->
+
+<section id="tickets">
+
+<h2 align="center">My Flight Tickets</h2>
+
+<table>
+
+<tr>
+
+<th>Ticket No</th>
+<th>Passenger</th>
+<th>Flight</th>
+<th>Date</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>TK1001</td>
+<td>Rahul</td>
+<td>AI101</td>
+<td>25-08-2026</td>
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>TK1002</td>
+<td>Priya</td>
+<td>6E204</td>
+<td>27-08-2026</td>
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>TK1003</td>
+<td>Karthik</td>
+<td>SG350</td>
+<td>02-09-2026</td>
+<td>Waiting</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<!-- CANCEL TICKET -->
+
+<section id="cancel">
+
+<form>
+
+<h2>Cancel Ticket</h2>
+
+<input
+type="text"
+placeholder="Enter Ticket Number">
+
+<input
+type="button"
+value="Cancel Ticket"
+onclick="cancelTicket()">
+
+</form>
+
+</section>
+
+<!-- CUSTOMER FEEDBACK -->
+
+<section id="feedback">
+
+<form>
+
+<h2>Customer Feedback</h2>
+
+<input
+type="text"
+placeholder="Passenger Name">
+
+<select>
+
+<option>Excellent</option>
+<option>Very Good</option>
+<option>Good</option>
+<option>Average</option>
+<option>Poor</option>
+
+</select>
+
+<input
+type="text"
+placeholder="Comments">
+
+<input
+type="button"
+value="Submit Feedback"
+onclick="feedbackSubmit()">
+
+</form>
+
+</section>
+
+<!-- BOOKING STATUS -->
+
+<section id="status">
+
+<h2 align="center">Booking Status</h2>
+
+<table>
+
+<tr>
+
+<th>Booking ID</th>
+<th>Passenger</th>
+<th>Flight</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>BK101</td>
+<td>Rahul</td>
+<td>AI101</td>
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>BK102</td>
+<td>Priya</td>
+<td>6E204</td>
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>BK103</td>
+<td>Karthik</td>
+<td>SG350</td>
+<td>Waiting</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<!-- ADMIN REPORT -->
+
+<section id="report">
+
+<h2 align="center">Admin Flight Report</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Total Flights</h3>
+
+<h1>125</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Total Bookings</h3>
+
+<h1>850</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Cancelled Tickets</h3>
+
+<h1>42</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Total Revenue</h3>
+
+<h1>$98,500</h1>
+
+</div>
+
+</div>
+
+</section>
+<footer>
+
+<h3>Online Flight Reservation System</h3>
+
+<p>Book Flights | Secure Payments | Easy Cancellation</p>
+
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+<script>
+
+function showSection(id){
+
+let sections=document.querySelectorAll("section");
+
+for(let i=0;i<sections.length;i++){
+
+sections[i].classList.remove("active");
+
+}
+
+document.getElementById(id).classList.add("active");
+
+}
+
+function loginUser(){
+
+let user=document.getElementById("username").value;
+
+let pass=document.getElementById("password").value;
+
+if(user=="admin" && pass=="admin123"){
+
+alert("Admin Login Successful");
+
+showSection("report");
+
+}
+
+else if(user=="user" && pass=="user123"){
+
+alert("User Login Successful");
+
+showSection("home");
+
+}
+
+else{
+
+alert("Invalid Username or Password");
+
+}
+
+}
+
+function showFlights(){
+
+alert("Flights Found Successfully");
+
+}
+
+function paymentSuccess(){
+
+alert("Payment Successful!\n\nYour Ticket has been Booked Successfully.");
+
+showSection("tickets");
+
+}
+
+function cancelTicket(){
+
+let confirmCancel=confirm("Are you sure you want to cancel this ticket?");
+
+if(confirmCancel){
+
+alert("Ticket Cancelled Successfully");
+
+showSection("status");
+
+}
+
+}
+
+function feedbackSubmit(){
+
+alert("Thank You For Your Valuable Feedback.");
+
+}
+
+window.onload=function(){
+
+showSection("home");
+
+}
+
+</script>
+
+</body>
+
+</html>
