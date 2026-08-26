@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Home Finder - Real Estate Platform</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+}
+
+header{
+    background:#14532d;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+header h1{
+    margin-bottom:10px;
+}
+
+nav{
+    background:#16a34a;
+    text-align:center;
+    padding:12px;
+}
+
+nav button{
+    background:white;
+    color:#14532d;
+    border:none;
+    padding:10px 18px;
+    margin:5px;
+    cursor:pointer;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+nav button:hover{
+    background:#f59e0b;
+    color:white;
+}
+
+.page{
+    display:none;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h2{
+    color:#14532d;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+h3{
+    color:#16a34a;
+    margin-top:20px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid gray;
+    border-radius:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table,th,td{
+    border:1px solid black;
+}
+
+th{
+    background:#14532d;
+    color:white;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+.btn{
+    background:#14532d;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.btn:hover{
+    background:#16a34a;
+}
+
+footer{
+    background:#14532d;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+.card{
+    background:#f8f8f8;
+    padding:15px;
+    border-left:5px solid #14532d;
+    margin-top:15px;
+}
+
+.property-card{
+    background:#f8f8f8;
+    padding:15px;
+    margin-top:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.property-card h3{
+    margin-top:0;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>HOME FINDER</h1>
+
+<p>
+Search Properties | Buy | Rent | Sell | Contact Agents
+</p>
+
+</header>
+
+<nav>
+
+<button onclick="showPage('home')">Home</button>
+
+<button onclick="showPage('properties')">Properties</button>
+
+<button onclick="showPage('search')">Search</button>
+
+<button onclick="showPage('register')">Register</button>
+
+<button onclick="showPage('login')">Buyer Login</button>
+
+<button onclick="showPage('agents')">Agents</button>
+
+<button onclick="showPage('adminlogin')">Admin Login</button>
+
+<button onclick="showPage('contact')">Contact</button>
+
+</nav>
+
+
+<!-- ================= HOME PAGE ================= -->
+
+<div id="home" class="page active">
+
+<div class="container">
+
+<h2>Welcome to Home Finder</h2>
+
+<p>
+
+Home Finder is an online real estate platform that helps users
+search and book lands, houses and commercial properties according
+to their required location and budget.
+
+</p>
+
+<br>
+
+<div class="card">
+
+<h3>Our Services</h3>
+
+<ul>
+
+<li>Search residential properties</li>
+
+<li>Search commercial properties</li>
+
+<li>Buy or rent houses and lands</li>
+
+<li>Save favourite properties</li>
+
+<li>Contact real estate agents</li>
+
+<li>Schedule property visits</li>
+
+<li>View property location on maps</li>
+
+<li>Mortgage calculator</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>Property Types</h3>
+
+<table>
+
+<tr>
+
+<th>Property Type</th>
+
+<th>Purpose</th>
+
+<th>Starting Price</th>
+
+</tr>
+
+<tr>
+
+<td>House</td>
+
+<td>Buy / Rent</td>
+
+<td>₹25 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>Apartment</td>
+
+<td>Buy / Rent</td>
+
+<td>₹20 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>Land</td>
+
+<td>Buy</td>
+
+<td>₹10 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>Commercial Property</td>
+
+<td>Buy / Rent</td>
+
+<td>₹30 Lakhs</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="card">
+
+<h3>Why Choose Home Finder?</h3>
+
+<ul>
+
+<li>Easy property search</li>
+
+<li>Affordable properties</li>
+
+<li>Location-based search</li>
+
+<li>Verified property details</li>
+
+<li>Agent communication</li>
+
+<li>Simple and user-friendly interface</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROPERTY PAGE ================= -->
+
+<div id="properties" class="page">
+
+<div class="container">
+
+<h2>Available Properties</h2>
+
+<div class="property-card">
+
+<h3>3 BHK House - Chennai</h3>
+
+<p>Location: Chennai</p>
+
+<p>Type: Residential House</p>
+
+<p>Price: ₹65 Lakhs</p>
+
+<p>Facilities: Parking, Garden, Water Supply</p>
+
+<button class="btn" onclick="viewProperty()">
+
+View Details
+
+</button>
+
+<button class="btn" onclick="saveProperty()">
+
+Save Favourite
+
+</button>
+
+</div>
+
+
+<div class="property-card">
+
+<h3>2 BHK Apartment - Bangalore</h3>
+
+<p>Location: Bangalore</p>
+
+<p>Type: Apartment</p>
+
+<p>Price: ₹45 Lakhs</p>
+
+<p>Facilities: Parking, Lift, Security</p>
+
+<button class="btn" onclick="viewProperty()">
+
+View Details
+
+</button>
+
+<button class="btn" onclick="saveProperty()">
+
+Save Favourite
+
+</button>
+
+</div>
+
+
+<div class="property-card">
+
+<h3>Residential Land - Hyderabad</h3>
+
+<p>Location: Hyderabad</p>
+
+<p>Type: Land</p>
+
+<p>Price: ₹30 Lakhs</p>
+
+<p>Facilities: Road Access, Water Supply</p>
+
+<button class="btn" onclick="viewProperty()">
+
+View Details
+
+</button>
+
+<button class="btn" onclick="saveProperty()">
+
+Save Favourite
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= SEARCH PAGE ================= -->
+
+<div id="search" class="page">
+
+<div class="container">
+
+<h2>Search Properties</h2>
+
+<label>Location</label>
+
+<input type="text" id="location"
+placeholder="Enter city or area">
+
+
+<label>Property Type</label>
+
+<select id="propertyType">
+
+<option>House</option>
+
+<option>Apartment</option>
+
+<option>Land</option>
+
+<option>Commercial Property</option>
+
+</select>
+
+
+<label>Minimum Price</label>
+
+<input type="number" id="minPrice"
+placeholder="Minimum Budget">
+
+
+<label>Maximum Price</label>
+
+<input type="number" id="maxPrice"
+placeholder="Maximum Budget">
+
+
+<label>Amenities</label>
+
+<select>
+
+<option>Parking</option>
+
+<option>Swimming Pool</option>
+
+<option>Garden</option>
+
+<option>Security</option>
+
+<option>Lift</option>
+
+</select>
+
+
+<button class="btn" onclick="searchProperty()">
+
+Search Property
+
+</button>
+
+<br><br>
+
+<table>
+
+<tr>
+
+<th>Property</th>
+
+<th>Location</th>
+
+<th>Type</th>
+
+<th>Price</th>
+
+</tr>
+
+<tr>
+
+<td>3 BHK House</td>
+
+<td>Chennai</td>
+
+<td>House</td>
+
+<td>₹65 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>2 BHK Apartment</td>
+
+<td>Bangalore</td>
+
+<td>Apartment</td>
+
+<td>₹45 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>Residential Land</td>
+
+<td>Hyderabad</td>
+
+<td>Land</td>
+
+<td>₹30 Lakhs</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="saveSearch()">
+
+Save Search Criteria
+
+</button>
+
+<button class="btn" onclick="showSavedSearch()">
+
+Use Saved Search
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= REGISTER PAGE ================= -->
+
+<div id="register" class="page">
+
+<div class="container">
+
+<h2>Buyer Registration</h2>
+
+<label>Full Name</label>
+
+<input type="text" id="regName">
+
+
+<label>Email</label>
+
+<input type="email" id="regEmail">
+
+
+<label>Phone Number</label>
+
+<input type="text" id="regPhone">
+
+
+<label>Username</label>
+
+<input type="text" id="regUsername">
+
+
+<label>Password</label>
+
+<input type="password" id="regPassword">
+
+
+<label>Confirm Password</label>
+
+<input type="password" id="regConfirm">
+
+
+<button class="btn" onclick="registerBuyer()">
+
+Register
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= LOGIN PAGE ================= -->
+
+<div id="login" class="page">
+
+<div class="container">
+
+<h2>Buyer Login</h2>
+
+<label>Username</label>
+
+<input type="text" id="loginUsername">
+
+
+<label>Password</label>
+
+<input type="password" id="loginPassword">
+
+
+<button class="btn" onclick="buyerLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= USER DASHBOARD ================= -->
+
+<div id="userdashboard" class="page">
+
+<div class="container">
+
+<h2>Buyer Dashboard</h2>
+
+<p>Welcome to your Home Finder dashboard.</p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('search')">
+
+Search Properties
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('favorites')">
+
+Favourite Properties
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('savedsearch')">
+
+Saved Search Criteria
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('viewing')">
+
+Schedule Property Viewing
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('mortgage')">
+
+Mortgage Calculator
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('profile')">
+
+My Profile
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= FAVOURITES ================= -->
+
+<div id="favorites" class="page">
+
+<div class="container">
+
+<h2>Favourite Properties</h2>
+
+<table>
+
+<tr>
+
+<th>Property</th>
+
+<th>Location</th>
+
+<th>Price</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>3 BHK House</td>
+
+<td>Chennai</td>
+
+<td>₹65 Lakhs</td>
+
+<td>Saved</td>
+
+</tr>
+
+<tr>
+
+<td>2 BHK Apartment</td>
+
+<td>Bangalore</td>
+
+<td>₹45 Lakhs</td>
+
+<td>Saved</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= SAVED SEARCH ================= -->
+
+<div id="savedsearch" class="page">
+
+<div class="container">
+
+<h2>Saved Search Criteria</h2>
+
+<table>
+
+<tr>
+
+<th>Location</th>
+
+<th>Property Type</th>
+
+<th>Budget</th>
+
+</tr>
+
+<tr>
+
+<td>Chennai</td>
+
+<td>House</td>
+
+<td>₹30 - ₹70 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>Bangalore</td>
+
+<td>Apartment</td>
+
+<td>₹20 - ₹50 Lakhs</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="useSavedCriteria()">
+
+Use This Search Again
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROPERTY VIEWING ================= -->
+
+<div id="viewing" class="page">
+
+<div class="container">
+
+<h2>Schedule Property Viewing</h2>
+
+<label>Property Name</label>
+
+<input type="text">
+
+
+<label>Buyer Name</label>
+
+<input type="text">
+
+
+<label>Viewing Date</label>
+
+<input type="date">
+
+
+<label>Viewing Time</label>
+
+<input type="time">
+
+
+<button class="btn" onclick="scheduleViewing()">
+
+Schedule Viewing
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= MORTGAGE ================= -->
+
+<div id="mortgage" class="page">
+
+<div class="container">
+
+<h2>Mortgage Calculator</h2>
+
+<label>Loan Amount</label>
+
+<input type="number" id="loanAmount">
+
+
+<label>Interest Rate (%)</label>
+
+<input type="number" id="interestRate">
+
+
+<label>Loan Period (Years)</label>
+
+<input type="number" id="loanYears">
+
+
+<button class="btn" onclick="calculateMortgage()">
+
+Calculate EMI
+
+</button>
+
+<br><br>
+
+<p id="emiResult"></p>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div id="profile" class="page">
+
+<div class="container">
+
+<h2>My Profile</h2>
+
+<label>Name</label>
+
+<input type="text" value="John Doe">
+
+
+<label>Email</label>
+
+<input type="email" value="john@example.com">
+
+
+<label>Phone</label>
+
+<input type="text" value="9876543210">
+
+
+<label>Address</label>
+
+<textarea rows="4">Chennai</textarea>
+
+
+<button class="btn">
+
+Update Profile
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= AGENTS ================= -->
+
+<div id="agents" class="page">
+
+<div class="container">
+
+<h2>Agent and Company Search</h2>
+
+<label>Search Agent / Company</label>
+
+<input type="text"
+placeholder="Enter agent or company name">
+
+
+<button class="btn" onclick="searchAgent()">
+
+Search
+
+</button>
+
+<br><br>
+
+<table>
+
+<tr>
+
+<th>Agent Name</th>
+
+<th>Company</th>
+
+<th>Location</th>
+
+<th>Contact</th>
+
+</tr>
+
+<tr>
+
+<td>Ravi Kumar</td>
+
+<td>ABC Properties</td>
+
+<td>Chennai</td>
+
+<td>9876543210</td>
+
+</tr>
+
+<tr>
+
+<td>Priya Sharma</td>
+
+<td>Dream Homes</td>
+
+<td>Bangalore</td>
+
+<td>9876501234</td>
+
+</tr>
+
+<tr>
+
+<td>Arun Kumar</td>
+
+<td>Green Land Realtors</td>
+
+<td>Hyderabad</td>
+
+<td>9876512345</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= MAP ================= -->
+
+<div id="map" class="page">
+
+<div class="container">
+
+<h2>Property Location Map</h2>
+
+<p>
+
+Property locations can be displayed using Google Maps.
+
+</p>
+
+<br>
+
+<iframe
+
+src="https://www.google.com/maps?q=Chennai&output=embed"
+
+width="100%"
+
+height="400"
+
+style="border:0;">
+
+</iframe>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN LOGIN ================= -->
+
+<div id="adminlogin" class="page">
+
+<div class="container">
+
+<h2>Administrator Login</h2>
+
+<label>Admin Username</label>
+
+<input type="text" id="adminUser">
+
+
+<label>Password</label>
+
+<input type="password" id="adminPass">
+
+
+<button class="btn" onclick="adminLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<div id="admindashboard" class="page">
+
+<div class="container">
+
+<h2>Administrator Dashboard</h2>
+
+<p><b>Home Finder Management Controls</b></p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('propertymanagement')">
+
+Property Management
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('customermanagement')">
+
+Customer Management
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('agentmanagement')">
+
+Agent Management
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('advertisement')">
+
+Advertisements
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROPERTY MANAGEMENT ================= -->
+
+<div id="propertymanagement" class="page">
+
+<div class="container">
+
+<h2>Property Management</h2>
+
+<table>
+
+<tr>
+
+<th>Property ID</th>
+
+<th>Property</th>
+
+<th>Location</th>
+
+<th>Price</th>
+
+</tr>
+
+<tr>
+
+<td>101</td>
+
+<td>3 BHK House</td>
+
+<td>Chennai</td>
+
+<td>₹65 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>102</td>
+
+<td>2 BHK Apartment</td>
+
+<td>Bangalore</td>
+
+<td>₹45 Lakhs</td>
+
+</tr>
+
+<tr>
+
+<td>103</td>
+
+<td>Residential Land</td>
+
+<td>Hyderabad</td>
+
+<td>₹30 Lakhs</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="updateProperty()">
+
+Update Property
+
+</button>
+
+<button class="btn" onclick="deleteProperty()">
+
+Delete Property
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CUSTOMER MANAGEMENT ================= -->
+
+<div id="customermanagement" class="page">
+
+<div class="container">
+
+<h2>Customer Records</h2>
+
+<table>
+
+<tr>
+
+<th>Customer ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Phone</th>
+
+<th>Visited</th>
+
+</tr>
+
+<tr>
+
+<td>101</td>
+
+<td>John</td>
+
+<td>john@example.com</td>
+
+<td>9876543210</td>
+
+<td>Yes</td>
+
+</tr>
+
+<tr>
+
+<td>102</td>
+
+<td>David</td>
+
+<td>david@example.com</td>
+
+<td>9876501234</td>
+
+<td>Yes</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= AGENT MANAGEMENT ================= -->
+
+<div id="agentmanagement" class="page">
+
+<div class="container">
+
+<h2>Agent Management</h2>
+
+<table>
+
+<tr>
+
+<th>Agent ID</th>
+
+<th>Name</th>
+
+<th>Company</th>
+
+<th>Location</th>
+
+</tr>
+
+<tr>
+
+<td>1</td>
+
+<td>Ravi Kumar</td>
+
+<td>ABC Properties</td>
+
+<td>Chennai</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>Priya Sharma</td>
+
+<td>Dream Homes</td>
+
+<td>Bangalore</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="addAgent()">
+
+Add Agent
+
+</button>
+
+<button class="btn" onclick="removeAgent()">
+
+Remove Agent
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADVERTISEMENT ================= -->
+
+<div id="advertisement" class="page">
+
+<div class="container">
+
+<h2>Advertisements</h2>
+
+<div class="card">
+
+<h3>Luxury Apartments</h3>
+
+<p>
+
+Affordable luxury apartments available in Chennai.
+
+</p>
+
+<button class="btn">
+
+View Advertisement
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Green Land Developers</h3>
+
+<p>
+
+Residential lands available near major city areas.
+
+</p>
+
+<button class="btn">
+
+Visit Website
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= CONTACT ================= -->
+
+<div id="contact" class="page">
+
+<div class="container">
+
+<h2>Contact Us</h2>
+
+<label>Name</label>
+
+<input type="text">
+
+
+<label>Email</label>
+
+<input type="email">
+
+
+<label>Phone</label>
+
+<input type="text">
+
+
+<label>Message</label>
+
+<textarea rows="5"></textarea>
+
+
+<button class="btn" onclick="sendMessage()">
+
+Send Message
+
+</button>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<h3>Home Finder - Real Estate Platform</h3>
+
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+
+<script>
+
+function showPage(pageId){
+
+    var pages=document.getElementsByClassName("page");
+
+    for(var i=0;i<pages.length;i++){
+
+        pages[i].style.display="none";
+
+    }
+
+    document.getElementById(pageId).style.display="block";
+
+}
+
+
+function registerBuyer(){
+
+    alert("Buyer Registration Successful!");
+
+    showPage("login");
+
+}
+
+
+function buyerLogin(){
+
+    alert("Buyer Login Successful!");
+
+    showPage("userdashboard");
+
+}
+
+
+function adminLogin(){
+
+    alert("Admin Login Successful!");
+
+    showPage("admindashboard");
+
+}
+
+
+function searchProperty(){
+
+    alert("Property Search Completed!");
+
+}
+
+
+function saveSearch(){
+
+    alert("Search Criteria Saved Successfully!");
+
+}
+
+
+function showSavedSearch(){
+
+    alert("Saved Search Criteria Loaded!");
+
+}
+
+
+function useSavedCriteria(){
+
+    alert("Saved Search Criteria Applied!");
+
+    showPage("search");
+
+}
+
+
+function viewProperty(){
+
+    alert("Property Details Opened!");
+
+}
+
+
+function saveProperty(){
+
+    alert("Property Added to Favourites!");
+
+}
+
+
+function scheduleViewing(){
+
+    alert("Property Viewing Scheduled Successfully!");
+
+}
+
+
+function calculateMortgage(){
+
+    var amount =
+        parseFloat(document.getElementById("loanAmount").value);
+
+    var rate =
+        parseFloat(document.getElementById("interestRate").value);
+
+    var years =
+        parseFloat(document.getElementById("loanYears").value);
+
+    if(isNaN(amount) || isNaN(rate) || isNaN(years)){
+
+        alert("Please enter all loan details.");
+
+        return;
+
+    }
+
+    var monthlyRate = rate / 12 / 100;
+
+    var months = years * 12;
+
+    var emi =
+        (amount * monthlyRate *
+        Math.pow(1 + monthlyRate, months)) /
+        (Math.pow(1 + monthlyRate, months) - 1);
+
+    document.getElementById("emiResult").innerHTML =
+        "<b>Monthly EMI: ₹" + emi.toFixed(2) + "</b>";
+
+}
+
+
+function searchAgent(){
+
+    alert("Agent / Company Search Completed!");
+
+}
+
+
+function updateProperty(){
+
+    alert("Property Details Updated!");
+
+}
+
+
+function deleteProperty(){
+
+    alert("Property Deleted Successfully!");
+
+}
+
+
+function addAgent(){
+
+    alert("New Agent Added!");
+
+}
+
+
+function removeAgent(){
+
+    alert("Agent Removed Successfully!");
+
+}
+
+
+function sendMessage(){
+
+    alert("Thank you! Your message has been sent.");
+
+}
+
+</script>
+
+</body>
+
+</html>

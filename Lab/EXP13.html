@@ -1,0 +1,1808 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>BlossomGifts - Online Flowers and Gifts</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#fff5f7;
+}
+
+header{
+    background:#c2185b;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+header h1{
+    margin-bottom:10px;
+}
+
+nav{
+    background:#e91e63;
+    text-align:center;
+    padding:12px;
+}
+
+nav button{
+    background:white;
+    color:#c2185b;
+    border:none;
+    padding:10px 16px;
+    margin:5px;
+    cursor:pointer;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+nav button:hover{
+    background:#ff9800;
+    color:white;
+}
+
+.page{
+    display:none;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h2{
+    color:#c2185b;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+h3{
+    color:#e91e63;
+    margin-top:20px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid gray;
+    border-radius:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table,th,td{
+    border:1px solid black;
+}
+
+th{
+    background:#c2185b;
+    color:white;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+.btn{
+    background:#c2185b;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:5px;
+    margin:3px;
+}
+
+.btn:hover{
+    background:#e91e63;
+}
+
+footer{
+    background:#c2185b;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+.card{
+    background:#fff0f3;
+    padding:15px;
+    border-left:5px solid #c2185b;
+    margin-top:15px;
+}
+
+.product-card{
+    background:#fff0f3;
+    padding:15px;
+    margin-top:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.product-card h3{
+    margin-top:0;
+}
+
+.category{
+    display:inline-block;
+    background:#ffe0e6;
+    padding:15px;
+    margin:8px;
+    border-radius:8px;
+    width:200px;
+    text-align:center;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>BLOSSOMGIFTS</h1>
+
+<p>
+Flowers | Gifts | Personalized Gifts | Fast Delivery
+</p>
+
+</header>
+
+
+<nav>
+
+<button onclick="showPage('home')">
+Home
+</button>
+
+<button onclick="showPage('products')">
+Products
+</button>
+
+<button onclick="showPage('categories')">
+Categories
+</button>
+
+<button onclick="showPage('cart')">
+Cart
+</button>
+
+<button onclick="showPage('register')">
+Register
+</button>
+
+<button onclick="showPage('login')">
+User Login
+</button>
+
+<button onclick="showPage('track')">
+Track Order
+</button>
+
+<button onclick="showPage('adminlogin')">
+Admin Login
+</button>
+
+<button onclick="showPage('contact')">
+Contact
+</button>
+
+</nav>
+
+
+<!-- ================= HOME PAGE ================= -->
+
+<div id="home" class="page active">
+
+<div class="container">
+
+<h2>Welcome to BlossomGifts</h2>
+
+<p>
+
+BlossomGifts is an online platform for ordering flowers,
+gift baskets and personalized gifts for every occasion.
+Customers can easily select products, schedule deliveries,
+make payments and track their orders.
+
+</p>
+
+<br>
+
+
+<div class="card">
+
+<h3>Popular Shopping Categories</h3>
+
+<div class="category">
+
+<h3>Birthday</h3>
+
+<p>Flowers and birthday gifts</p>
+
+</div>
+
+<div class="category">
+
+<h3>Anniversary</h3>
+
+<p>Romantic gifts and flowers</p>
+
+</div>
+
+<div class="category">
+
+<h3>Wedding</h3>
+
+<p>Wedding flowers and gifts</p>
+
+</div>
+
+<div class="category">
+
+<h3>Love</h3>
+
+<p>Special romantic gifts</p>
+
+</div>
+
+<div class="category">
+
+<h3>Plants</h3>
+
+<p>Indoor and outdoor plants</p>
+
+</div>
+
+<div class="category">
+
+<h3>Gift Baskets</h3>
+
+<p>Premium gift baskets</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Subcategories</h3>
+
+<ul>
+
+<li>Roses</li>
+
+<li>Bouquets</li>
+
+<li>Flower Baskets</li>
+
+<li>Chocolates</li>
+
+<li>Soft Toys</li>
+
+<li>Cakes</li>
+
+<li>Personalized Mugs</li>
+
+<li>Photo Frames</li>
+
+<li>Greeting Cards</li>
+
+<li>Indoor Plants</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>Why Choose BlossomGifts?</h3>
+
+<ul>
+
+<li>Easy navigation</li>
+
+<li>Wide range of gifts</li>
+
+<li>Affordable prices</li>
+
+<li>Future delivery scheduling</li>
+
+<li>Secure payment</li>
+
+<li>Order tracking</li>
+
+<li>Email and SMS confirmation</li>
+
+<li>Special discounts for loyal customers</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<div id="categories" class="page">
+
+<div class="container">
+
+<h2>Shopping Categories</h2>
+
+
+<table>
+
+<tr>
+
+<th>Category</th>
+
+<th>Subcategories</th>
+
+<th>Price Range</th>
+
+</tr>
+
+
+<tr>
+
+<td>Birthday</td>
+
+<td>Cakes, Flowers, Chocolates</td>
+
+<td>₹500 - ₹3000</td>
+
+</tr>
+
+
+<tr>
+
+<td>Anniversary</td>
+
+<td>Roses, Bouquets, Gifts</td>
+
+<td>₹700 - ₹5000</td>
+
+</tr>
+
+
+<tr>
+
+<td>Wedding</td>
+
+<td>Wedding Flowers, Gift Sets</td>
+
+<td>₹1000 - ₹8000</td>
+
+</tr>
+
+
+<tr>
+
+<td>Love</td>
+
+<td>Roses, Teddy Bears, Cards</td>
+
+<td>₹500 - ₹4000</td>
+
+</tr>
+
+
+<tr>
+
+<td>Plants</td>
+
+<td>Indoor Plants, Flower Plants</td>
+
+<td>₹300 - ₹2500</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<div id="products" class="page">
+
+<div class="container">
+
+<h2>Available Products</h2>
+
+
+<div class="product-card">
+
+<h3>Red Rose Bouquet</h3>
+
+<p>Category: Anniversary</p>
+
+<p>Subcategory: Roses</p>
+
+<p>Price: ₹999</p>
+
+<p>Fresh red roses beautifully arranged.</p>
+
+<button class="btn"
+onclick="addToCart('Red Rose Bouquet',999)">
+
+Add to Cart
+
+</button>
+
+</div>
+
+
+<div class="product-card">
+
+<h3>Chocolate Gift Basket</h3>
+
+<p>Category: Birthday</p>
+
+<p>Subcategory: Chocolates</p>
+
+<p>Price: ₹1499</p>
+
+<p>Premium chocolates with decorative packaging.</p>
+
+<button class="btn"
+onclick="addToCart('Chocolate Gift Basket',1499)">
+
+Add to Cart
+
+</button>
+
+</div>
+
+
+<div class="product-card">
+
+<h3>Personalized Mug</h3>
+
+<p>Category: Personalized Gifts</p>
+
+<p>Subcategory: Mugs</p>
+
+<p>Price: ₹499</p>
+
+<p>Customized mug with your selected photo.</p>
+
+<button class="btn"
+onclick="addToCart('Personalized Mug',499)">
+
+Add to Cart
+
+</button>
+
+</div>
+
+
+<div class="product-card">
+
+<h3>Teddy Bear</h3>
+
+<p>Category: Love</p>
+
+<p>Subcategory: Soft Toys</p>
+
+<p>Price: ₹799</p>
+
+<p>Soft teddy bear suitable for special occasions.</p>
+
+<button class="btn"
+onclick="addToCart('Teddy Bear',799)">
+
+Add to Cart
+
+</button>
+
+</div>
+
+
+<div class="product-card">
+
+<h3>Indoor Money Plant</h3>
+
+<p>Category: Plants</p>
+
+<p>Subcategory: Indoor Plants</p>
+
+<p>Price: ₹399</p>
+
+<p>Beautiful indoor plant for home decoration.</p>
+
+<button class="btn"
+onclick="addToCart('Indoor Money Plant',399)">
+
+Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= REGISTER ================= -->
+
+<div id="register" class="page">
+
+<div class="container">
+
+<h2>Customer Registration</h2>
+
+<label>Full Name</label>
+
+<input type="text" id="regName">
+
+
+<label>Email</label>
+
+<input type="email" id="regEmail">
+
+
+<label>Phone Number</label>
+
+<input type="text" id="regPhone">
+
+
+<label>Username</label>
+
+<input type="text" id="regUsername">
+
+
+<label>Password</label>
+
+<input type="password" id="regPassword">
+
+
+<label>Confirm Password</label>
+
+<input type="password" id="regConfirm">
+
+
+<button class="btn"
+onclick="registerUser()">
+
+Register
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= LOGIN ================= -->
+
+<div id="login" class="page">
+
+<div class="container">
+
+<h2>Customer Login</h2>
+
+<label>Username</label>
+
+<input type="text">
+
+
+<label>Password</label>
+
+<input type="password">
+
+
+<button class="btn"
+onclick="userLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= USER DASHBOARD ================= -->
+
+<div id="userdashboard" class="page">
+
+<div class="container">
+
+<h2>Customer Dashboard</h2>
+
+<p>
+Welcome to your BlossomGifts account.
+</p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('products')">
+
+Shop Products
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('cart')">
+
+View Cart
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('orders')">
+
+My Orders
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('track')">
+
+Track Order
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('profile')">
+
+My Profile
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CART ================= -->
+
+<div id="cart" class="page">
+
+<div class="container">
+
+<h2>Shopping Cart</h2>
+
+<table id="cartTable">
+
+<tr>
+
+<th>Product</th>
+
+<th>Price</th>
+
+<th>Quantity</th>
+
+<th>Action</th>
+
+</tr>
+
+</table>
+
+<br>
+
+<p id="total">
+<b>Total: ₹0</b>
+</p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('checkout')">
+
+Proceed to Checkout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CHECKOUT ================= -->
+
+<div id="checkout" class="page">
+
+<div class="container">
+
+<h2>Checkout</h2>
+
+<label>Customer Name</label>
+
+<input type="text">
+
+
+<label>Delivery Address</label>
+
+<textarea rows="4"></textarea>
+
+
+<label>Delivery Date</label>
+
+<input type="date">
+
+
+<label>Delivery Time</label>
+
+<input type="time">
+
+
+<label>Payment Method</label>
+
+<select>
+
+<option>UPI</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+<option>Net Banking</option>
+
+</select>
+
+
+<label>Special Instructions</label>
+
+<textarea rows="4"
+placeholder="Enter personalized message">
+
+</textarea>
+
+
+<button class="btn"
+onclick="placeOrder()">
+
+Place Order
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ORDERS ================= -->
+
+<div id="orders" class="page">
+
+<div class="container">
+
+<h2>My Orders</h2>
+
+<table>
+
+<tr>
+
+<th>Order ID</th>
+
+<th>Product</th>
+
+<th>Price</th>
+
+<th>Delivery Date</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>ORD101</td>
+
+<td>Red Rose Bouquet</td>
+
+<td>₹999</td>
+
+<td>28-Aug-2026</td>
+
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>ORD102</td>
+
+<td>Chocolate Gift Basket</td>
+
+<td>₹1499</td>
+
+<td>30-Aug-2026</td>
+
+<td>Out for Delivery</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= TRACK ORDER ================= -->
+
+<div id="track" class="page">
+
+<div class="container">
+
+<h2>Track Your Order</h2>
+
+<label>Enter Order ID</label>
+
+<input type="text"
+id="orderId"
+placeholder="Example: ORD101">
+
+
+<button class="btn"
+onclick="trackOrder()">
+
+Track Order
+
+</button>
+
+<br><br>
+
+<p id="trackingResult"></p>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div id="profile" class="page">
+
+<div class="container">
+
+<h2>My Profile</h2>
+
+<label>Name</label>
+
+<input type="text"
+value="John Doe">
+
+
+<label>Email</label>
+
+<input type="email"
+value="john@example.com">
+
+
+<label>Phone</label>
+
+<input type="text"
+value="9876543210">
+
+
+<label>Address</label>
+
+<textarea rows="4">
+Chennai
+</textarea>
+
+
+<button class="btn">
+
+Update Profile
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN LOGIN ================= -->
+
+<div id="adminlogin" class="page">
+
+<div class="container">
+
+<h2>Administrator Login</h2>
+
+<label>Admin Username</label>
+
+<input type="text"
+id="adminUser">
+
+
+<label>Password</label>
+
+<input type="password"
+id="adminPass">
+
+
+<button class="btn"
+onclick="adminLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<div id="admindashboard" class="page">
+
+<div class="container">
+
+<h2>Administrator Dashboard</h2>
+
+<p>
+<b>BlossomGifts Management Controls</b>
+</p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('itemmanagement')">
+
+Item Management
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('categorymanagement')">
+
+Category Management
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('customermanagement')">
+
+Customer Information
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('ordermanagement')">
+
+Order Management
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('promotion')">
+
+Promotions & Discounts
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ITEM MANAGEMENT ================= -->
+
+<div id="itemmanagement" class="page">
+
+<div class="container">
+
+<h2>Item Management</h2>
+
+
+<h3>Add New Item</h3>
+
+<label>Item Name</label>
+
+<input type="text">
+
+
+<label>Category</label>
+
+<select>
+
+<option>Birthday</option>
+
+<option>Anniversary</option>
+
+<option>Wedding</option>
+
+<option>Love</option>
+
+<option>Plants</option>
+
+<option>Gift Baskets</option>
+
+</select>
+
+
+<label>Price</label>
+
+<input type="number">
+
+
+<label>Description</label>
+
+<textarea rows="4"></textarea>
+
+
+<button class="btn"
+onclick="addItem()">
+
+Add Item
+
+</button>
+
+
+<h3>Available Items</h3>
+
+<table>
+
+<tr>
+
+<th>Item ID</th>
+
+<th>Item</th>
+
+<th>Category</th>
+
+<th>Price</th>
+
+<th>Action</th>
+
+</tr>
+
+<tr>
+
+<td>101</td>
+
+<td>Red Rose Bouquet</td>
+
+<td>Anniversary</td>
+
+<td>₹999</td>
+
+<td>
+
+<button class="btn"
+onclick="modifyItem()">
+
+Modify
+
+</button>
+
+<button class="btn"
+onclick="removeItem()">
+
+Remove
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>102</td>
+
+<td>Chocolate Basket</td>
+
+<td>Birthday</td>
+
+<td>₹1499</td>
+
+<td>
+
+<button class="btn"
+onclick="modifyItem()">
+
+Modify
+
+</button>
+
+<button class="btn"
+onclick="removeItem()">
+
+Remove
+
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= CATEGORY MANAGEMENT ================= -->
+
+<div id="categorymanagement" class="page">
+
+<div class="container">
+
+<h2>Category Management</h2>
+
+<table>
+
+<tr>
+
+<th>Category</th>
+
+<th>Subcategories</th>
+
+<th>Action</th>
+
+</tr>
+
+<tr>
+
+<td>Birthday</td>
+
+<td>Cakes, Flowers, Chocolates</td>
+
+<td>
+
+<button class="btn"
+onclick="modifyCategory()">
+
+Modify
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Anniversary</td>
+
+<td>Roses, Bouquets, Gifts</td>
+
+<td>
+
+<button class="btn"
+onclick="modifyCategory()">
+
+Modify
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Love</td>
+
+<td>Roses, Teddy Bears, Cards</td>
+
+<td>
+
+<button class="btn"
+onclick="modifyCategory()">
+
+Modify
+
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn"
+onclick="addCategory()">
+
+Add New Category
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CUSTOMER MANAGEMENT ================= -->
+
+<div id="customermanagement" class="page">
+
+<div class="container">
+
+<h2>Customer Information</h2>
+
+<p>
+Information about customers who checked out items.
+</p>
+
+<table>
+
+<tr>
+
+<th>Customer ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Phone</th>
+
+<th>Order</th>
+
+<th>Amount</th>
+
+</tr>
+
+<tr>
+
+<td>C101</td>
+
+<td>John</td>
+
+<td>john@example.com</td>
+
+<td>9876543210</td>
+
+<td>ORD101</td>
+
+<td>₹999</td>
+
+</tr>
+
+<tr>
+
+<td>C102</td>
+
+<td>David</td>
+
+<td>david@example.com</td>
+
+<td>9876501234</td>
+
+<td>ORD102</td>
+
+<td>₹1499</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= ORDER MANAGEMENT ================= -->
+
+<div id="ordermanagement" class="page">
+
+<div class="container">
+
+<h2>Order Management</h2>
+
+<table>
+
+<tr>
+
+<th>Order ID</th>
+
+<th>Customer</th>
+
+<th>Product</th>
+
+<th>Amount</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>ORD101</td>
+
+<td>John</td>
+
+<td>Red Rose Bouquet</td>
+
+<td>₹999</td>
+
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>ORD102</td>
+
+<td>David</td>
+
+<td>Chocolate Basket</td>
+
+<td>₹1499</td>
+
+<td>Out for Delivery</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn"
+onclick="updateOrder()">
+
+Update Order
+
+</button>
+
+<button class="btn"
+onclick="cancelOrder()">
+
+Cancel Order
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROMOTIONS ================= -->
+
+<div id="promotion" class="page">
+
+<div class="container">
+
+<h2>Promotions and Discounts</h2>
+
+<label>Promotion Name</label>
+
+<input type="text"
+value="Festival Offer">
+
+
+<label>Discount Percentage</label>
+
+<input type="number"
+value="10">
+
+
+<label>Valid Until</label>
+
+<input type="date">
+
+
+<button class="btn"
+onclick="savePromotion()">
+
+Save Promotion
+
+</button>
+
+<br><br>
+
+<div class="card">
+
+<h3>Current Offers</h3>
+
+<p>
+10% discount for loyal customers.
+</p>
+
+<p>
+Free delivery for orders above ₹2000.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= CONTACT ================= -->
+
+<div id="contact" class="page">
+
+<div class="container">
+
+<h2>Contact Us</h2>
+
+<label>Name</label>
+
+<input type="text">
+
+
+<label>Email</label>
+
+<input type="email">
+
+
+<label>Phone</label>
+
+<input type="text">
+
+
+<label>Message</label>
+
+<textarea rows="5"></textarea>
+
+
+<button class="btn"
+onclick="sendMessage()">
+
+Send Message
+
+</button>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<h3>BlossomGifts - Online Flowers & Gifts</h3>
+
+<p>
+© 2026 All Rights Reserved
+</p>
+
+</footer>
+
+
+<script>
+
+
+function showPage(pageId){
+
+    var pages =
+        document.getElementsByClassName("page");
+
+    for(var i=0;i<pages.length;i++){
+
+        pages[i].style.display="none";
+
+    }
+
+    document.getElementById(pageId).style.display="block";
+
+}
+
+
+function registerUser(){
+
+    alert("Customer Registration Successful!");
+
+    showPage("login");
+
+}
+
+
+function userLogin(){
+
+    alert("Customer Login Successful!");
+
+    showPage("userdashboard");
+
+}
+
+
+function adminLogin(){
+
+    alert("Admin Login Successful!");
+
+    showPage("admindashboard");
+
+}
+
+
+var cart = [];
+
+var total = 0;
+
+
+function addToCart(product,price){
+
+    cart.push({
+        product:product,
+        price:price
+    });
+
+    total = total + price;
+
+    alert(product + " added to cart!");
+
+    updateCart();
+
+}
+
+
+function updateCart(){
+
+    var table =
+        document.getElementById("cartTable");
+
+    table.innerHTML =
+        "<tr>" +
+        "<th>Product</th>" +
+        "<th>Price</th>" +
+        "<th>Quantity</th>" +
+        "<th>Action</th>" +
+        "</tr>";
+
+    for(var i=0;i<cart.length;i++){
+
+        table.innerHTML +=
+            "<tr>" +
+
+            "<td>" +
+            cart[i].product +
+            "</td>" +
+
+            "<td>₹" +
+            cart[i].price +
+            "</td>" +
+
+            "<td>1</td>" +
+
+            "<td>" +
+
+            "<button class='btn' " +
+            "onclick='removeCartItem(" +
+            i + ")'>" +
+
+            "Remove" +
+
+            "</button>" +
+
+            "</td>" +
+
+            "</tr>";
+
+    }
+
+    document.getElementById("total").innerHTML =
+        "<b>Total: ₹" + total + "</b>";
+
+}
+
+
+function removeCartItem(index){
+
+    total =
+        total - cart[index].price;
+
+    cart.splice(index,1);
+
+    updateCart();
+
+    alert("Item removed from cart!");
+
+}
+
+
+function placeOrder(){
+
+    if(cart.length==0){
+
+        alert("Your cart is empty!");
+
+        return;
+
+    }
+
+    alert(
+        "Order placed successfully!\n" +
+        "Confirmation sent through Email and SMS."
+    );
+
+    cart=[];
+
+    total=0;
+
+    updateCart();
+
+    showPage("orders");
+
+}
+
+
+function trackOrder(){
+
+    var id =
+        document.getElementById("orderId").value;
+
+    if(id==""){
+
+        alert("Please enter Order ID.");
+
+        return;
+
+    }
+
+    document.getElementById(
+        "trackingResult"
+    ).innerHTML =
+
+        "<b>Order Status:</b> " +
+        "Out for Delivery<br>" +
+
+        "<b>Order ID:</b> " +
+        id + "<br>" +
+
+        "<b>Expected Delivery:</b> " +
+        "28-Aug-2026";
+
+}
+
+
+function addItem(){
+
+    alert("New Item Added Successfully!");
+
+}
+
+
+function removeItem(){
+
+    alert("Item Removed Successfully!");
+
+}
+
+
+function modifyItem(){
+
+    alert("Item Price / Details Modified Successfully!");
+
+}
+
+
+function addCategory(){
+
+    alert("New Category Added Successfully!");
+
+}
+
+
+function modifyCategory(){
+
+    alert("Category Modified Successfully!");
+
+}
+
+
+function updateOrder(){
+
+    alert("Order Details Updated!");
+
+}
+
+
+function cancelOrder(){
+
+    alert("Order Cancelled Successfully!");
+
+}
+
+
+function savePromotion(){
+
+    alert("Promotion and Discount Saved Successfully!");
+
+}
+
+
+function sendMessage(){
+
+    alert("Thank you! Your message has been sent.");
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+```

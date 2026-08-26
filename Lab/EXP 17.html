@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>VoteOnline - E-Voting System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f2f6fb;
+}
+
+header{
+    background:#173f6b;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+header h1{
+    margin-bottom:10px;
+}
+
+nav{
+    background:#246fa8;
+    text-align:center;
+    padding:12px;
+}
+
+nav button{
+    background:white;
+    color:#173f6b;
+    border:none;
+    padding:10px 16px;
+    margin:5px;
+    cursor:pointer;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+nav button:hover{
+    background:#ff9800;
+    color:white;
+}
+
+.page{
+    display:none;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #aaa;
+}
+
+h2{
+    color:#173f6b;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+h3{
+    color:#246fa8;
+    margin-top:20px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #aaa;
+    border-radius:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table,th,td{
+    border:1px solid #555;
+}
+
+th{
+    background:#173f6b;
+    color:white;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+.btn{
+    background:#173f6b;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:5px;
+    margin:3px;
+}
+
+.btn:hover{
+    background:#246fa8;
+}
+
+.card{
+    background:#edf5fc;
+    padding:15px;
+    margin-top:15px;
+    border-left:5px solid #173f6b;
+    border-radius:5px;
+}
+
+.candidate-card{
+    background:#f7fafc;
+    padding:20px;
+    margin-top:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.candidate-card h3{
+    margin-top:0;
+}
+
+.candidate-card input{
+    width:auto;
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:5px;
+    font-weight:bold;
+    background:#dff0d8;
+}
+
+.otp-box{
+    background:#fff8e1;
+    padding:15px;
+    margin-top:15px;
+    border-left:5px solid #ff9800;
+    border-radius:5px;
+}
+
+.info-box{
+    display:inline-block;
+    background:#e5f1fb;
+    padding:20px;
+    margin:8px;
+    border-radius:8px;
+    width:200px;
+    text-align:center;
+}
+
+footer{
+    background:#173f6b;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>VoteOnline</h1>
+
+<p>
+Secure • Transparent • Accessible E-Voting
+</p>
+
+</header>
+
+
+<nav>
+
+<button onclick="showPage('home')">
+Home
+</button>
+
+<button onclick="showPage('login')">
+Voter Login
+</button>
+
+<button onclick="showPage('election')">
+Election
+</button>
+
+<button onclick="showPage('voting')">
+Cast Vote
+</button>
+
+<button onclick="showPage('history')">
+Voting History
+</button>
+
+<button onclick="showPage('adminlogin')">
+Admin
+</button>
+
+</nav>
+
+
+<!-- ================= HOME ================= -->
+
+<div id="home" class="page active">
+
+<div class="container">
+
+<h2>Welcome to VoteOnline</h2>
+
+<p>
+
+VoteOnline is a secure and user-friendly electronic
+voting platform designed to simplify the election process.
+Registered voters can authenticate themselves and cast
+their votes electronically.
+
+</p>
+
+
+<div class="card">
+
+<h3>How VoteOnline Works</h3>
+
+<ol>
+
+<li>Voter logs in using Voter ID.</li>
+
+<li>OTP verification is performed.</li>
+
+<li>Voter views the available election.</li>
+
+<li>Voter views candidate information.</li>
+
+<li>Voter selects one candidate.</li>
+
+<li>OTP is generated for voting.</li>
+
+<li>Voter submits the vote.</li>
+
+<li>Vote confirmation is displayed.</li>
+
+</ol>
+
+</div>
+
+
+<div class="card">
+
+<h3>VoteOnline Features</h3>
+
+<div class="info-box">
+
+<h3>Secure Login</h3>
+
+<p>
+Voter ID and OTP verification
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>Candidate List</h3>
+
+<p>
+View candidate information
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>Online Voting</h3>
+
+<p>
+Simple voting interface
+</p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>Election Results</h3>
+
+<p>
+View election results
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Security</h3>
+
+<ul>
+
+<li>Voter authentication</li>
+
+<li>OTP verification</li>
+
+<li>Secure vote submission</li>
+
+<li>Voter information protection</li>
+
+<li>Election monitoring</li>
+
+<li>Transparent result management</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= USER LOGIN ================= -->
+
+<div id="login" class="page">
+
+<div class="container">
+
+<h2>Voter Login</h2>
+
+<label>Voter ID</label>
+
+<input type="text"
+id="voterId"
+placeholder="Enter Voter ID">
+
+
+<label>Date of Birth</label>
+
+<input type="date"
+id="dob">
+
+
+<button class="btn"
+onclick="voterLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= OTP LOGIN ================= -->
+
+<div id="loginotp" class="page">
+
+<div class="container">
+
+<h2>OTP Login Verification</h2>
+
+<p>
+An OTP has been sent to your registered mobile number.
+</p>
+
+<div class="otp-box">
+
+<h3>Demo OTP: 123456</h3>
+
+<p>
+Use this OTP for testing.
+</p>
+
+</div>
+
+<br>
+
+<label>Enter OTP</label>
+
+<input type="text"
+id="loginOtp"
+placeholder="Enter 6 digit OTP">
+
+
+<button class="btn"
+onclick="verifyLoginOTP()">
+
+Verify OTP
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= USER DASHBOARD ================= -->
+
+<div id="userdashboard" class="page">
+
+<div class="container">
+
+<h2>Voter Dashboard</h2>
+
+<p>
+Welcome to your VoteOnline voter account.
+</p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('election')">
+
+View Election
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('voting')">
+
+Cast Vote
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('history')">
+
+Voting History
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('confirmation')">
+
+Vote Confirmation
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ELECTION ================= -->
+
+<div id="election" class="page">
+
+<div class="container">
+
+<h2>Current Election</h2>
+
+<div class="card">
+
+<h3>General Election 2026</h3>
+
+<p>
+<strong>Election ID:</strong>
+ELEC101
+</p>
+
+<p>
+<strong>Election Date:</strong>
+30-Aug-2026
+</p>
+
+<p>
+<strong>Ward:</strong>
+Ward 101
+</p>
+
+<p>
+<strong>Status:</strong>
+<span class="status">Voting Open</span>
+</p>
+
+</div>
+
+
+<h3>Available Candidates</h3>
+
+<table>
+
+<tr>
+
+<th>Candidate ID</th>
+
+<th>Candidate Name</th>
+
+<th>Party</th>
+
+<th>Ward</th>
+
+</tr>
+
+
+<tr>
+
+<td>C101</td>
+
+<td>Arun Kumar</td>
+
+<td>Progressive Party</td>
+
+<td>Ward 101</td>
+
+</tr>
+
+
+<tr>
+
+<td>C102</td>
+
+<td>Priya Sharma</td>
+
+<td>People's Party</td>
+
+<td>Ward 101</td>
+
+</tr>
+
+
+<tr>
+
+<td>C103</td>
+
+<td>Rahul Raj</td>
+
+<td>Development Party</td>
+
+<td>Ward 101</td>
+
+</tr>
+
+</table>
+
+
+<br>
+
+<button class="btn"
+onclick="showPage('voting')">
+
+Proceed to Voting
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CAST VOTE ================= -->
+
+<div id="voting" class="page">
+
+<div class="container">
+
+<h2>Cast Your Vote</h2>
+
+<p>
+Select one candidate from the list below.
+</p>
+
+
+<div class="candidate-card">
+
+<h3>Arun Kumar</h3>
+
+<p>
+Candidate ID: C101
+</p>
+
+<p>
+Party: Progressive Party
+</p>
+
+<input type="radio"
+name="candidate"
+value="Arun Kumar">
+
+<label>Select Arun Kumar</label>
+
+</div>
+
+
+<div class="candidate-card">
+
+<h3>Priya Sharma</h3>
+
+<p>
+Candidate ID: C102
+</p>
+
+<p>
+Party: People's Party
+</p>
+
+<input type="radio"
+name="candidate"
+value="Priya Sharma">
+
+<label>Select Priya Sharma</label>
+
+</div>
+
+
+<div class="candidate-card">
+
+<h3>Rahul Raj</h3>
+
+<p>
+Candidate ID: C103
+</p>
+
+<p>
+Party: Development Party
+</p>
+
+<input type="radio"
+name="candidate"
+value="Rahul Raj">
+
+<label>Select Rahul Raj</label>
+
+</div>
+
+
+<br>
+
+<button class="btn"
+onclick="getVotingOTP()">
+
+Get OTP for Voting
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= VOTING OTP ================= -->
+
+<div id="votingotp" class="page">
+
+<div class="container">
+
+<h2>OTP Verification for Voting</h2>
+
+<p>
+Enter the OTP received on your registered mobile number
+to confirm your vote.
+</p>
+
+
+<div class="otp-box">
+
+<h3>Demo Voting OTP: 654321</h3>
+
+<p>
+Use this OTP for testing.
+</p>
+
+</div>
+
+
+<br>
+
+<label>Enter Voting OTP</label>
+
+<input type="text"
+id="votingOtp"
+placeholder="Enter OTP">
+
+
+<button class="btn"
+onclick="verifyVotingOTP()">
+
+Verify & Submit Vote
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CONFIRMATION ================= -->
+
+<div id="confirmation" class="page">
+
+<div class="container">
+
+<h2>Vote Confirmation</h2>
+
+<div class="card">
+
+<h3>Vote Submitted Successfully!</h3>
+
+<p>
+Your vote has been successfully recorded.
+</p>
+
+<br>
+
+<p>
+<strong>Election ID:</strong>
+ELEC101
+</p>
+
+<p>
+<strong>Voter ID:</strong>
+VOTER101
+</p>
+
+<p>
+<strong>Vote Status:</strong>
+Submitted
+</p>
+
+<p>
+<strong>Confirmation ID:</strong>
+VOTE2026101
+</p>
+
+</div>
+
+
+<button class="btn"
+onclick="showPage('history')">
+
+View Voting History
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= VOTING HISTORY ================= -->
+
+<div id="history" class="page">
+
+<div class="container">
+
+<h2>Voting History</h2>
+
+<table>
+
+<tr>
+
+<th>Election ID</th>
+
+<th>Election</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+<th>Confirmation ID</th>
+
+</tr>
+
+
+<tr>
+
+<td>ELEC101</td>
+
+<td>General Election 2026</td>
+
+<td>30-Aug-2026</td>
+
+<td>
+<span class="status">Vote Submitted</span>
+</td>
+
+<td>VOTE2026101</td>
+
+</tr>
+
+
+<tr>
+
+<td>ELEC100</td>
+
+<td>Local Election 2025</td>
+
+<td>20-Aug-2025</td>
+
+<td>
+<span class="status">Vote Submitted</span>
+</td>
+
+<td>VOTE2025102</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN LOGIN ================= -->
+
+<div id="adminlogin" class="page">
+
+<div class="container">
+
+<h2>Administrator Login</h2>
+
+<label>Admin Username</label>
+
+<input type="text"
+id="adminUsername"
+placeholder="Enter Admin Username">
+
+
+<label>Password</label>
+
+<input type="password"
+id="adminPassword"
+placeholder="Enter Password">
+
+
+<button class="btn"
+onclick="adminLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<div id="admindashboard" class="page">
+
+<div class="container">
+
+<h2>Administrator Dashboard</h2>
+
+<p>
+<b>VoteOnline Election Management System</b>
+</p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('candidate')">
+
+Create Election Candidate
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('electiondata')">
+
+Allocate Election Data
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('wardallocation')">
+
+Allocate User to Election Ward
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('voterlist')">
+
+Create Voter List
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('importvoter')">
+
+Import Voter List
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('viewvoters')">
+
+View & Update Voter List
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('results')">
+
+Get Election Results
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CREATE CANDIDATE ================= -->
+
+<div id="candidate" class="page">
+
+<div class="container">
+
+<h2>Create Election Candidate</h2>
+
+<label>Candidate Name</label>
+
+<input type="text"
+id="candidateName"
+placeholder="Enter candidate name">
+
+
+<label>Candidate ID</label>
+
+<input type="text"
+placeholder="Enter candidate ID">
+
+
+<label>Political Party</label>
+
+<input type="text"
+placeholder="Enter political party">
+
+
+<label>Election</label>
+
+<select>
+
+<option>General Election 2026</option>
+
+<option>Local Election 2026</option>
+
+</select>
+
+
+<label>Ward</label>
+
+<select>
+
+<option>Ward 101</option>
+
+<option>Ward 102</option>
+
+<option>Ward 103</option>
+
+</select>
+
+
+<label>Candidate Information</label>
+
+<textarea rows="5"
+placeholder="Enter candidate details"></textarea>
+
+
+<button class="btn"
+onclick="createCandidate()">
+
+Create Candidate
+
+</button>
+
+
+<h3>Candidate List</h3>
+
+<table>
+
+<tr>
+
+<th>Candidate ID</th>
+
+<th>Name</th>
+
+<th>Party</th>
+
+<th>Election</th>
+
+<th>Action</th>
+
+</tr>
+
+
+<tr>
+
+<td>C101</td>
+
+<td>Arun Kumar</td>
+
+<td>Progressive Party</td>
+
+<td>General Election 2026</td>
+
+<td>
+
+<button class="btn"
+onclick="editCandidate()">
+
+Edit
+
+</button>
+
+<button class="btn"
+onclick="deleteCandidate()">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>C102</td>
+
+<td>Priya Sharma</td>
+
+<td>People's Party</td>
+
+<td>General Election 2026</td>
+
+<td>
+
+<button class="btn"
+onclick="editCandidate()">
+
+Edit
+
+</button>
+
+<button class="btn"
+onclick="deleteCandidate()">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= ELECTION DATA ================= -->
+
+<div id="electiondata" class="page">
+
+<div class="container">
+
+<h2>Allocate Election Data with Candidate</h2>
+
+<label>Election</label>
+
+<select>
+
+<option>General Election 2026</option>
+
+<option>Local Election 2026</option>
+
+</select>
+
+
+<label>Candidate</label>
+
+<select>
+
+<option>Arun Kumar</option>
+
+<option>Priya Sharma</option>
+
+<option>Rahul Raj</option>
+
+</select>
+
+
+<label>Election Date</label>
+
+<input type="date">
+
+
+<label>Ward</label>
+
+<select>
+
+<option>Ward 101</option>
+
+<option>Ward 102</option>
+
+<option>Ward 103</option>
+
+</select>
+
+
+<button class="btn"
+onclick="allocateElection()">
+
+Allocate Election Data
+
+</button>
+
+
+<table>
+
+<tr>
+
+<th>Election ID</th>
+
+<th>Candidate</th>
+
+<th>Ward</th>
+
+<th>Date</th>
+
+</tr>
+
+
+<tr>
+
+<td>ELEC101</td>
+
+<td>Arun Kumar</td>
+
+<td>Ward 101</td>
+
+<td>30-Aug-2026</td>
+
+</tr>
+
+
+<tr>
+
+<td>ELEC101</td>
+
+<td>Priya Sharma</td>
+
+<td>Ward 101</td>
+
+<td>30-Aug-2026</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= WARD ALLOCATION ================= -->
+
+<div id="wardallocation" class="page">
+
+<div class="container">
+
+<h2>Allocate User to Election Ward</h2>
+
+<label>Voter ID</label>
+
+<input type="text"
+placeholder="Enter Voter ID">
+
+
+<label>Voter Name</label>
+
+<input type="text"
+placeholder="Enter voter name">
+
+
+<label>Election</label>
+
+<select>
+
+<option>General Election 2026</option>
+
+<option>Local Election 2026</option>
+
+</select>
+
+
+<label>Election Ward</label>
+
+<select>
+
+<option>Ward 101</option>
+
+<option>Ward 102</option>
+
+<option>Ward 103</option>
+
+</select>
+
+
+<button class="btn"
+onclick="allocateWard()">
+
+Allocate Ward
+
+</button>
+
+
+<table>
+
+<tr>
+
+<th>Voter ID</th>
+
+<th>Name</th>
+
+<th>Election</th>
+
+<th>Ward</th>
+
+</tr>
+
+
+<tr>
+
+<td>VOTER101</td>
+
+<td>Ravi Kumar</td>
+
+<td>General Election 2026</td>
+
+<td>Ward 101</td>
+
+</tr>
+
+
+<tr>
+
+<td>VOTER102</td>
+
+<td>Priya Devi</td>
+
+<td>General Election 2026</td>
+
+<td>Ward 102</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= CREATE VOTER LIST ================= -->
+
+<div id="voterlist" class="page">
+
+<div class="container">
+
+<h2>Create Voter List</h2>
+
+<label>Voter ID</label>
+
+<input type="text"
+placeholder="Enter Voter ID">
+
+
+<label>Voter Name</label>
+
+<input type="text"
+placeholder="Enter voter name">
+
+
+<label>Date of Birth</label>
+
+<input type="date">
+
+
+<label>Mobile Number</label>
+
+<input type="text"
+placeholder="Enter mobile number">
+
+
+<label>Election Ward</label>
+
+<select>
+
+<option>Ward 101</option>
+
+<option>Ward 102</option>
+
+<option>Ward 103</option>
+
+</select>
+
+
+<button class="btn"
+onclick="createVoter()">
+
+Create Voter
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= IMPORT VOTER ================= -->
+
+<div id="importvoter" class="page">
+
+<div class="container">
+
+<h2>Import Voter List</h2>
+
+<p>
+Upload a CSV or Excel file containing the voter list.
+</p>
+
+<br>
+
+<label>Select Voter List File</label>
+
+<input type="file"
+accept=".csv,.xlsx,.xls">
+
+
+<button class="btn"
+onclick="importVoterList()">
+
+Import Voter List
+
+</button>
+
+
+<div class="card">
+
+<h3>Required Information</h3>
+
+<p>
+Voter ID, Voter Name, Date of Birth,
+Mobile Number and Election Ward.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= VIEW VOTERS ================= -->
+
+<div id="viewvoters" class="page">
+
+<div class="container">
+
+<h2>View & Update Voter List</h2>
+
+<table>
+
+<tr>
+
+<th>Voter ID</th>
+
+<th>Name</th>
+
+<th>Mobile</th>
+
+<th>Ward</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+
+<tr>
+
+<td>VOTER101</td>
+
+<td>Ravi Kumar</td>
+
+<td>9876543210</td>
+
+<td>Ward 101</td>
+
+<td>Active</td>
+
+<td>
+
+<button class="btn"
+onclick="editVoter()">
+
+Edit
+
+</button>
+
+<button class="btn"
+onclick="deleteVoter()">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>VOTER102</td>
+
+<td>Priya Devi</td>
+
+<td>9876543211</td>
+
+<td>Ward 102</td>
+
+<td>Active</td>
+
+<td>
+
+<button class="btn"
+onclick="editVoter()">
+
+Edit
+
+</button>
+
+<button class="btn"
+onclick="deleteVoter()">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>VOTER103</td>
+
+<td>Rahul Kumar</td>
+
+<td>9876543212</td>
+
+<td>Ward 101</td>
+
+<td>Active</td>
+
+<td>
+
+<button class="btn"
+onclick="editVoter()">
+
+Edit
+
+</button>
+
+<button class="btn"
+onclick="deleteVoter()">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= ELECTION RESULTS ================= -->
+
+<div id="results" class="page">
+
+<div class="container">
+
+<h2>Election Results</h2>
+
+<div class="card">
+
+<h3>General Election 2026</h3>
+
+<p>
+Election ID: ELEC101
+</p>
+
+<p>
+Total Registered Voters: 5,000
+</p>
+
+<p>
+Total Votes Cast: 4,250
+</p>
+
+<p>
+Voting Percentage: 85%
+</p>
+
+</div>
+
+
+<table>
+
+<tr>
+
+<th>Candidate</th>
+
+<th>Party</th>
+
+<th>Votes</th>
+
+<th>Percentage</th>
+
+</tr>
+
+
+<tr>
+
+<td>Arun Kumar</td>
+
+<td>Progressive Party</td>
+
+<td>1,850</td>
+
+<td>43.53%</td>
+
+</tr>
+
+
+<tr>
+
+<td>Priya Sharma</td>
+
+<td>People's Party</td>
+
+<td>1,500</td>
+
+<td>35.29%</td>
+
+</tr>
+
+
+<tr>
+
+<td>Rahul Raj</td>
+
+<td>Development Party</td>
+
+<td>900</td>
+
+<td>21.18%</td>
+
+</tr>
+
+</table>
+
+
+<div class="card">
+
+<h3>Winning Candidate</h3>
+
+<p>
+<strong>Arun Kumar</strong>
+</p>
+
+<p>
+Progressive Party
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<h3>VoteOnline</h3>
+
+<p>
+Secure • Transparent • Accessible E-Voting
+</p>
+
+<p>
+© 2026 All Rights Reserved
+</p>
+
+</footer>
+
+
+<script>
+
+
+/* ================= PAGE NAVIGATION ================= */
+
+function showPage(pageId){
+
+    var pages =
+        document.getElementsByClassName("page");
+
+    for(var i=0;i<pages.length;i++){
+
+        pages[i].style.display="none";
+
+    }
+
+    document.getElementById(pageId).style.display="block";
+
+}
+
+
+/* ================= VOTER LOGIN ================= */
+
+function voterLogin(){
+
+    var voterId =
+        document.getElementById("voterId").value;
+
+    var dob =
+        document.getElementById("dob").value;
+
+    if(voterId=="" || dob==""){
+
+        alert(
+            "Please enter Voter ID and Date of Birth!"
+        );
+
+        return;
+
+    }
+
+    alert(
+        "OTP has been sent to your registered mobile number."
+    );
+
+    showPage("loginotp");
+
+}
+
+
+/* ================= LOGIN OTP ================= */
+
+function verifyLoginOTP(){
+
+    var otp =
+        document.getElementById("loginOtp").value;
+
+    if(otp=="123456"){
+
+        alert(
+            "OTP verified successfully!"
+        );
+
+        showPage("userdashboard");
+
+    }
+
+    else{
+
+        alert(
+            "Invalid OTP!"
+        );
+
+    }
+
+}
+
+
+/* ================= VOTING ================= */
+
+function getVotingOTP(){
+
+    var candidates =
+        document.getElementsByName("candidate");
+
+    var selected = false;
+
+    for(var i=0;i<candidates.length;i++){
+
+        if(candidates[i].checked){
+
+            selected = true;
+
+        }
+
+    }
+
+    if(!selected){
+
+        alert(
+            "Please select a candidate first!"
+        );
+
+        return;
+
+    }
+
+    alert(
+        "Voting OTP has been sent to your registered mobile number."
+    );
+
+    showPage("votingotp");
+
+}
+
+
+function verifyVotingOTP(){
+
+    var otp =
+        document.getElementById("votingOtp").value;
+
+    if(otp=="654321"){
+
+        alert(
+            "OTP verified! Your vote has been submitted successfully."
+        );
+
+        showPage("confirmation");
+
+    }
+
+    else{
+
+        alert(
+            "Invalid Voting OTP!"
+        );
+
+    }
+
+}
+
+
+/* ================= ADMIN LOGIN ================= */
+
+function adminLogin(){
+
+    var username =
+        document.getElementById("adminUsername").value;
+
+    var password =
+        document.getElementById("adminPassword").value;
+
+
+    if(username=="admin" &&
+       password=="admin123"){
+
+        alert(
+            "Administrator Login Successful!"
+        );
+
+        showPage("admindashboard");
+
+    }
+
+    else{
+
+        alert(
+            "Invalid Administrator Login!"
+        );
+
+    }
+
+}
+
+
+/* ================= CANDIDATE ================= */
+
+function createCandidate(){
+
+    var name =
+        document.getElementById("candidateName").value;
+
+    if(name==""){
+
+        alert(
+            "Please enter candidate name!"
+        );
+
+        return;
+
+    }
+
+    alert(
+        "Election candidate created successfully!"
+    );
+
+}
+
+
+function editCandidate(){
+
+    alert(
+        "Candidate information updated successfully!"
+    );
+
+}
+
+
+function deleteCandidate(){
+
+    alert(
+        "Candidate deleted successfully!"
+    );
+
+}
+
+
+/* ================= ELECTION DATA ================= */
+
+function allocateElection(){
+
+    alert(
+        "Election data allocated with candidate successfully!"
+    );
+
+}
+
+
+/* ================= WARD ================= */
+
+function allocateWard(){
+
+    alert(
+        "Voter allocated to election ward successfully!"
+    );
+
+}
+
+
+/* ================= VOTER LIST ================= */
+
+function createVoter(){
+
+    alert(
+        "Voter added to the voter list successfully!"
+    );
+
+}
+
+
+function importVoterList(){
+
+    alert(
+        "Voter list imported successfully!"
+    );
+
+}
+
+
+function editVoter(){
+
+    alert(
+        "Voter information updated successfully!"
+    );
+
+}
+
+
+function deleteVoter(){
+
+    alert(
+        "Voter removed from the voter list successfully!"
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

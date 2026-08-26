@@ -1,0 +1,1735 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>InsureEasy - Insurance Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+}
+
+header{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+header h1{
+    margin-bottom:10px;
+}
+
+nav{
+    background:#0059b3;
+    text-align:center;
+    padding:12px;
+}
+
+nav button{
+    background:white;
+    color:#003366;
+    border:none;
+    padding:10px 18px;
+    margin:5px;
+    cursor:pointer;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+nav button:hover{
+    background:orange;
+    color:white;
+}
+
+.page{
+    display:none;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h2{
+    color:#003366;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+h3{
+    color:#0059b3;
+    margin-top:20px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid gray;
+    border-radius:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table,th,td{
+    border:1px solid black;
+}
+
+th{
+    background:#003366;
+    color:white;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+.btn{
+    background:#003366;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.btn:hover{
+    background:#0059b3;
+}
+
+footer{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+.card{
+    background:#f8f8f8;
+    padding:15px;
+    border-left:5px solid #003366;
+    margin-top:15px;
+}
+
+.policy-card{
+    background:#f8f8f8;
+    padding:15px;
+    margin-top:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.policy-card h3{
+    margin-top:0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1>INSUREEASY</h1>
+
+<p>
+Compare Policies | Manage Insurance | Pay Premium | File Claims
+</p>
+
+</header>
+
+
+<nav>
+
+<button onclick="showPage('home')">
+Home
+</button>
+
+<button onclick="showPage('policies')">
+Policies
+</button>
+
+<button onclick="showPage('compare')">
+Compare
+</button>
+
+<button onclick="showPage('register')">
+Register
+</button>
+
+<button onclick="showPage('login')">
+User Login
+</button>
+
+<button onclick="showPage('agentlogin')">
+Agent Login
+</button>
+
+<button onclick="showPage('adminlogin')">
+Admin Login
+</button>
+
+<button onclick="showPage('contact')">
+Contact
+</button>
+
+</nav>
+
+
+<!-- ================= HOME PAGE ================= -->
+
+<div id="home" class="page active">
+
+<div class="container">
+
+<h2>Welcome to InsureEasy</h2>
+
+<p>
+
+InsureEasy is an online insurance management platform that
+allows customers to compare insurance policies, purchase
+policies, manage existing policies, pay premiums and file claims.
+
+</p>
+
+<br>
+
+<div class="card">
+
+<h3>Insurance Services</h3>
+
+<ul>
+
+<li>Health Insurance</li>
+
+<li>Auto Insurance</li>
+
+<li>Home Insurance</li>
+
+<li>Policy Comparison</li>
+
+<li>Online Policy Application</li>
+
+<li>Premium Payment</li>
+
+<li>Claim Management</li>
+
+<li>SMS Renewal Alerts</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>Available Insurance Types</h3>
+
+<table>
+
+<tr>
+
+<th>Insurance</th>
+
+<th>Coverage</th>
+
+<th>Starting Premium</th>
+
+</tr>
+
+<tr>
+
+<td>Health Insurance</td>
+
+<td>Medical Expenses</td>
+
+<td>₹8,000 / Year</td>
+
+</tr>
+
+<tr>
+
+<td>Auto Insurance</td>
+
+<td>Vehicle Protection</td>
+
+<td>₹6,000 / Year</td>
+
+</tr>
+
+<tr>
+
+<td>Home Insurance</td>
+
+<td>Home Protection</td>
+
+<td>₹5,000 / Year</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="card">
+
+<h3>Why Choose InsureEasy?</h3>
+
+<ul>
+
+<li>Easy policy comparison</li>
+
+<li>Simple online application</li>
+
+<li>Secure premium payment</li>
+
+<li>Easy claim filing</li>
+
+<li>Automatic SMS reminders</li>
+
+<li>Customer and agent support</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= POLICIES ================= -->
+
+<div id="policies" class="page">
+
+<div class="container">
+
+<h2>Insurance Policies</h2>
+
+
+<div class="policy-card">
+
+<h3>Health Insurance</h3>
+
+<p>
+Coverage for hospitalization, medical treatment and emergency expenses.
+</p>
+
+<p><b>Premium:</b> ₹8,000 / Year</p>
+
+<button class="btn" onclick="viewPolicy()">
+View Details
+</button>
+
+</div>
+
+
+<div class="policy-card">
+
+<h3>Auto Insurance</h3>
+
+<p>
+Protection against vehicle accidents, theft and damages.
+</p>
+
+<p><b>Premium:</b> ₹6,000 / Year</p>
+
+<button class="btn" onclick="viewPolicy()">
+View Details
+</button>
+
+</div>
+
+
+<div class="policy-card">
+
+<h3>Home Insurance</h3>
+
+<p>
+Protection for house, property and household assets.
+</p>
+
+<p><b>Premium:</b> ₹5,000 / Year</p>
+
+<button class="btn" onclick="viewPolicy()">
+View Details
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= POLICY COMPARISON ================= -->
+
+<div id="compare" class="page">
+
+<div class="container">
+
+<h2>Compare Insurance Policies</h2>
+
+<table>
+
+<tr>
+
+<th>Policy</th>
+
+<th>Coverage</th>
+
+<th>Premium</th>
+
+<th>Claim Support</th>
+
+</tr>
+
+<tr>
+
+<td>Health Insurance</td>
+
+<td>Medical</td>
+
+<td>₹8,000</td>
+
+<td>24 × 7</td>
+
+</tr>
+
+<tr>
+
+<td>Auto Insurance</td>
+
+<td>Vehicle</td>
+
+<td>₹6,000</td>
+
+<td>24 × 7</td>
+
+</tr>
+
+<tr>
+
+<td>Home Insurance</td>
+
+<td>Property</td>
+
+<td>₹5,000</td>
+
+<td>24 × 7</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="comparePolicy()">
+
+Compare Selected Policies
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= REGISTER ================= -->
+
+<div id="register" class="page">
+
+<div class="container">
+
+<h2>User Registration</h2>
+
+<label>Full Name</label>
+
+<input type="text" id="regName">
+
+
+<label>Email</label>
+
+<input type="email" id="regEmail">
+
+
+<label>Phone Number</label>
+
+<input type="text" id="regPhone">
+
+
+<label>Username</label>
+
+<input type="text" id="regUsername">
+
+
+<label>Password</label>
+
+<input type="password" id="regPassword">
+
+
+<label>Confirm Password</label>
+
+<input type="password" id="regConfirm">
+
+
+<button class="btn" onclick="registerUser()">
+
+Register
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= USER LOGIN ================= -->
+
+<div id="login" class="page">
+
+<div class="container">
+
+<h2>User Login</h2>
+
+<label>Username</label>
+
+<input type="text" id="loginUsername">
+
+
+<label>Password</label>
+
+<input type="password" id="loginPassword">
+
+
+<button class="btn" onclick="userLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= USER DASHBOARD ================= -->
+
+<div id="userdashboard" class="page">
+
+<div class="container">
+
+<h2>User Dashboard</h2>
+
+<p>Welcome to your InsureEasy dashboard.</p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('mypolicies')">
+
+My Policies
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('payment')">
+
+Pay Premium
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('claim')">
+
+File Claim
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('recommendation')">
+
+Policy Recommendation
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('alerts')">
+
+SMS Alerts
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('profile')">
+
+My Profile
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= MY POLICIES ================= -->
+
+<div id="mypolicies" class="page">
+
+<div class="container">
+
+<h2>My Policies</h2>
+
+<table>
+
+<tr>
+
+<th>Policy ID</th>
+
+<th>Policy Type</th>
+
+<th>Premium</th>
+
+<th>Due Date</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>POL101</td>
+
+<td>Health Insurance</td>
+
+<td>₹8,000</td>
+
+<td>30-Sep-2026</td>
+
+<td>Active</td>
+
+</tr>
+
+<tr>
+
+<td>POL102</td>
+
+<td>Auto Insurance</td>
+
+<td>₹6,000</td>
+
+<td>15-Oct-2026</td>
+
+<td>Active</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="updatePolicy()">
+
+Manage Policy
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= PREMIUM PAYMENT ================= -->
+
+<div id="payment" class="page">
+
+<div class="container">
+
+<h2>Premium Payment</h2>
+
+<label>Policy Number</label>
+
+<input type="text">
+
+
+<label>Premium Amount</label>
+
+<input type="number">
+
+
+<label>Payment Method</label>
+
+<select>
+
+<option>UPI</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+<option>Net Banking</option>
+
+</select>
+
+
+<button class="btn" onclick="payPremium()">
+
+Pay Premium
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CLAIM ================= -->
+
+<div id="claim" class="page">
+
+<div class="container">
+
+<h2>File Insurance Claim</h2>
+
+<label>Policy Number</label>
+
+<input type="text">
+
+
+<label>Claim Type</label>
+
+<select>
+
+<option>Medical Claim</option>
+
+<option>Vehicle Damage</option>
+
+<option>Home Damage</option>
+
+</select>
+
+
+<label>Claim Description</label>
+
+<textarea rows="5"></textarea>
+
+
+<label>Claim Amount</label>
+
+<input type="number">
+
+
+<button class="btn" onclick="fileClaim()">
+
+Submit Claim
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= RECOMMENDATION ================= -->
+
+<div id="recommendation" class="page">
+
+<div class="container">
+
+<h2>Personalized Policy Recommendation</h2>
+
+<label>Age</label>
+
+<input type="number">
+
+
+<label>Insurance Need</label>
+
+<select>
+
+<option>Health</option>
+
+<option>Vehicle</option>
+
+<option>Home</option>
+
+</select>
+
+
+<label>Budget</label>
+
+<input type="number">
+
+
+<button class="btn" onclick="recommendPolicy()">
+
+Get Recommendation
+
+</button>
+
+<br><br>
+
+<p id="recommendationResult"></p>
+
+</div>
+
+</div>
+
+
+<!-- ================= SMS ALERTS ================= -->
+
+<div id="alerts" class="page">
+
+<div class="container">
+
+<h2>SMS Alerts</h2>
+
+<table>
+
+<tr>
+
+<th>Policy</th>
+
+<th>Message</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>POL101</td>
+
+<td>Your premium is due on 30-Sep-2026</td>
+
+<td>Sent</td>
+
+</tr>
+
+<tr>
+
+<td>POL102</td>
+
+<td>Your premium is due on 15-Oct-2026</td>
+
+<td>Sent</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="sendSMS()">
+
+Send SMS Alert
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div id="profile" class="page">
+
+<div class="container">
+
+<h2>My Profile</h2>
+
+<label>Name</label>
+
+<input type="text" value="John Doe">
+
+
+<label>Email</label>
+
+<input type="email" value="john@example.com">
+
+
+<label>Phone</label>
+
+<input type="text" value="9876543210">
+
+
+<label>Address</label>
+
+<textarea rows="4">Chennai</textarea>
+
+
+<button class="btn">
+
+Update Profile
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= AGENT REGISTRATION ================= -->
+
+<div id="agentregister" class="page">
+
+<div class="container">
+
+<h2>Agent Registration</h2>
+
+<label>Agent Name</label>
+
+<input type="text">
+
+
+<label>Email</label>
+
+<input type="email">
+
+
+<label>Phone</label>
+
+<input type="text">
+
+
+<label>Agency Name</label>
+
+<input type="text">
+
+
+<label>Password</label>
+
+<input type="password">
+
+
+<button class="btn" onclick="registerAgent()">
+
+Register Agent
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= AGENT LOGIN ================= -->
+
+<div id="agentlogin" class="page">
+
+<div class="container">
+
+<h2>Agent Login</h2>
+
+<label>Agent Username</label>
+
+<input type="text">
+
+
+<label>Password</label>
+
+<input type="password">
+
+
+<button class="btn" onclick="agentLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= AGENT DASHBOARD ================= -->
+
+<div id="agentdashboard" class="page">
+
+<div class="container">
+
+<h2>Agent Dashboard</h2>
+
+<p><b>Insurance Agent Management</b></p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('customer')">
+
+Create Customer
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('customerdetails')">
+
+Manage Customer Details
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('policymanagement')">
+
+Manage Policy Details
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('sendsms')">
+
+Send SMS Alert
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CREATE CUSTOMER ================= -->
+
+<div id="customer" class="page">
+
+<div class="container">
+
+<h2>Create Customer</h2>
+
+<label>Customer Name</label>
+
+<input type="text">
+
+
+<label>Email</label>
+
+<input type="email">
+
+
+<label>Phone Number</label>
+
+<input type="text">
+
+
+<label>Address</label>
+
+<textarea rows="4"></textarea>
+
+
+<button class="btn" onclick="createCustomer()">
+
+Create Customer
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CUSTOMER DETAILS ================= -->
+
+<div id="customerdetails" class="page">
+
+<div class="container">
+
+<h2>Customer Details</h2>
+
+<table>
+
+<tr>
+
+<th>Customer ID</th>
+
+<th>Name</th>
+
+<th>Phone</th>
+
+<th>Policy</th>
+
+</tr>
+
+<tr>
+
+<td>C101</td>
+
+<td>John</td>
+
+<td>9876543210</td>
+
+<td>Health</td>
+
+</tr>
+
+<tr>
+
+<td>C102</td>
+
+<td>David</td>
+
+<td>9876501234</td>
+
+<td>Auto</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="updateCustomer()">
+
+Update Customer
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= POLICY MANAGEMENT ================= -->
+
+<div id="policymanagement" class="page">
+
+<div class="container">
+
+<h2>Policy Management</h2>
+
+<table>
+
+<tr>
+
+<th>Policy ID</th>
+
+<th>Customer</th>
+
+<th>Policy Type</th>
+
+<th>Premium</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>POL101</td>
+
+<td>John</td>
+
+<td>Health</td>
+
+<td>₹8,000</td>
+
+<td>Active</td>
+
+</tr>
+
+<tr>
+
+<td>POL102</td>
+
+<td>David</td>
+
+<td>Auto</td>
+
+<td>₹6,000</td>
+
+<td>Active</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="updatePolicyAgent()">
+
+Update Policy
+
+</button>
+
+<button class="btn" onclick="deletePolicy()">
+
+Delete Policy
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= SEND SMS ================= -->
+
+<div id="sendsms" class="page">
+
+<div class="container">
+
+<h2>Send SMS Alert</h2>
+
+<label>Customer Phone Number</label>
+
+<input type="text">
+
+
+<label>Message</label>
+
+<textarea rows="4">
+Reminder: Your insurance premium payment is due soon.
+</textarea>
+
+
+<button class="btn" onclick="sendAgentSMS()">
+
+Send SMS
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN LOGIN ================= -->
+
+<div id="adminlogin" class="page">
+
+<div class="container">
+
+<h2>Administrator Login</h2>
+
+<label>Admin Username</label>
+
+<input type="text">
+
+
+<label>Password</label>
+
+<input type="password">
+
+
+<button class="btn" onclick="adminLogin()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<div id="admindashboard" class="page">
+
+<div class="container">
+
+<h2>Administrator Dashboard</h2>
+
+<p><b>Insurance Management Controls</b></p>
+
+<br>
+
+<button class="btn"
+onclick="showPage('agentapproval')">
+
+Approve Agent Login
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('agentdetails')">
+
+View All Agent Details
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('commission')">
+
+Commission Management
+
+</button>
+
+<br><br>
+
+<button class="btn"
+onclick="showPage('home')">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= AGENT APPROVAL ================= -->
+
+<div id="agentapproval" class="page">
+
+<div class="container">
+
+<h2>Approve Agent Login</h2>
+
+<table>
+
+<tr>
+
+<th>Agent ID</th>
+
+<th>Agent Name</th>
+
+<th>Company</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>A101</td>
+
+<td>Ravi Kumar</td>
+
+<td>ABC Insurance</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>A102</td>
+
+<td>Priya Sharma</td>
+
+<td>Secure Life</td>
+
+<td>Pending</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button class="btn" onclick="approveAgent()">
+
+Approve Agent
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= AGENT DETAILS ================= -->
+
+<div id="agentdetails" class="page">
+
+<div class="container">
+
+<h2>All Agent Details</h2>
+
+<table>
+
+<tr>
+
+<th>Agent ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Phone</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>A101</td>
+
+<td>Ravi Kumar</td>
+
+<td>ravi@example.com</td>
+
+<td>9876543210</td>
+
+<td>Approved</td>
+
+</tr>
+
+<tr>
+
+<td>A102</td>
+
+<td>Priya Sharma</td>
+
+<td>priya@example.com</td>
+
+<td>9876501234</td>
+
+<td>Approved</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= COMMISSION ================= -->
+
+<div id="commission" class="page">
+
+<div class="container">
+
+<h2>Agent Commission Details</h2>
+
+<table>
+
+<tr>
+
+<th>Agent</th>
+
+<th>Policies Sold</th>
+
+<th>Commission</th>
+
+<th>Dues</th>
+
+</tr>
+
+<tr>
+
+<td>Ravi Kumar</td>
+
+<td>15</td>
+
+<td>₹30,000</td>
+
+<td>₹5,000</td>
+
+</tr>
+
+<tr>
+
+<td>Priya Sharma</td>
+
+<td>10</td>
+
+<td>₹20,000</td>
+
+<td>₹3,000</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ================= CONTACT ================= -->
+
+<div id="contact" class="page">
+
+<div class="container">
+
+<h2>Contact InsureEasy</h2>
+
+<label>Name</label>
+
+<input type="text">
+
+
+<label>Email</label>
+
+<input type="email">
+
+
+<label>Phone</label>
+
+<input type="text">
+
+
+<label>Message</label>
+
+<textarea rows="5"></textarea>
+
+
+<button class="btn" onclick="sendMessage()">
+
+Send Message
+
+</button>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<h3>InsureEasy - Insurance Management System</h3>
+
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+
+<script>
+
+
+function showPage(pageId){
+
+    var pages=document.getElementsByClassName("page");
+
+    for(var i=0;i<pages.length;i++){
+
+        pages[i].style.display="none";
+
+    }
+
+    document.getElementById(pageId).style.display="block";
+
+}
+
+
+function registerUser(){
+
+    alert("User Registration Successful!");
+
+    showPage("login");
+
+}
+
+
+function userLogin(){
+
+    alert("User Login Successful!");
+
+    showPage("userdashboard");
+
+}
+
+
+function registerAgent(){
+
+    alert("Agent Registration Submitted for Admin Approval!");
+
+    showPage("agentlogin");
+
+}
+
+
+function agentLogin(){
+
+    alert("Agent Login Successful!");
+
+    showPage("agentdashboard");
+
+}
+
+
+function adminLogin(){
+
+    alert("Admin Login Successful!");
+
+    showPage("admindashboard");
+
+}
+
+
+function viewPolicy(){
+
+    alert("Policy Details Opened!");
+
+}
+
+
+function comparePolicy(){
+
+    alert("Policies Compared Successfully!");
+
+}
+
+
+function updatePolicy(){
+
+    alert("Policy Details Updated!");
+
+}
+
+
+function payPremium(){
+
+    alert("Premium Payment Successful!");
+
+}
+
+
+function fileClaim(){
+
+    alert("Insurance Claim Submitted Successfully!");
+
+}
+
+
+function recommendPolicy(){
+
+    document.getElementById("recommendationResult").innerHTML =
+    "<b>Recommended Policy: Health Insurance</b><br>" +
+    "Based on your profile and requirements.";
+
+}
+
+
+function sendSMS(){
+
+    alert("SMS Alert Sent to Policyholder!");
+
+}
+
+
+function createCustomer(){
+
+    alert("Customer Created Successfully!");
+
+}
+
+
+function updateCustomer(){
+
+    alert("Customer Details Updated!");
+
+}
+
+
+function updatePolicyAgent(){
+
+    alert("Policy Details Updated by Agent!");
+
+}
+
+
+function deletePolicy(){
+
+    alert("Policy Deleted Successfully!");
+
+}
+
+
+function sendAgentSMS(){
+
+    alert("SMS Alert Sent Successfully!");
+
+}
+
+
+function approveAgent(){
+
+    alert("Agent Login Approved Successfully!");
+
+}
+
+
+function sendMessage(){
+
+    alert("Thank you! Your message has been sent.");
+
+}
+
+</script>
+
+
+</body>
+</html>
+```
