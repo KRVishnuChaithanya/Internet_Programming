@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Bus Pass Management - JobPortal</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #f5f9ff);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #1769aa;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #1769aa, #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #1769aa;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 22px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #0d47a1;
+        }
+
+        /* SECTIONS */
+
+        .section {
+            background: white;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .section h2 {
+            color: #1769aa;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* FORMS */
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 20px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d47a1;
+        }
+
+        /* SUCCESS */
+
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 7px;
+            text-align: center;
+            display: none;
+        }
+
+        /* TABLE */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #1769aa;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        /* BUS PASS */
+
+        .pass {
+            background: #f8fbff;
+            border: 2px solid #1769aa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .pass h3 {
+            color: #1769aa;
+            text-align: center;
+        }
+
+        .qr {
+            width: 130px;
+            height: 130px;
+            margin: 20px auto;
+            border: 8px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            text-align: center;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    #222 0px,
+                    #222 4px,
+                    white 4px,
+                    white 8px
+                );
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #e3f2fd;
+            color: #1769aa;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 50px;
+            background: #1769aa;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav a {
+                margin: 0 8px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+        🚌 BusPass
+    </div>
+
+    <div class="nav">
+
+        <a href="#home">Home</a>
+
+        <a href="#user">User</a>
+
+        <a href="#admin">Admin</a>
+
+        <a href="#conductor">Conductor</a>
+
+    </div>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero" id="home">
+
+    <h1>Bus Pass Management System</h1>
+
+    <p>
+        Apply, renew and manage your bus passes easily.
+    </p>
+
+    <p>
+        Student • Route Pass • eTicket • QR Verification
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+    <!-- ROLE CARDS -->
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <h2>👤 User</h2>
+
+            <p>
+                Register, login, add money, apply for
+                bus passes and buy bus eTickets.
+            </p>
+
+            <a href="#user" class="button">
+                User Portal
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>⚙️ Admin</h2>
+
+            <p>
+                Manage passes, conductors, buses,
+                routes and approve applications.
+            </p>
+
+            <a href="#admin" class="button">
+                Admin Portal
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>👨‍✈️ Conductor</h2>
+
+            <p>
+                Scan QR codes and verify bus passes
+                and tickets.
+            </p>
+
+            <a href="#conductor" class="button">
+                Conductor Portal
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- USER -->
+
+    <div class="section" id="user">
+
+        <h2>👤 User Registration</h2>
+
+        <form id="userForm">
+
+            <label>
+                Candidate Name
+            </label>
+
+            <input
+                type="text"
+                id="candidateName"
+                placeholder="Enter your name"
+                required>
+
+
+            <label>
+                Address
+            </label>
+
+            <input
+                type="text"
+                id="address"
+                placeholder="Enter address"
+                required>
+
+
+            <label>
+                Date of Birth
+            </label>
+
+            <input
+                type="date"
+                id="dob"
+                required>
+
+
+            <label>
+                Email ID
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                required>
+
+
+            <label>
+                User Type
+            </label>
+
+            <select id="userType" required>
+
+                <option value="">
+                    Select User Type
+                </option>
+
+                <option value="Student">
+                    Student
+                </option>
+
+                <option value="Working">
+                    Working Organization
+                </option>
+
+            </select>
+
+
+            <label>
+                School / Organization
+            </label>
+
+            <input
+                type="text"
+                id="organization"
+                placeholder="Enter school or organization"
+                required>
+
+
+            <button type="submit">
+                Register User
+            </button>
+
+        </form>
+
+
+        <div id="userSuccess" class="success">
+            User registered successfully!
+        </div>
+
+    </div>
+
+
+    <!-- EWALLET -->
+
+    <div class="section">
+
+        <h2>💰 eWallet</h2>
+
+        <form id="walletForm">
+
+            <label>
+                Amount to Add
+            </label>
+
+            <input
+                type="number"
+                id="walletAmount"
+                placeholder="Enter amount"
+                min="1"
+                required>
+
+            <button type="submit">
+                Add Money
+            </button>
+
+        </form>
+
+
+        <div id="walletSuccess" class="success">
+            Money added successfully!
+        </div>
+
+
+        <h3>
+            Current Wallet Balance:
+            ₹<span id="walletBalance">0</span>
+        </h3>
+
+    </div>
+
+
+    <!-- BUS PASS -->
+
+    <div class="section">
+
+        <h2>🎫 Apply for New Bus Pass</h2>
+
+        <form id="passForm">
+
+            <label>
+                Pass Type
+            </label>
+
+            <select id="passType" required>
+
+                <option value="">
+                    Select Pass Type
+                </option>
+
+                <option value="Student Pass">
+                    Student Pass
+                </option>
+
+                <option value="Route Pass">
+                    Route Pass
+                </option>
+
+            </select>
+
+
+            <label>
+                Route
+            </label>
+
+            <input
+                type="text"
+                id="route"
+                placeholder="Example: Bangalore - Mysore"
+                required>
+
+
+            <label>
+                Validity Period
+            </label>
+
+            <select id="validity" required>
+
+                <option value="">
+                    Select Validity
+                </option>
+
+                <option value="1 Month">
+                    1 Month
+                </option>
+
+                <option value="3 Months">
+                    3 Months
+                </option>
+
+                <option value="6 Months">
+                    6 Months
+                </option>
+
+                <option value="1 Year">
+                    1 Year
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Apply for Bus Pass
+            </button>
+
+        </form>
+
+
+        <div id="passSuccess" class="success">
+            Bus pass application submitted successfully!
+        </div>
+
+    </div>
+
+
+    <!-- RENEWAL -->
+
+    <div class="section">
+
+        <h2>🔄 Renew Bus Pass</h2>
+
+        <form id="renewForm">
+
+            <label>
+                Bus Pass ID
+            </label>
+
+            <input
+                type="text"
+                id="passId"
+                placeholder="Enter bus pass ID"
+                required>
+
+
+            <label>
+                Renewal Period
+            </label>
+
+            <select id="renewPeriod" required>
+
+                <option value="">
+                    Select Renewal Period
+                </option>
+
+                <option value="1 Month">
+                    1 Month
+                </option>
+
+                <option value="3 Months">
+                    3 Months
+                </option>
+
+                <option value="6 Months">
+                    6 Months
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Renew Pass
+            </button>
+
+        </form>
+
+
+        <div id="renewSuccess" class="success">
+            Bus pass renewed successfully!
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN -->
+
+    <div class="section" id="admin">
+
+        <h2>⚙️ Admin Portal</h2>
+
+
+        <h3>Approve Bus Pass</h3>
+
+        <button onclick="viewPassApplications()">
+            View Pass Applications
+        </button>
+
+
+        <div id="passApplications"></div>
+
+
+        <h3>Create Bus Details</h3>
+
+        <form id="busForm">
+
+            <label>
+                Bus Number
+            </label>
+
+            <input
+                type="text"
+                id="busNumber"
+                placeholder="Example: KA01AB1234"
+                required>
+
+
+            <label>
+                Bus Type
+            </label>
+
+            <select id="busType">
+
+                <option value="Government Bus">
+                    Government Bus
+                </option>
+
+                <option value="Private Bus">
+                    Private Bus
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Create Bus
+            </button>
+
+        </form>
+
+
+        <div id="busSuccess" class="success">
+            Bus details created successfully!
+        </div>
+
+    </div>
+
+
+    <!-- ROUTE -->
+
+    <div class="section">
+
+        <h2>🗺️ Create Route Information</h2>
+
+        <form id="routeForm">
+
+            <label>
+                From
+            </label>
+
+            <input
+                type="text"
+                id="from"
+                placeholder="Starting location"
+                required>
+
+
+            <label>
+                To
+            </label>
+
+            <input
+                type="text"
+                id="to"
+                placeholder="Destination"
+                required>
+
+
+            <label>
+                Bus Time
+            </label>
+
+            <input
+                type="time"
+                id="busTime"
+                required>
+
+
+            <label>
+                Route Stopping Points
+            </label>
+
+            <input
+                type="text"
+                id="stops"
+                placeholder="Stop 1, Stop 2, Stop 3"
+                required>
+
+
+            <button type="submit">
+                Create Route
+            </button>
+
+        </form>
+
+
+        <div id="routeSuccess" class="success">
+            Route information created successfully!
+        </div>
+
+    </div>
+
+
+    <!-- CONDUCTOR -->
+
+    <div class="section" id="conductor">
+
+        <h2>👨‍✈️ Conductor Portal</h2>
+
+
+        <h3>Verify Bus Pass</h3>
+
+        <form id="verifyForm">
+
+            <label>
+                Bus Pass ID
+            </label>
+
+            <input
+                type="text"
+                id="verifyPassId"
+                placeholder="Enter bus pass ID"
+                required>
+
+
+            <button type="submit">
+                Verify Bus Pass
+            </button>
+
+        </form>
+
+
+        <div id="verifyResult"></div>
+
+
+        <h3>Update Bus Location</h3>
+
+        <form id="locationForm">
+
+            <label>
+                Bus Number
+            </label>
+
+            <input
+                type="text"
+                id="locationBus"
+                placeholder="Enter bus number"
+                required>
+
+
+            <label>
+                Current Location
+            </label>
+
+            <input
+                type="text"
+                id="currentLocation"
+                placeholder="Enter current location"
+                required>
+
+
+            <button type="submit">
+                Update Location
+            </button>
+
+        </form>
+
+
+        <div id="locationSuccess" class="success">
+            Bus location updated successfully!
+        </div>
+
+    </div>
+
+
+    <!-- BUS PASS DISPLAY -->
+
+    <div class="section">
+
+        <h2>🎫 My Bus Pass</h2>
+
+        <button onclick="showBusPass()">
+            View My Bus Pass
+        </button>
+
+        <div id="myPass"></div>
+
+    </div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 Bus Pass Management System
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   USER REGISTRATION
+========================= */
+
+document.getElementById("userForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let users =
+        JSON.parse(
+            localStorage.getItem("busUsers")
+        ) || [];
+
+
+    let user = {
+
+        id: Date.now(),
+
+        name:
+            document.getElementById("candidateName").value,
+
+        address:
+            document.getElementById("address").value,
+
+        dob:
+            document.getElementById("dob").value,
+
+        email:
+            document.getElementById("email").value,
+
+        type:
+            document.getElementById("userType").value,
+
+        organization:
+            document.getElementById("organization").value
+
+    };
+
+
+    users.push(user);
+
+
+    localStorage.setItem(
+        "busUsers",
+        JSON.stringify(users)
+    );
+
+
+    document.getElementById("userSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   EWALLET
+========================= */
+
+let wallet =
+    Number(
+        localStorage.getItem("wallet")
+    ) || 0;
+
+
+document.getElementById("walletBalance")
+    .textContent = wallet;
+
+
+document.getElementById("walletForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let amount =
+        Number(
+            document.getElementById(
+                "walletAmount"
+            ).value
+        );
+
+
+    wallet += amount;
+
+
+    localStorage.setItem(
+        "wallet",
+        wallet
+    );
+
+
+    document.getElementById("walletBalance")
+        .textContent = wallet;
+
+
+    document.getElementById("walletSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   APPLY BUS PASS
+========================= */
+
+document.getElementById("passForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let passes =
+        JSON.parse(
+            localStorage.getItem("busPasses")
+        ) || [];
+
+
+    let pass = {
+
+        id:
+            "BP" + Date.now(),
+
+        type:
+            document.getElementById(
+                "passType"
+            ).value,
+
+        route:
+            document.getElementById(
+                "route"
+            ).value,
+
+        validity:
+            document.getElementById(
+                "validity"
+            ).value,
+
+        amount:
+            100,
+
+        status:
+            "Pending",
+
+        date:
+            new Date().toLocaleDateString()
+
+    };
+
+
+    passes.push(pass);
+
+
+    localStorage.setItem(
+        "busPasses",
+        JSON.stringify(passes)
+    );
+
+
+    document.getElementById("passSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   RENEW PASS
+========================= */
+
+document.getElementById("renewForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let passes =
+        JSON.parse(
+            localStorage.getItem("busPasses")
+        ) || [];
+
+
+    let id =
+        document.getElementById(
+            "passId"
+        ).value;
+
+
+    let found =
+        passes.find(
+            p => p.id === id
+        );
+
+
+    if (found) {
+
+        found.validity =
+            document.getElementById(
+                "renewPeriod"
+            ).value;
+
+        found.status =
+            "Renewed";
+
+
+        localStorage.setItem(
+            "busPasses",
+            JSON.stringify(passes)
+        );
+
+
+        document.getElementById(
+            "renewSuccess"
+        ).textContent =
+            "Bus pass renewed successfully!";
+
+
+    } else {
+
+        document.getElementById(
+            "renewSuccess"
+        ).textContent =
+            "Bus Pass ID not found.";
+
+    }
+
+
+    document.getElementById(
+        "renewSuccess"
+    ).style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   ADMIN VIEW APPLICATIONS
+========================= */
+
+function viewPassApplications() {
+
+
+    let passes =
+        JSON.parse(
+            localStorage.getItem("busPasses")
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "passApplications"
+        );
+
+
+    if (passes.length === 0) {
+
+        container.innerHTML =
+            "<p>No bus pass applications.</p>";
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Pass ID</th>
+
+                <th>Type</th>
+
+                <th>Route</th>
+
+                <th>Validity</th>
+
+                <th>Status</th>
+
+            </tr>
+
+    `;
+
+
+    passes.forEach(function(pass) {
+
+        html += `
+
+            <tr>
+
+                <td>${escapeHTML(pass.id)}</td>
+
+                <td>${escapeHTML(pass.type)}</td>
+
+                <td>${escapeHTML(pass.route)}</td>
+
+                <td>${escapeHTML(pass.validity)}</td>
+
+                <td>
+
+                    <span class="badge">
+
+                        ${escapeHTML(pass.status)}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML = html;
+
+}
+
+
+
+/* =========================
+   CREATE BUS
+========================= */
+
+document.getElementById("busForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let buses =
+        JSON.parse(
+            localStorage.getItem("buses")
+        ) || [];
+
+
+    let bus = {
+
+        number:
+            document.getElementById(
+                "busNumber"
+            ).value,
+
+        type:
+            document.getElementById(
+                "busType"
+            ).value
+
+    };
+
+
+    buses.push(bus);
+
+
+    localStorage.setItem(
+        "buses",
+        JSON.stringify(buses)
+    );
+
+
+    document.getElementById("busSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   CREATE ROUTE
+========================= */
+
+document.getElementById("routeForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let routes =
+        JSON.parse(
+            localStorage.getItem("routes")
+        ) || [];
+
+
+    let route = {
+
+        from:
+            document.getElementById(
+                "from"
+            ).value,
+
+        to:
+            document.getElementById(
+                "to"
+            ).value,
+
+        time:
+            document.getElementById(
+                "busTime"
+            ).value,
+
+        stops:
+            document.getElementById(
+                "stops"
+            ).value
+
+    };
+
+
+    routes.push(route);
+
+
+    localStorage.setItem(
+        "routes",
+        JSON.stringify(routes)
+    );
+
+
+    document.getElementById("routeSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   VERIFY BUS PASS
+========================= */
+
+document.getElementById("verifyForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let passes =
+        JSON.parse(
+            localStorage.getItem("busPasses")
+        ) || [];
+
+
+    let id =
+        document.getElementById(
+            "verifyPassId"
+        ).value;
+
+
+    let pass =
+        passes.find(
+            p => p.id === id
+        );
+
+
+    let result =
+        document.getElementById(
+            "verifyResult"
+        );
+
+
+    if (pass) {
+
+        result.innerHTML = `
+
+            <div class="success"
+                 style="display:block">
+
+                ✅ Bus Pass Verified
+
+                <br><br>
+
+                Pass ID:
+                ${escapeHTML(pass.id)}
+
+                <br>
+
+                Route:
+                ${escapeHTML(pass.route)}
+
+                <br>
+
+                Validity:
+                ${escapeHTML(pass.validity)}
+
+                <br>
+
+                Status:
+                ${escapeHTML(pass.status)}
+
+            </div>
+
+        `;
+
+    } else {
+
+        result.innerHTML = `
+
+            <div class="success"
+                 style="display:block;
+                        background:#ffebee;
+                        color:#c62828">
+
+                ❌ Invalid Bus Pass ID
+
+            </div>
+
+        `;
+
+    }
+
+});
+
+
+
+/* =========================
+   UPDATE BUS LOCATION
+========================= */
+
+document.getElementById("locationForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let locations =
+        JSON.parse(
+            localStorage.getItem(
+                "busLocations"
+            )
+        ) || [];
+
+
+    let locationData = {
+
+        bus:
+            document.getElementById(
+                "locationBus"
+            ).value,
+
+        location:
+            document.getElementById(
+                "currentLocation"
+            ).value,
+
+        time:
+            new Date().toLocaleTimeString()
+
+    };
+
+
+    locations.push(locationData);
+
+
+    localStorage.setItem(
+        "busLocations",
+        JSON.stringify(locations)
+    );
+
+
+    document.getElementById(
+        "locationSuccess"
+    ).style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   DISPLAY BUS PASS
+========================= */
+
+function showBusPass() {
+
+
+    let passes =
+        JSON.parse(
+            localStorage.getItem("busPasses")
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "myPass"
+        );
+
+
+    if (passes.length === 0) {
+
+        container.innerHTML =
+            "<p>No bus pass found.</p>";
+
+        return;
+
+    }
+
+
+    let pass =
+        passes[passes.length - 1];
+
+
+    container.innerHTML = `
+
+        <div class="pass">
+
+            <h3>
+                🚌 BUS PASS
+            </h3>
+
+            <p>
+                <strong>Pass ID:</strong>
+                ${escapeHTML(pass.id)}
+            </p>
+
+            <p>
+                <strong>Pass Type:</strong>
+                ${escapeHTML(pass.type)}
+            </p>
+
+            <p>
+                <strong>Route:</strong>
+                ${escapeHTML(pass.route)}
+            </p>
+
+            <p>
+                <strong>Validity:</strong>
+                ${escapeHTML(pass.validity)}
+            </p>
+
+            <p>
+                <strong>Amount Paid:</strong>
+                ₹${escapeHTML(pass.amount)}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <span class="badge">
+                    ${escapeHTML(pass.status)}
+                </span>
+            </p>
+
+            <div class="qr">
+
+                QR<br>
+                ${escapeHTML(pass.id)}
+
+            </div>
+
+            <p style="text-align:center">
+
+                Scan this QR code to verify
+                the bus pass.
+
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text) {
+
+    if (!text) {
+        return "";
+    }
+
+    return text
+        .toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

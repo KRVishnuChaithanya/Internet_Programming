@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IJSSE - Journal Website</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        header {
+            background: #17365d;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        nav {
+            background: #0d47a1;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            padding: 50px 20px;
+            text-align: center;
+            background: white;
+        }
+
+        .hero h2 {
+            color: #17365d;
+            font-size: 32px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #bbb;
+        }
+
+        .card h3 {
+            color: #1769aa;
+        }
+
+        button {
+            background: #1769aa;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d47a1;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #bbb;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: #17365d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>IJSSE</h1>
+    <p>International Journal of Scientific and Social Excellence</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About Journal</a>
+    <a href="#authors">Authors</a>
+    <a href="#reviewers">Reviewers</a>
+    <a href="#editors">Editors</a>
+    <a href="#articles">Articles</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero" id="home">
+    <h2>International Journal of Scientific and Social Excellence</h2>
+    <p>Professional platform for authors, reviewers and editors.</p>
+    <button onclick="showMessage()">Submit Manuscript</button>
+</section>
+
+<div class="container">
+
+    <div class="cards">
+
+        <div class="card" id="about">
+            <h3>About Journal</h3>
+            <p>
+                IJSSE is a professional journal platform providing
+                information about scientific and social research.
+            </p>
+        </div>
+
+        <div class="card" id="authors">
+            <h3>For Authors</h3>
+            <p>Author registration, login and paper submission.</p>
+            <button onclick="registerRole('Author')">Register</button>
+        </div>
+
+        <div class="card id" id="reviewers">
+            <h3>For Reviewers</h3>
+            <p>Reviewer registration and article reviewing.</p>
+            <button onclick="registerRole('Reviewer')">Register</button>
+        </div>
+
+        <div class="card" id="editors">
+            <h3>For Editors</h3>
+            <p>Editor registration and editorial responsibilities.</p>
+            <button onclick="registerRole('Editor')">Register</button>
+        </div>
+
+        <div class="card" id="articles">
+            <h3>Articles</h3>
+            <p>Current issues, archives and most viewed articles.</p>
+            <button onclick="showArticles()">View Articles</button>
+        </div>
+
+        <div class="card">
+            <h3>Call for Paper</h3>
+            <p>Submit manuscript and view author guidelines.</p>
+            <button onclick="showMessage()">Submit Paper</button>
+        </div>
+
+    </div>
+
+    <div class="form-box" id="contact">
+
+        <h2>Contact Us</h2>
+
+        <form onsubmit="saveContact(event)">
+
+            <label>Name</label>
+            <input type="text" id="name" required>
+
+            <label>Email</label>
+            <input type="email" id="email" required>
+
+            <label>Message</label>
+            <textarea id="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+        <p id="result"></p>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 IJSSE | Journal Website
+</footer>
+
+<script>
+
+function showMessage() {
+    alert("Your request has been received successfully!");
+}
+
+function registerRole(role) {
+
+    let users =
+        JSON.parse(localStorage.getItem("ijsseUsers")) || [];
+
+    users.push({
+        role: role,
+        date: new Date().toLocaleString()
+    });
+
+    localStorage.setItem(
+        "ijsseUsers",
+        JSON.stringify(users)
+    );
+
+    alert(role + " registration stored successfully!");
+}
+
+function showArticles() {
+    alert("Current Issue | Archive | Most Viewed | Most Cited");
+}
+
+function saveContact(event) {
+
+    event.preventDefault();
+
+    let contacts =
+        JSON.parse(localStorage.getItem("ijsseContacts")) || [];
+
+    contacts.push({
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    });
+
+    localStorage.setItem(
+        "ijsseContacts",
+        JSON.stringify(contacts)
+    );
+
+    document.getElementById("result").innerHTML =
+        "Message submitted successfully!";
+
+    event.target.reset();
+}
+
+</script>
+
+</body>
+</html>

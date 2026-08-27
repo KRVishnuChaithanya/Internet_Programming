@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>RoadAssist - Vehicle Breakdown Assistance</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            color: #333;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #1769aa;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: #0d47a1;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav button {
+            background: white;
+            color: #1769aa;
+            border: none;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        nav button:hover {
+            background: #e3f2fd;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        /* CARDS */
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #bbb;
+        }
+
+        .card h2 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        /* FORM */
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        /* BUTTON */
+
+        button.action {
+            background: #1769aa;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin-top: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button.action:hover {
+            background: #0d47a1;
+        }
+
+        .delete {
+            background: #d32f2f !important;
+        }
+
+        .delete:hover {
+            background: #b71c1c !important;
+        }
+
+        /* MECHANIC */
+
+        .mechanic {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .mechanic h3 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        .approved {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .pending {
+            display: inline-block;
+            background: #fff3e0;
+            color: #ef6c00;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* SUCCESS */
+
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #1769aa;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 40px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            nav button {
+                width: 90%;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>🚗 RoadAssist</h1>
+
+    <p>
+        On Road Vehicle Breakdown Assistance System
+    </p>
+
+</header>
+
+
+<nav>
+
+    <button onclick="showSection('home')">
+        Home
+    </button>
+
+    <button onclick="showSection('user')">
+        User
+    </button>
+
+    <button onclick="showSection('mechanic')">
+        Mechanic
+    </button>
+
+    <button onclick="showSection('search')">
+        Search Mechanic
+    </button>
+
+    <button onclick="showSection('admin')">
+        Admin
+    </button>
+
+</nav>
+
+
+<div class="container">
+
+
+    <div id="message" class="success">
+        Operation completed successfully!
+    </div>
+
+
+    <!-- HOME -->
+
+    <section id="home">
+
+        <div class="card">
+
+            <h2>
+                Welcome to RoadAssist
+            </h2>
+
+            <p>
+                RoadAssist helps vehicle owners find
+                licensed mechanics when they experience
+                unexpected vehicle breakdowns.
+            </p>
+
+            <p>
+                Users can search for mechanics based on
+                location, view mechanic details, access
+                Google geo-location and provide feedback.
+            </p>
+
+            <button
+                class="action"
+                onclick="showSection('search')">
+
+                🔎 Find a Mechanic
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                System Features
+            </h2>
+
+            <ul>
+
+                <li>User Registration and Login</li>
+
+                <li>Search Mechanic Details</li>
+
+                <li>Google Geo Location</li>
+
+                <li>Post Feedback</li>
+
+                <li>My Profile</li>
+
+                <li>Admin Approval</li>
+
+                <li>Mechanic Registration</li>
+
+                <li>Post and Manage Business</li>
+
+                <li>View Feedback</li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- USER -->
+
+    <section id="user" style="display:none;">
+
+        <div class="card">
+
+            <h2>
+                👤 User Registration
+            </h2>
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="userName"
+                placeholder="Enter your name">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="userEmail"
+                placeholder="Enter email">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="userPassword"
+                placeholder="Enter password">
+
+            <button
+                class="action"
+                onclick="registerUser()">
+
+                Register
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                User Login
+            </h2>
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter email">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter password">
+
+            <button
+                class="action"
+                onclick="loginUser()">
+
+                Login
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                My Profile
+            </h2>
+
+            <div id="profile">
+                Please login to view your profile.
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Post Feedback
+            </h2>
+
+            <label>
+                Your Feedback
+            </label>
+
+            <textarea
+                id="feedback"
+                placeholder="Write your feedback">
+            </textarea>
+
+            <button
+                class="action"
+                onclick="postFeedback()">
+
+                Submit Feedback
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MECHANIC -->
+
+    <section id="mechanic" style="display:none;">
+
+        <div class="card">
+
+            <h2>
+                🔧 Mechanic Registration
+            </h2>
+
+            <label>
+                Mechanic Name
+            </label>
+
+            <input
+                type="text"
+                id="mechanicName"
+                placeholder="Enter mechanic name">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="mechanicEmail"
+                placeholder="Enter email">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="mechanicPassword"
+                placeholder="Create password">
+
+            <button
+                class="action"
+                onclick="registerMechanic()">
+
+                Register Mechanic
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Post Business
+            </h2>
+
+            <label>
+                Business Name
+            </label>
+
+            <input
+                type="text"
+                id="businessName"
+                placeholder="Example: ABC Auto Works">
+
+            <label>
+                Mechanic Name
+            </label>
+
+            <input
+                type="text"
+                id="businessMechanic"
+                placeholder="Mechanic name">
+
+            <label>
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="businessLocation"
+                placeholder="Example: Bangalore">
+
+            <label>
+                Vehicle Type
+            </label>
+
+            <select id="vehicleType">
+
+                <option value="">
+                    Select Vehicle Type
+                </option>
+
+                <option value="Car">
+                    Car
+                </option>
+
+                <option value="Bike">
+                    Bike
+                </option>
+
+                <option value="Truck">
+                    Truck
+                </option>
+
+                <option value="All">
+                    All Vehicles
+                </option>
+
+            </select>
+
+
+            <label>
+                Contact Number
+            </label>
+
+            <input
+                type="tel"
+                id="businessContact"
+                placeholder="Enter contact number">
+
+
+            <button
+                class="action"
+                onclick="postBusiness()">
+
+                Post Business
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Manage Business
+            </h2>
+
+            <div id="businessList">
+
+                No business listings available.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH MECHANIC -->
+
+    <section id="search" style="display:none;">
+
+        <div class="card">
+
+            <h2>
+                🔎 Search Mechanic Details
+            </h2>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchLocation"
+                    placeholder="Enter location">
+
+            </div>
+
+            <button
+                class="action"
+                onclick="searchMechanics()">
+
+                Search
+
+            </button>
+
+            <button
+                class="action"
+                onclick="getLocation()">
+
+                📍 Use My Location
+
+            </button>
+
+        </div>
+
+
+        <div id="searchResults">
+
+            <div class="card">
+
+                <h3>
+                    Search results will appear here.
+                </h3>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADMIN -->
+
+    <section id="admin" style="display:none;">
+
+        <div class="card">
+
+            <h2>
+                🛡️ Admin - Mechanic Approval
+            </h2>
+
+            <p>
+                Admin can approve licensed mechanics
+                before they are displayed to users.
+            </p>
+
+            <div id="adminList">
+
+                No mechanics registered.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<footer>
+
+    © 2026 RoadAssist |
+    On Road Vehicle Breakdown Assistance
+
+</footer>
+
+
+<script>
+
+
+    /* SHOW SECTION */
+
+    function showSection(section) {
+
+        let sections = [
+            "home",
+            "user",
+            "mechanic",
+            "search",
+            "admin"
+        ];
+
+        sections.forEach(function(id) {
+
+            document.getElementById(id)
+                .style.display = "none";
+
+        });
+
+        document.getElementById(section)
+            .style.display = "block";
+
+
+        if (section === "search") {
+
+            displayApprovedMechanics();
+
+        }
+
+        if (section === "mechanic") {
+
+            displayBusinesses();
+
+        }
+
+        if (section === "admin") {
+
+            displayMechanics();
+
+        }
+
+        if (section === "user") {
+
+            loadProfile();
+
+        }
+
+    }
+
+
+    /* MESSAGE */
+
+    function showMessage(text) {
+
+        let message =
+            document.getElementById("message");
+
+        message.innerText = text;
+
+        message.style.display = "block";
+
+        setTimeout(function() {
+
+            message.style.display = "none";
+
+        }, 2500);
+
+    }
+
+
+    /* USER REGISTRATION */
+
+    function registerUser() {
+
+        let users =
+            JSON.parse(
+                localStorage.getItem("roadUsers")
+            ) || [];
+
+
+        let name =
+            document.getElementById("userName").value;
+
+        let email =
+            document.getElementById("userEmail").value;
+
+        let password =
+            document.getElementById("userPassword").value;
+
+
+        if (!name || !email || !password) {
+
+            alert("Please fill all fields.");
+
+            return;
+
+        }
+
+
+        let user = {
+
+            id: Date.now(),
+
+            name: name,
+
+            email: email,
+
+            password: password
+
+        };
+
+
+        users.push(user);
+
+
+        localStorage.setItem(
+            "roadUsers",
+            JSON.stringify(users)
+        );
+
+
+        showMessage(
+            "User registered successfully!"
+        );
+
+
+        document.getElementById("userName").value = "";
+
+        document.getElementById("userEmail").value = "";
+
+        document.getElementById("userPassword").value = "";
+
+    }
+
+
+    /* USER LOGIN */
+
+    function loginUser() {
+
+        let users =
+            JSON.parse(
+                localStorage.getItem("roadUsers")
+            ) || [];
+
+
+        let email =
+            document.getElementById("loginEmail").value;
+
+        let password =
+            document.getElementById("loginPassword").value;
+
+
+        let user =
+            users.find(function(u) {
+
+                return u.email === email &&
+                       u.password === password;
+
+            });
+
+
+        if (!user) {
+
+            alert("Invalid email or password.");
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "loggedRoadUser",
+            JSON.stringify(user)
+        );
+
+
+        showMessage(
+            "Login successful!"
+        );
+
+
+        loadProfile();
+
+    }
+
+
+    /* PROFILE */
+
+    function loadProfile() {
+
+        let user =
+            JSON.parse(
+                localStorage.getItem("loggedRoadUser")
+            );
+
+
+        let profile =
+            document.getElementById("profile");
+
+
+        if (!user) {
+
+            profile.innerHTML =
+                "Please login to view your profile.";
+
+            return;
+
+        }
+
+
+        profile.innerHTML =
+
+            "<h3>" +
+            escapeHTML(user.name) +
+            "</h3>" +
+
+            "<p><b>Email:</b> " +
+            escapeHTML(user.email) +
+            "</p>";
+
+    }
+
+
+    /* FEEDBACK */
+
+    function postFeedback() {
+
+        let user =
+            JSON.parse(
+                localStorage.getItem("loggedRoadUser")
+            );
+
+
+        if (!user) {
+
+            alert("Please login first.");
+
+            return;
+
+        }
+
+
+        let text =
+            document.getElementById("feedback").value;
+
+
+        if (!text) {
+
+            alert("Please enter feedback.");
+
+            return;
+
+        }
+
+
+        let feedbacks =
+            JSON.parse(
+                localStorage.getItem("roadFeedback")
+            ) || [];
+
+
+        feedbacks.push({
+
+            id: Date.now(),
+
+            user: user.name,
+
+            email: user.email,
+
+            feedback: text
+
+        });
+
+
+        localStorage.setItem(
+            "roadFeedback",
+            JSON.stringify(feedbacks)
+        );
+
+
+        document.getElementById("feedback").value = "";
+
+
+        showMessage(
+            "Feedback submitted successfully!"
+        );
+
+    }
+
+
+    /* MECHANIC REGISTRATION */
+
+    function registerMechanic() {
+
+        let mechanics =
+            JSON.parse(
+                localStorage.getItem("mechanics")
+            ) || [];
+
+
+        let name =
+            document.getElementById("mechanicName").value;
+
+        let email =
+            document.getElementById("mechanicEmail").value;
+
+        let password =
+            document.getElementById("mechanicPassword").value;
+
+
+        if (!name || !email || !password) {
+
+            alert("Please fill all fields.");
+
+            return;
+
+        }
+
+
+        mechanics.push({
+
+            id: Date.now(),
+
+            name: name,
+
+            email: email,
+
+            password: password,
+
+            approved: false
+
+        });
+
+
+        localStorage.setItem(
+            "mechanics",
+            JSON.stringify(mechanics)
+        );
+
+
+        showMessage(
+            "Mechanic registered. Waiting for admin approval."
+        );
+
+
+        document.getElementById("mechanicName").value = "";
+
+        document.getElementById("mechanicEmail").value = "";
+
+        document.getElementById("mechanicPassword").value = "";
+
+
+        displayMechanics();
+
+    }
+
+
+    /* POST BUSINESS */
+
+    function postBusiness() {
+
+        let businesses =
+            JSON.parse(
+                localStorage.getItem("businesses")
+            ) || [];
+
+
+        let business = {
+
+            id: Date.now(),
+
+            name:
+                document.getElementById(
+                    "businessName"
+                ).value,
+
+            mechanic:
+                document.getElementById(
+                    "businessMechanic"
+                ).value,
+
+            location:
+                document.getElementById(
+                    "businessLocation"
+                ).value,
+
+            vehicle:
+                document.getElementById(
+                    "vehicleType"
+                ).value,
+
+            contact:
+                document.getElementById(
+                    "businessContact"
+                ).value
+
+        };
+
+
+        if (
+            !business.name ||
+            !business.mechanic ||
+            !business.location ||
+            !business.vehicle ||
+            !business.contact
+        ) {
+
+            alert("Please fill all fields.");
+
+            return;
+
+        }
+
+
+        businesses.push(business);
+
+
+        localStorage.setItem(
+            "businesses",
+            JSON.stringify(businesses)
+        );
+
+
+        showMessage(
+            "Business posted successfully!"
+        );
+
+
+        document.getElementById(
+            "businessName"
+        ).value = "";
+
+        document.getElementById(
+            "businessMechanic"
+        ).value = "";
+
+        document.getElementById(
+            "businessLocation"
+        ).value = "";
+
+        document.getElementById(
+            "vehicleType"
+        ).value = "";
+
+        document.getElementById(
+            "businessContact"
+        ).value = "";
+
+
+        displayBusinesses();
+
+    }
+
+
+    /* DISPLAY BUSINESSES */
+
+    function displayBusinesses() {
+
+        let businesses =
+            JSON.parse(
+                localStorage.getItem("businesses")
+            ) || [];
+
+
+        let container =
+            document.getElementById(
+                "businessList"
+            );
+
+
+        container.innerHTML = "";
+
+
+        if (businesses.length === 0) {
+
+            container.innerHTML =
+                "<p>No business listings available.</p>";
+
+            return;
+
+        }
+
+
+        businesses.forEach(function(business, index) {
+
+            let div =
+                document.createElement("div");
+
+            div.className = "mechanic";
+
+
+            div.innerHTML =
+
+                "<h3>" +
+                escapeHTML(business.name) +
+                "</h3>" +
+
+                "<p><b>Mechanic:</b> " +
+                escapeHTML(business.mechanic) +
+                "</p>" +
+
+                "<p><b>Location:</b> " +
+                escapeHTML(business.location) +
+                "</p>" +
+
+                "<p><b>Vehicle:</b> " +
+                escapeHTML(business.vehicle) +
+                "</p>" +
+
+                "<p><b>Contact:</b> " +
+                escapeHTML(business.contact) +
+                "</p>" +
+
+                "<button class='action delete' " +
+
+                "onclick='deleteBusiness(" +
+                index +
+                ")'>" +
+
+                "Delete Business" +
+
+                "</button>";
+
+
+            container.appendChild(div);
+
+        });
+
+    }
+
+
+    /* DELETE BUSINESS */
+
+    function deleteBusiness(index) {
+
+        let businesses =
+            JSON.parse(
+                localStorage.getItem("businesses")
+            ) || [];
+
+
+        if (
+            confirm(
+                "Delete this business?"
+            )
+        ) {
+
+            businesses.splice(index, 1);
+
+
+            localStorage.setItem(
+                "businesses",
+                JSON.stringify(businesses)
+            );
+
+
+            displayBusinesses();
+
+        }
+
+    }
+
+
+    /* ADMIN DISPLAY */
+
+    function displayMechanics() {
+
+        let mechanics =
+            JSON.parse(
+                localStorage.getItem("mechanics")
+            ) || [];
+
+
+        let container =
+            document.getElementById(
+                "adminList"
+            );
+
+
+        container.innerHTML = "";
+
+
+        if (mechanics.length === 0) {
+
+            container.innerHTML =
+                "<p>No mechanics registered.</p>";
+
+            return;
+
+        }
+
+
+        mechanics.forEach(function(mechanic, index) {
+
+            let div =
+                document.createElement("div");
+
+            div.className = "mechanic";
+
+
+            let status =
+                mechanic.approved
+
+                ? "<span class='approved'>Approved</span>"
+
+                : "<span class='pending'>Pending Approval</span>";
+
+
+            div.innerHTML =
+
+                "<h3>" +
+                escapeHTML(mechanic.name) +
+                "</h3>" +
+
+                "<p><b>Email:</b> " +
+                escapeHTML(mechanic.email) +
+                "</p>" +
+
+                status;
+
+
+            if (!mechanic.approved) {
+
+                div.innerHTML +=
+
+                    "<br><button " +
+
+                    "class='action' " +
+
+                    "onclick='approveMechanic(" +
+                    index +
+                    ")'>" +
+
+                    "Approve Mechanic" +
+
+                    "</button>";
+
+            }
+
+
+            container.appendChild(div);
+
+        });
+
+    }
+
+
+    /* APPROVE MECHANIC */
+
+    function approveMechanic(index) {
+
+        let mechanics =
+            JSON.parse(
+                localStorage.getItem("mechanics")
+            ) || [];
+
+
+        mechanics[index].approved = true;
+
+
+        localStorage.setItem(
+            "mechanics",
+            JSON.stringify(mechanics)
+        );
+
+
+        showMessage(
+            "Mechanic approved successfully!"
+        );
+
+
+        displayMechanics();
+
+    }
+
+
+    /* SEARCH MECHANICS */
+
+    function searchMechanics() {
+
+        let search =
+            document.getElementById(
+                "searchLocation"
+            ).value.toLowerCase();
+
+
+        let businesses =
+            JSON.parse(
+                localStorage.getItem("businesses")
+            ) || [];
+
+
+        let mechanics =
+            JSON.parse(
+                localStorage.getItem("mechanics")
+            ) || [];
+
+
+        let approvedMechanics =
+            mechanics.filter(function(m) {
+
+                return m.approved === true;
+
+            });
+
+
+        let results =
+            document.getElementById(
+                "searchResults"
+            );
+
+
+        results.innerHTML = "";
+
+
+        let found =
+            businesses.filter(function(business) {
+
+                let mechanicApproved =
+                    approvedMechanics.some(function(m) {
+
+                        return m.name === business.mechanic;
+
+                    });
+
+
+                return mechanicApproved &&
+                       business.location
+                       .toLowerCase()
+                       .includes(search);
+
+            });
+
+
+        if (found.length === 0) {
+
+            results.innerHTML =
+
+                "<div class='card'>" +
+
+                "<h3>No mechanics found.</h3>" +
+
+                "<p>Try another location.</p>" +
+
+                "</div>";
+
+            return;
+
+        }
+
+
+        found.forEach(function(business) {
+
+            let div =
+                document.createElement("div");
+
+            div.className = "card";
+
+
+            div.innerHTML =
+
+                "<h2>" +
+                escapeHTML(business.name) +
+                "</h2>" +
+
+                "<p><b>Mechanic:</b> " +
+                escapeHTML(business.mechanic) +
+                "</p>" +
+
+                "<p><b>Location:</b> " +
+                escapeHTML(business.location) +
+                "</p>" +
+
+                "<p><b>Vehicle:</b> " +
+                escapeHTML(business.vehicle) +
+                "</p>" +
+
+                "<p><b>Contact:</b> " +
+                escapeHTML(business.contact) +
+                "</p>" +
+
+                "<span class='approved'>" +
+                "Licensed / Approved Mechanic" +
+                "</span>";
+
+
+            results.appendChild(div);
+
+        });
+
+    }
+
+
+    /* SHOW APPROVED MECHANICS */
+
+    function displayApprovedMechanics() {
+
+        document.getElementById(
+            "searchResults"
+        ).innerHTML =
+
+            "<div class='card'>" +
+
+            "<h2>Search for a Mechanic</h2>" +
+
+            "<p>" +
+            "Enter your location above to find " +
+            "approved mechanics." +
+            "</p>" +
+
+            "</div>";
+
+    }
+
+
+    /* GEO LOCATION */
+
+    function getLocation() {
+
+        if (!navigator.geolocation) {
+
+            alert(
+                "Geolocation is not supported by this browser."
+            );
+
+            return;
+
+        }
+
+
+        navigator.geolocation.getCurrentPosition(
+
+            function(position) {
+
+                let latitude =
+                    position.coords.latitude;
+
+                let longitude =
+                    position.coords.longitude;
+
+
+                document.getElementById(
+                    "searchLocation"
+                ).value =
+
+                    latitude.toFixed(4) +
+                    ", " +
+                    longitude.toFixed(4);
+
+
+                showMessage(
+                    "Your location detected successfully!"
+                );
+
+            },
+
+            function() {
+
+                alert(
+                    "Unable to get your location."
+                );
+
+            }
+
+        );
+
+    }
+
+
+    /* ESCAPE HTML */
+
+    function escapeHTML(text) {
+
+        if (!text) {
+
+            return "";
+
+        }
+
+
+        return text
+            .toString()
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* INITIAL LOAD */
+
+    displayBusinesses();
+
+    displayMechanics();
+
+
+</script>
+
+
+</body>
+
+</html>

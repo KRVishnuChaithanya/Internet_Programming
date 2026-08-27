@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Wanderlust Travels</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #f5f9ff);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #1769aa;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1769aa, #0d47a1);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1769aa;
+            margin-bottom: 30px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .card h2 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* FEATURE */
+
+        .feature {
+            background: #e3f2fd;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 7px;
+            color: #0d47a1;
+            font-weight: bold;
+        }
+
+        /* BUTTON */
+
+        button {
+            margin-top: 15px;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 7px;
+            background: #1769aa;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d47a1;
+        }
+
+        .secondary {
+            background: #555;
+        }
+
+        .secondary:hover {
+            background: #333;
+        }
+
+        /* FORM */
+
+        .form-section {
+            display: none;
+            background: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .form-section h2 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #1769aa;
+        }
+
+        /* DATA */
+
+        .data-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .data-card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .data-card h3 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            color: #777;
+        }
+
+        /* MESSAGE */
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 12px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            text-align: center;
+            border-radius: 7px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #1769aa;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 50px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 750px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+        ✈️ Wanderlust Travels
+    </div>
+
+    <div class="nav">
+
+        <a href="#home">Home</a>
+
+        <a href="#user">User</a>
+
+        <a href="#admin">Admin</a>
+
+    </div>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero" id="home">
+
+    <h1>🌍 Explore the World</h1>
+
+    <p>
+        Plan your journey, explore destinations
+        and book your accommodation.
+    </p>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <h2 class="section-title">
+        Travel Management System
+    </h2>
+
+
+    <!-- USER AND ADMIN -->
+
+    <div class="cards">
+
+
+        <!-- USER -->
+
+        <div class="card" id="user">
+
+            <h2>👤 User</h2>
+
+            <p>
+                Users can explore tourism information,
+                view food and hostel details, check routes
+                and book accommodation.
+            </p>
+
+
+            <div class="feature">
+                📝 Register
+            </div>
+
+            <div class="feature">
+                🔐 Login
+            </div>
+
+            <div class="feature">
+                🍴 View Food Details
+            </div>
+
+            <div class="feature">
+                🏨 View Hostel Details
+            </div>
+
+            <div class="feature">
+                🗺️ View Route Details
+            </div>
+
+            <div class="feature">
+                🛏️ My Book Accommodation
+            </div>
+
+
+            <button onclick="showUserForm()">
+                Book Accommodation
+            </button>
+
+
+            <button
+                class="secondary"
+                onclick="showBookings()">
+
+                View My Bookings
+
+            </button>
+
+        </div>
+
+
+        <!-- ADMIN -->
+
+        <div class="card" id="admin">
+
+            <h2>👨‍💼 Admin</h2>
+
+            <p>
+                Admin can post and manage tourism,
+                food, hotel and route information and
+                view booking details.
+            </p>
+
+
+            <div class="feature">
+                🔐 Admin Login
+            </div>
+
+            <div class="feature">
+                📍 Post Tourism Details
+            </div>
+
+            <div class="feature">
+                🍴 Manage Food Details
+            </div>
+
+            <div class="feature">
+                🏨 Manage Hotel Details
+            </div>
+
+            <div class="feature">
+                🗺️ Manage Route Details
+            </div>
+
+            <div class="feature">
+                📋 View Booking Details
+            </div>
+
+
+            <button onclick="showTourismForm()">
+                Post Tourism Details
+            </button>
+
+
+            <button
+                class="secondary"
+                onclick="showTourism()">
+
+                View Tourism Details
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- USER BOOKING FORM -->
+
+    <div
+        class="form-section"
+        id="userForm">
+
+        <h2>🛏️ Book Accommodation</h2>
+
+
+        <form id="bookingForm">
+
+
+            <label>User Name</label>
+
+            <input
+                type="text"
+                id="userName"
+                placeholder="Enter your name"
+                required>
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="userEmail"
+                placeholder="Enter your email"
+                required>
+
+
+            <label>Destination</label>
+
+            <input
+                type="text"
+                id="destination"
+                placeholder="Example: Goa"
+                required>
+
+
+            <label>Hotel / Hostel</label>
+
+            <input
+                type="text"
+                id="hotel"
+                placeholder="Enter hotel or hostel name"
+                required>
+
+
+            <label>Check-in Date</label>
+
+            <input
+                type="date"
+                id="checkin"
+                required>
+
+
+            <label>Check-out Date</label>
+
+            <input
+                type="date"
+                id="checkout"
+                required>
+
+
+            <button type="submit">
+                Book Accommodation
+            </button>
+
+
+        </form>
+
+
+        <div
+            id="bookingMessage"
+            class="message">
+
+            Accommodation booked successfully!
+
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN TOURISM FORM -->
+
+    <div
+        class="form-section"
+        id="tourismForm">
+
+        <h2>📍 Post Tourism Details</h2>
+
+
+        <form id="tourismRegistrationForm">
+
+
+            <label>Tourism Place</label>
+
+            <input
+                type="text"
+                id="place"
+                placeholder="Example: Goa"
+                required>
+
+
+            <label>Food Details</label>
+
+            <textarea
+                id="food"
+                placeholder="Enter food details"
+                required></textarea>
+
+
+            <label>Hotel / Hostel Details</label>
+
+            <textarea
+                id="hotelDetails"
+                placeholder="Enter hotel details"
+                required></textarea>
+
+
+            <label>Route Details</label>
+
+            <textarea
+                id="route"
+                placeholder="Enter route details"
+                required></textarea>
+
+
+            <button type="submit">
+                Save Tourism Details
+            </button>
+
+
+        </form>
+
+
+        <div
+            id="tourismMessage"
+            class="message">
+
+            Tourism details saved successfully!
+
+        </div>
+
+    </div>
+
+
+    <!-- STORED DATA -->
+
+    <div
+        class="data-section"
+        id="dataSection">
+
+        <h2 class="section-title">
+            Stored Information
+        </h2>
+
+
+        <div id="dataContainer"></div>
+
+    </div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 Wanderlust Travels |
+    Online Travel Management System
+
+</div>
+
+
+<script>
+
+
+    /* SHOW USER FORM */
+
+    function showUserForm() {
+
+        document.getElementById(
+            "userForm"
+        ).style.display = "block";
+
+        document.getElementById(
+            "tourismForm"
+        ).style.display = "none";
+
+        document.getElementById(
+            "dataSection"
+        ).style.display = "none";
+
+        document.getElementById(
+            "userForm"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* SHOW ADMIN FORM */
+
+    function showTourismForm() {
+
+        document.getElementById(
+            "tourismForm"
+        ).style.display = "block";
+
+        document.getElementById(
+            "userForm"
+        ).style.display = "none";
+
+        document.getElementById(
+            "dataSection"
+        ).style.display = "none";
+
+        document.getElementById(
+            "tourismForm"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* SAVE BOOKING */
+
+    document.getElementById(
+        "bookingForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            let bookings =
+                JSON.parse(
+                    localStorage.getItem(
+                        "wanderlustBookings"
+                    )
+                ) || [];
+
+
+            let booking = {
+
+                id: Date.now(),
+
+                userName:
+                    document.getElementById(
+                        "userName"
+                    ).value,
+
+                email:
+                    document.getElementById(
+                        "userEmail"
+                    ).value,
+
+                destination:
+                    document.getElementById(
+                        "destination"
+                    ).value,
+
+                hotel:
+                    document.getElementById(
+                        "hotel"
+                    ).value,
+
+                checkin:
+                    document.getElementById(
+                        "checkin"
+                    ).value,
+
+                checkout:
+                    document.getElementById(
+                        "checkout"
+                    ).value
+
+            };
+
+
+            bookings.push(booking);
+
+
+            localStorage.setItem(
+                "wanderlustBookings",
+                JSON.stringify(bookings)
+            );
+
+
+            document.getElementById(
+                "bookingMessage"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "bookingForm"
+            ).reset();
+
+        }
+    );
+
+
+    /* SAVE TOURISM */
+
+    document.getElementById(
+        "tourismRegistrationForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            let tourism =
+                JSON.parse(
+                    localStorage.getItem(
+                        "tourismDetails"
+                    )
+                ) || [];
+
+
+            let details = {
+
+                id: Date.now(),
+
+                place:
+                    document.getElementById(
+                        "place"
+                    ).value,
+
+                food:
+                    document.getElementById(
+                        "food"
+                    ).value,
+
+                hotel:
+                    document.getElementById(
+                        "hotelDetails"
+                    ).value,
+
+                route:
+                    document.getElementById(
+                        "route"
+                    ).value
+
+            };
+
+
+            tourism.push(details);
+
+
+            localStorage.setItem(
+                "tourismDetails",
+                JSON.stringify(tourism)
+            );
+
+
+            document.getElementById(
+                "tourismMessage"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "tourismRegistrationForm"
+            ).reset();
+
+        }
+    );
+
+
+    /* VIEW BOOKINGS */
+
+    function showBookings() {
+
+        let bookings =
+            JSON.parse(
+                localStorage.getItem(
+                    "wanderlustBookings"
+                )
+            ) || [];
+
+
+        let container =
+            document.getElementById(
+                "dataContainer"
+            );
+
+
+        document.getElementById(
+            "dataSection"
+        ).style.display = "block";
+
+
+        container.innerHTML = "";
+
+
+        if (bookings.length === 0) {
+
+            container.innerHTML =
+                '<div class="empty">' +
+                '<h3>No Bookings Found</h3>' +
+                '<p>No accommodation has been booked yet.</p>' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        bookings.forEach(function(booking) {
+
+            let card =
+                document.createElement("div");
+
+            card.className = "data-card";
+
+
+            card.innerHTML =
+
+                "<h3>🛏️ " +
+                escapeHTML(
+                    booking.hotel
+                ) +
+                "</h3>" +
+
+                "<p><b>User:</b> " +
+                escapeHTML(
+                    booking.userName
+                ) +
+                "</p>" +
+
+                "<p><b>Email:</b> " +
+                escapeHTML(
+                    booking.email
+                ) +
+                "</p>" +
+
+                "<p><b>Destination:</b> " +
+                escapeHTML(
+                    booking.destination
+                ) +
+                "</p>" +
+
+                "<p><b>Check-in:</b> " +
+                escapeHTML(
+                    booking.checkin
+                ) +
+                "</p>" +
+
+                "<p><b>Check-out:</b> " +
+                escapeHTML(
+                    booking.checkout
+                ) +
+                "</p>";
+
+
+            container.appendChild(card);
+
+        });
+
+
+        document.getElementById(
+            "dataSection"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* VIEW TOURISM */
+
+    function showTourism() {
+
+        let tourism =
+            JSON.parse(
+                localStorage.getItem(
+                    "tourismDetails"
+                )
+            ) || [];
+
+
+        let container =
+            document.getElementById(
+                "dataContainer"
+            );
+
+
+        document.getElementById(
+            "dataSection"
+        ).style.display = "block";
+
+
+        container.innerHTML = "";
+
+
+        if (tourism.length === 0) {
+
+            container.innerHTML =
+                '<div class="empty">' +
+                '<h3>No Tourism Details</h3>' +
+                '<p>No tourism information has been posted yet.</p>' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        tourism.forEach(function(item) {
+
+            let card =
+                document.createElement("div");
+
+            card.className = "data-card";
+
+
+            card.innerHTML =
+
+                "<h3>📍 " +
+                escapeHTML(
+                    item.place
+                ) +
+                "</h3>" +
+
+                "<p><b>🍴 Food Details:</b><br>" +
+                escapeHTML(
+                    item.food
+                ) +
+                "</p>" +
+
+                "<p><b>🏨 Hotel / Hostel:</b><br>" +
+                escapeHTML(
+                    item.hotel
+                ) +
+                "</p>" +
+
+                "<p><b>🗺️ Route:</b><br>" +
+                escapeHTML(
+                    item.route
+                ) +
+                "</p>";
+
+
+            container.appendChild(card);
+
+        });
+
+
+        document.getElementById(
+            "dataSection"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* ESCAPE HTML */
+
+    function escapeHTML(text) {
+
+        if (!text) {
+            return "";
+        }
+
+        return text
+            .toString()
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

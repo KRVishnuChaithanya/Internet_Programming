@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Traffic Squad - Penalty Management</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #f5f9ff);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #1769aa;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: linear-gradient(135deg, #1769aa, #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #1769aa;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 22px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #0d47a1;
+        }
+
+        /* SECTION */
+
+        .section {
+            background: white;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .section h2 {
+            color: #1769aa;
+            text-align: center;
+        }
+
+        /* FORMS */
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 20px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d47a1;
+        }
+
+        /* TABLE */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #1769aa;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        /* BADGES */
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #e3f2fd;
+            color: #1769aa;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 7px;
+            text-align: center;
+            display: none;
+        }
+
+        .danger {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 50px;
+            background: #1769aa;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav a {
+                margin: 0 8px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+        🚦 Traffic Squad
+    </div>
+
+    <div class="nav">
+
+        <a href="#home">Home</a>
+
+        <a href="#user">User</a>
+
+        <a href="#police">Police</a>
+
+        <a href="#admin">Admin</a>
+
+    </div>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero" id="home">
+
+    <h1>Traffic Squad</h1>
+
+    <p>
+        Penalty Collection & Management System
+    </p>
+
+    <p>
+        Manage traffic violations, challans and
+        online FIR records efficiently.
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+    <!-- MODULE CARDS -->
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <h2>👤 User</h2>
+
+            <p>
+                Register, login, view challans
+                and check cases filed against
+                vehicle owners.
+            </p>
+
+            <a href="#user" class="button">
+                User Portal
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>👮 Police</h2>
+
+            <p>
+                Create traffic cases, upload
+                proof photos and manage
+                traffic reports.
+            </p>
+
+            <a href="#police" class="button">
+                Police Portal
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>⚙️ Admin</h2>
+
+            <p>
+                Manage police login information
+                and view daily traffic reports.
+            </p>
+
+            <a href="#admin" class="button">
+                Admin Portal
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- USER SECTION -->
+
+    <div class="section" id="user">
+
+        <h2>👤 User Portal</h2>
+
+        <form id="userForm">
+
+            <label>
+                Vehicle Owner Name
+            </label>
+
+            <input
+                type="text"
+                id="ownerName"
+                placeholder="Enter vehicle owner name"
+                required>
+
+
+            <label>
+                Vehicle Number
+            </label>
+
+            <input
+                type="text"
+                id="vehicleNumber"
+                placeholder="Example: KA01AB1234"
+                required>
+
+
+            <button type="submit">
+                Register Vehicle
+            </button>
+
+        </form>
+
+
+        <div id="userSuccess" class="success">
+            Vehicle registered successfully!
+        </div>
+
+    </div>
+
+
+    <!-- VIEW CHALLAN -->
+
+    <div class="section">
+
+        <h2>📄 View Challan</h2>
+
+        <button onclick="viewChallans()">
+            View My Challans
+        </button>
+
+        <div id="challanContainer"></div>
+
+    </div>
+
+
+    <!-- VIEW CASES -->
+
+    <div class="section">
+
+        <h2>⚖️ View Case Filed</h2>
+
+        <button onclick="viewCases()">
+            View Traffic Cases
+        </button>
+
+        <div id="caseContainer"></div>
+
+    </div>
+
+
+    <!-- POLICE -->
+
+    <div class="section" id="police">
+
+        <h2>👮 Police Portal</h2>
+
+        <form id="policeForm">
+
+
+            <label>
+                Vehicle Owner Name
+            </label>
+
+            <input
+                type="text"
+                id="caseOwner"
+                placeholder="Enter owner name"
+                required>
+
+
+            <label>
+                Vehicle Number
+            </label>
+
+            <input
+                type="text"
+                id="caseVehicle"
+                placeholder="Example: KA01AB1234"
+                required>
+
+
+            <label>
+                Traffic Violation
+            </label>
+
+            <select id="violation" required>
+
+                <option value="">
+                    Select Violation
+                </option>
+
+                <option value="Speeding">
+                    Speeding
+                </option>
+
+                <option value="Signal Jump">
+                    Signal Jump
+                </option>
+
+                <option value="No Helmet">
+                    No Helmet
+                </option>
+
+                <option value="Drunk Driving">
+                    Drunk Driving
+                </option>
+
+                <option value="Wrong Parking">
+                    Wrong Parking
+                </option>
+
+                <option value="No Seat Belt">
+                    No Seat Belt
+                </option>
+
+            </select>
+
+
+            <label>
+                Fine Amount
+            </label>
+
+            <input
+                type="number"
+                id="fine"
+                placeholder="Enter fine amount"
+                required>
+
+
+            <label>
+                Case Description
+            </label>
+
+            <textarea
+                id="caseDescription"
+                placeholder="Enter details of the traffic violation"
+                required></textarea>
+
+
+            <label>
+                Upload Proof Photo
+            </label>
+
+            <input
+                type="file"
+                id="proofPhoto"
+                accept="image/*">
+
+
+            <button type="submit">
+                Create Traffic Case
+            </button>
+
+
+        </form>
+
+
+        <div id="policeSuccess" class="success">
+            Traffic case created successfully!
+        </div>
+
+    </div>
+
+
+    <!-- POLICE REPORT -->
+
+    <div class="section">
+
+        <h2>📊 Traffic Reports</h2>
+
+        <button onclick="viewReports()">
+            View Traffic Reports
+        </button>
+
+        <div id="reportContainer"></div>
+
+    </div>
+
+
+    <!-- ADMIN -->
+
+    <div class="section" id="admin">
+
+        <h2>⚙️ Admin Portal</h2>
+
+        <form id="adminForm">
+
+            <label>
+                Police Officer Name
+            </label>
+
+            <input
+                type="text"
+                id="policeName"
+                placeholder="Enter police officer name"
+                required>
+
+
+            <label>
+                Police ID
+            </label>
+
+            <input
+                type="text"
+                id="policeId"
+                placeholder="Enter police ID"
+                required>
+
+
+            <label>
+                Police Email
+            </label>
+
+            <input
+                type="email"
+                id="policeEmail"
+                placeholder="police@example.com"
+                required>
+
+
+            <button type="submit">
+                Add Police Login
+            </button>
+
+        </form>
+
+
+        <div id="adminSuccess" class="success">
+            Police login added successfully!
+        </div>
+
+    </div>
+
+
+    <!-- POLICE LOGIN LIST -->
+
+    <div class="section">
+
+        <h2>👮 Manage Police Login</h2>
+
+        <button onclick="viewPolice()">
+            View Police Officers
+        </button>
+
+        <div id="policeContainer"></div>
+
+    </div>
+
+
+    <!-- DAILY REPORT -->
+
+    <div class="section">
+
+        <h2>📅 Admin Daily Report</h2>
+
+        <button onclick="adminReport()">
+            Generate Daily Report
+        </button>
+
+        <div id="adminReportContainer"></div>
+
+    </div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 Traffic Squad |
+    Penalty Collection & Management System
+
+</div>
+
+
+<script>
+
+
+/* ============================
+   USER REGISTRATION
+============================ */
+
+document.getElementById("userForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let users =
+        JSON.parse(
+            localStorage.getItem("trafficUsers")
+        ) || [];
+
+
+    let user = {
+
+        id: Date.now(),
+
+        owner:
+            document.getElementById("ownerName").value,
+
+        vehicle:
+            document.getElementById("vehicleNumber").value
+
+    };
+
+
+    users.push(user);
+
+
+    localStorage.setItem(
+        "trafficUsers",
+        JSON.stringify(users)
+    );
+
+
+    document.getElementById("userSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* ============================
+   POLICE CREATE CASE
+============================ */
+
+document.getElementById("policeForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let cases =
+        JSON.parse(
+            localStorage.getItem("trafficCases")
+        ) || [];
+
+
+    let caseData = {
+
+        id: Date.now(),
+
+        owner:
+            document.getElementById("caseOwner").value,
+
+        vehicle:
+            document.getElementById("caseVehicle").value,
+
+        violation:
+            document.getElementById("violation").value,
+
+        fine:
+            document.getElementById("fine").value,
+
+        description:
+            document.getElementById("caseDescription").value,
+
+        date:
+            new Date().toLocaleDateString(),
+
+        status:
+            "Pending"
+
+    };
+
+
+    cases.push(caseData);
+
+
+    localStorage.setItem(
+        "trafficCases",
+        JSON.stringify(cases)
+    );
+
+
+    document.getElementById("policeSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* ============================
+   VIEW CHALLANS
+============================ */
+
+function viewChallans() {
+
+
+    let cases =
+        JSON.parse(
+            localStorage.getItem("trafficCases")
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "challanContainer"
+        );
+
+
+    if (cases.length === 0) {
+
+        container.innerHTML =
+            "<p>No challans available.</p>";
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Vehicle</th>
+
+                <th>Violation</th>
+
+                <th>Fine</th>
+
+                <th>Date</th>
+
+                <th>Status</th>
+
+            </tr>
+
+    `;
+
+
+    cases.forEach(function(item) {
+
+        html += `
+
+            <tr>
+
+                <td>${escapeHTML(item.vehicle)}</td>
+
+                <td>${escapeHTML(item.violation)}</td>
+
+                <td>₹${escapeHTML(item.fine)}</td>
+
+                <td>${escapeHTML(item.date)}</td>
+
+                <td>
+                    <span class="badge">
+                        ${escapeHTML(item.status)}
+                    </span>
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML = html;
+
+}
+
+
+
+/* ============================
+   VIEW CASES
+============================ */
+
+function viewCases() {
+
+
+    let cases =
+        JSON.parse(
+            localStorage.getItem("trafficCases")
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "caseContainer"
+        );
+
+
+    if (cases.length === 0) {
+
+        container.innerHTML =
+            "<p>No traffic cases have been filed.</p>";
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Owner</th>
+
+                <th>Vehicle</th>
+
+                <th>Violation</th>
+
+                <th>Description</th>
+
+                <th>Status</th>
+
+            </tr>
+
+    `;
+
+
+    cases.forEach(function(item) {
+
+        html += `
+
+            <tr>
+
+                <td>${escapeHTML(item.owner)}</td>
+
+                <td>${escapeHTML(item.vehicle)}</td>
+
+                <td>${escapeHTML(item.violation)}</td>
+
+                <td>${escapeHTML(item.description)}</td>
+
+                <td>
+                    <span class="badge">
+                        ${escapeHTML(item.status)}
+                    </span>
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML = html;
+
+}
+
+
+
+/* ============================
+   TRAFFIC REPORT
+============================ */
+
+function viewReports() {
+
+
+    let cases =
+        JSON.parse(
+            localStorage.getItem("trafficCases")
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "reportContainer"
+        );
+
+
+    let totalFine = 0;
+
+
+    cases.forEach(function(item) {
+
+        totalFine +=
+            Number(item.fine) || 0;
+
+    });
+
+
+    container.innerHTML = `
+
+        <table>
+
+            <tr>
+
+                <th>Total Cases</th>
+
+                <th>Total Fine</th>
+
+                <th>Report Status</th>
+
+            </tr>
+
+            <tr>
+
+                <td>${cases.length}</td>
+
+                <td>₹${totalFine}</td>
+
+                <td>
+                    <span class="badge">
+                        Updated
+                    </span>
+                </td>
+
+            </tr>
+
+        </table>
+
+    `;
+
+}
+
+
+
+/* ============================
+   ADMIN ADD POLICE
+============================ */
+
+document.getElementById("adminForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    let police =
+        JSON.parse(
+            localStorage.getItem("police")
+        ) || [];
+
+
+    let officer = {
+
+        id: Date.now(),
+
+        name:
+            document.getElementById("policeName").value,
+
+        policeId:
+            document.getElementById("policeId").value,
+
+        email:
+            document.getElementById("policeEmail").value
+
+    };
+
+
+    police.push(officer);
+
+
+    localStorage.setItem(
+        "police",
+        JSON.stringify(police)
+    );
+
+
+    document.getElementById("adminSuccess")
+        .style.display = "block";
+
+
+    this.reset();
+
+});
+
+
+
+/* ============================
+   VIEW POLICE
+============================ */
+
+function viewPolice() {
+
+
+    let police =
+        JSON.parse(
+            localStorage.getItem("police")
+        ) || [];
+
+
+    let container =
+        document.getElementById(
+            "policeContainer"
+        );
+
+
+    if (police.length === 0) {
+
+        container.innerHTML =
+            "<p>No police officers added.</p>";
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table>
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Police ID</th>
+
+                <th>Email</th>
+
+            </tr>
+
+    `;
+
+
+    police.forEach(function(item) {
+
+        html += `
+
+            <tr>
+
+                <td>${escapeHTML(item.name)}</td>
+
+                <td>${escapeHTML(item.policeId)}</td>
+
+                <td>${escapeHTML(item.email)}</td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += "</table>";
+
+
+    container.innerHTML = html;
+
+}
+
+
+
+/* ============================
+   ADMIN DAILY REPORT
+============================ */
+
+function adminReport() {
+
+
+    let cases =
+        JSON.parse(
+            localStorage.getItem("trafficCases")
+        ) || [];
+
+
+    let users =
+        JSON.parse(
+            localStorage.getItem("trafficUsers")
+        ) || [];
+
+
+    let police =
+        JSON.parse(
+            localStorage.getItem("police")
+        ) || [];
+
+
+    let totalFine = 0;
+
+
+    cases.forEach(function(item) {
+
+        totalFine +=
+            Number(item.fine) || 0;
+
+    });
+
+
+    document.getElementById(
+        "adminReportContainer"
+    ).innerHTML = `
+
+        <table>
+
+            <tr>
+
+                <th>Registered Users</th>
+
+                <th>Police Officers</th>
+
+                <th>Cases Filed</th>
+
+                <th>Total Fine</th>
+
+            </tr>
+
+            <tr>
+
+                <td>${users.length}</td>
+
+                <td>${police.length}</td>
+
+                <td>${cases.length}</td>
+
+                <td>₹${totalFine}</td>
+
+            </tr>
+
+        </table>
+
+    `;
+
+}
+
+
+
+/* ============================
+   SECURITY FUNCTION
+============================ */
+
+function escapeHTML(text) {
+
+    if (!text) {
+        return "";
+    }
+
+
+    return text
+        .toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
