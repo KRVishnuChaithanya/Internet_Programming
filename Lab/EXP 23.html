@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Blood Management System</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff5f5, #f9f9f9);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #b71c1c;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* MAIN */
+
+        .main {
+            padding: 45px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            color: #b71c1c;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .card h2 {
+            color: #b71c1c;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .features {
+            margin-top: 20px;
+        }
+
+        .features div {
+            background: #ffebee;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 7px;
+            color: #8e0000;
+            font-weight: bold;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 7px;
+            background: #b71c1c;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #8e0000;
+        }
+
+        .secondary {
+            background: #555;
+        }
+
+        .secondary:hover {
+            background: #333;
+        }
+
+        /* FORMS */
+
+        .form-section {
+            background: white;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .form-section h2 {
+            color: #b71c1c;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #b71c1c;
+            box-shadow: 0 0 5px rgba(183,28,28,0.2);
+        }
+
+        /* DATA */
+
+        .data-section {
+            margin-top: 30px;
+        }
+
+        .donor-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .donor-card h3 {
+            color: #b71c1c;
+            margin-top: 0;
+        }
+
+        .blood-group {
+            display: inline-block;
+            background: #b71c1c;
+            color: white;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            color: #777;
+            border-radius: 10px;
+        }
+
+        /* MESSAGE */
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 12px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            text-align: center;
+            border-radius: 7px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #b71c1c;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 750px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 18px 25px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+        🩸 BloodCare
+    </div>
+
+    <div class="nav">
+
+        <a href="#home">Home</a>
+
+        <a href="#donor">Donor</a>
+
+        <a href="#hospital">Hospital</a>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <div class="container">
+
+
+        <!-- HERO -->
+
+        <div class="hero" id="home">
+
+            <h1>🩸 Blood Management System</h1>
+
+            <p>
+                Connecting blood donors, hospitals and
+                blood bank information in one place.
+            </p>
+
+        </div>
+
+
+        <!-- ROLE CARDS -->
+
+        <div class="cards">
+
+
+            <!-- DONOR -->
+
+            <div class="card" id="donor">
+
+                <h2>👤 Donor / User</h2>
+
+                <p>
+                    Donors can register their information,
+                    search donor details and access blood
+                    bank information.
+                </p>
+
+
+                <div class="features">
+
+                    <div>
+                        🔐 Login
+                    </div>
+
+                    <div>
+                        📝 Register
+                    </div>
+
+                    <div>
+                        🩸 Post Donor Information
+                    </div>
+
+                    <div>
+                        📋 My Donor Information
+                    </div>
+
+                    <div>
+                        🔎 Search Donor Details
+                    </div>
+
+                    <div>
+                        🏥 Search Blood Bank Details
+                    </div>
+
+                    <div>
+                        🚪 Logout
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button onclick="showDonorForm()">
+                        Register Donor
+                    </button>
+
+                    <button
+                        class="secondary"
+                        onclick="showDonors()">
+
+                        View Donors
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOSPITAL -->
+
+            <div class="card" id="hospital">
+
+                <h2>🏥 Hospital</h2>
+
+                <p>
+                    Hospitals can register their blood bank
+                    information and update blood group
+                    availability.
+                </p>
+
+
+                <div class="features">
+
+                    <div>
+                        📝 Hospital Register
+                    </div>
+
+                    <div>
+                        🔐 Hospital Login
+                    </div>
+
+                    <div>
+                        🏥 Post Blood Bank Information
+                    </div>
+
+                    <div>
+                        🩸 Update Blood Group Status
+                    </div>
+
+                    <div>
+                        🔎 View Blood Bank Details
+                    </div>
+
+                    <div>
+                        🚪 Logout
+                    </div>
+
+                </div>
+
+
+                <div class="buttons">
+
+                    <button onclick="showHospitalForm()">
+                        Add Blood Bank
+                    </button>
+
+                    <button
+                        class="secondary"
+                        onclick="showHospitals()">
+
+                        View Blood Banks
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DONOR FORM -->
+
+        <div
+            class="form-section"
+            id="donorForm"
+            style="display:none;">
+
+            <h2>🩸 Register Donor Information</h2>
+
+
+            <form id="donorRegistrationForm">
+
+
+                <label>Donor Name</label>
+
+                <input
+                    type="text"
+                    id="donorName"
+                    placeholder="Enter donor name"
+                    required>
+
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="donorEmail"
+                    placeholder="Enter email"
+                    required>
+
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="donorPhone"
+                    placeholder="Enter phone number"
+                    required>
+
+
+                <label>Blood Group</label>
+
+                <select id="bloodGroup" required>
+
+                    <option value="">
+                        Select Blood Group
+                    </option>
+
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+
+                </select>
+
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    id="donorLocation"
+                    placeholder="Enter location"
+                    required>
+
+
+                <button type="submit">
+                    Save Donor Information
+                </button>
+
+            </form>
+
+
+            <div
+                id="donorMessage"
+                class="message">
+
+                Donor information saved successfully!
+
+            </div>
+
+        </div>
+
+
+        <!-- HOSPITAL FORM -->
+
+        <div
+            class="form-section"
+            id="hospitalForm"
+            style="display:none;">
+
+            <h2>🏥 Add Blood Bank Information</h2>
+
+
+            <form id="hospitalRegistrationForm">
+
+
+                <label>Hospital Name</label>
+
+                <input
+                    type="text"
+                    id="hospitalName"
+                    placeholder="Enter hospital name"
+                    required>
+
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="hospitalEmail"
+                    placeholder="Enter hospital email"
+                    required>
+
+
+                <label>Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="hospitalPhone"
+                    placeholder="Enter phone number"
+                    required>
+
+
+                <label>Blood Group Available</label>
+
+                <select id="hospitalBloodGroup" required>
+
+                    <option value="">
+                        Select Blood Group
+                    </option>
+
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+
+                </select>
+
+
+                <label>Available Units</label>
+
+                <input
+                    type="number"
+                    id="bloodUnits"
+                    placeholder="Enter available units"
+                    min="0"
+                    required>
+
+
+                <label>Hospital Location</label>
+
+                <input
+                    type="text"
+                    id="hospitalLocation"
+                    placeholder="Enter hospital location"
+                    required>
+
+
+                <button type="submit">
+                    Save Blood Bank Information
+                </button>
+
+            </form>
+
+
+            <div
+                id="hospitalMessage"
+                class="message">
+
+                Blood bank information saved successfully!
+
+            </div>
+
+        </div>
+
+
+        <!-- DATA DISPLAY -->
+
+        <div
+            class="data-section"
+            id="dataSection"
+            style="display:none;">
+
+            <h2>Stored Information</h2>
+
+            <div id="dataContainer"></div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 BloodCare | Blood Management Information System
+
+</div>
+
+
+<script>
+
+
+    /* SHOW DONOR FORM */
+
+    function showDonorForm() {
+
+        document.getElementById("donorForm")
+            .style.display = "block";
+
+        document.getElementById("hospitalForm")
+            .style.display = "none";
+
+        document.getElementById("dataSection")
+            .style.display = "none";
+
+        window.scrollTo({
+            top: document.getElementById("donorForm").offsetTop - 20,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* SHOW HOSPITAL FORM */
+
+    function showHospitalForm() {
+
+        document.getElementById("hospitalForm")
+            .style.display = "block";
+
+        document.getElementById("donorForm")
+            .style.display = "none";
+
+        document.getElementById("dataSection")
+            .style.display = "none";
+
+        window.scrollTo({
+            top: document.getElementById("hospitalForm").offsetTop - 20,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* SAVE DONOR */
+
+    document.getElementById(
+        "donorRegistrationForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            let donors =
+                JSON.parse(
+                    localStorage.getItem("donors")
+                ) || [];
+
+
+            let donor = {
+
+                id: Date.now(),
+
+                name:
+                    document.getElementById(
+                        "donorName"
+                    ).value,
+
+                email:
+                    document.getElementById(
+                        "donorEmail"
+                    ).value,
+
+                phone:
+                    document.getElementById(
+                        "donorPhone"
+                    ).value,
+
+                bloodGroup:
+                    document.getElementById(
+                        "bloodGroup"
+                    ).value,
+
+                location:
+                    document.getElementById(
+                        "donorLocation"
+                    ).value
+
+            };
+
+
+            donors.push(donor);
+
+
+            localStorage.setItem(
+                "donors",
+                JSON.stringify(donors)
+            );
+
+
+            document.getElementById(
+                "donorMessage"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "donorRegistrationForm"
+            ).reset();
+
+        }
+    );
+
+
+    /* SAVE HOSPITAL */
+
+    document.getElementById(
+        "hospitalRegistrationForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            let hospitals =
+                JSON.parse(
+                    localStorage.getItem("hospitals")
+                ) || [];
+
+
+            let hospital = {
+
+                id: Date.now(),
+
+                name:
+                    document.getElementById(
+                        "hospitalName"
+                    ).value,
+
+                email:
+                    document.getElementById(
+                        "hospitalEmail"
+                    ).value,
+
+                phone:
+                    document.getElementById(
+                        "hospitalPhone"
+                    ).value,
+
+                bloodGroup:
+                    document.getElementById(
+                        "hospitalBloodGroup"
+                    ).value,
+
+                units:
+                    document.getElementById(
+                        "bloodUnits"
+                    ).value,
+
+                location:
+                    document.getElementById(
+                        "hospitalLocation"
+                    ).value
+
+            };
+
+
+            hospitals.push(hospital);
+
+
+            localStorage.setItem(
+                "hospitals",
+                JSON.stringify(hospitals)
+            );
+
+
+            document.getElementById(
+                "hospitalMessage"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "hospitalRegistrationForm"
+            ).reset();
+
+        }
+    );
+
+
+    /* SHOW DONORS */
+
+    function showDonors() {
+
+        let donors =
+            JSON.parse(
+                localStorage.getItem("donors")
+            ) || [];
+
+
+        let container =
+            document.getElementById(
+                "dataContainer"
+            );
+
+
+        document.getElementById(
+            "dataSection"
+        ).style.display = "block";
+
+
+        container.innerHTML = "";
+
+
+        if (donors.length === 0) {
+
+            container.innerHTML =
+                '<div class="empty">' +
+                '<h3>No Donor Information</h3>' +
+                '<p>No donor records have been saved yet.</p>' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        donors.forEach(function(donor) {
+
+            let card =
+                document.createElement("div");
+
+            card.className = "donor-card";
+
+
+            card.innerHTML =
+
+                "<h3>" +
+                escapeHTML(donor.name) +
+                "</h3>" +
+
+                "<p><b>Email:</b> " +
+                escapeHTML(donor.email) +
+                "</p>" +
+
+                "<p><b>Phone:</b> " +
+                escapeHTML(donor.phone) +
+                "</p>" +
+
+                "<p><b>Location:</b> " +
+                escapeHTML(donor.location) +
+                "</p>" +
+
+                "<span class='blood-group'>" +
+                escapeHTML(donor.bloodGroup) +
+                "</span>";
+
+
+            container.appendChild(card);
+
+        });
+
+
+        window.scrollTo({
+            top: document.getElementById("dataSection").offsetTop - 20,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* SHOW HOSPITALS */
+
+    function showHospitals() {
+
+        let hospitals =
+            JSON.parse(
+                localStorage.getItem("hospitals")
+            ) || [];
+
+
+        let container =
+            document.getElementById(
+                "dataContainer"
+            );
+
+
+        document.getElementById(
+            "dataSection"
+        ).style.display = "block";
+
+
+        container.innerHTML = "";
+
+
+        if (hospitals.length === 0) {
+
+            container.innerHTML =
+                '<div class="empty">' +
+                '<h3>No Blood Banks Available</h3>' +
+                '<p>No blood bank records have been saved yet.</p>' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        hospitals.forEach(function(hospital) {
+
+            let card =
+                document.createElement("div");
+
+            card.className = "donor-card";
+
+
+            card.innerHTML =
+
+                "<h3>" +
+                escapeHTML(hospital.name) +
+                "</h3>" +
+
+                "<p><b>Email:</b> " +
+                escapeHTML(hospital.email) +
+                "</p>" +
+
+                "<p><b>Phone:</b> " +
+                escapeHTML(hospital.phone) +
+                "</p>" +
+
+                "<p><b>Location:</b> " +
+                escapeHTML(hospital.location) +
+                "</p>" +
+
+                "<p><b>Available Units:</b> " +
+                escapeHTML(hospital.units) +
+                "</p>" +
+
+                "<span class='blood-group'>" +
+                escapeHTML(hospital.bloodGroup) +
+                "</span>";
+
+
+            container.appendChild(card);
+
+        });
+
+
+        window.scrollTo({
+            top: document.getElementById("dataSection").offsetTop - 20,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* SECURITY */
+
+    function escapeHTML(text) {
+
+        if (!text) {
+            return "";
+        }
+
+        return text
+            .toString()
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
