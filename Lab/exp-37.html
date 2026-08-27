@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>MyProfessionalShowcase</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #212121;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+nav {
+    background: #000;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+}
+
+section {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #ccc;
+}
+
+h2 {
+    color: #212121;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    background: #212121;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.project {
+    border-left: 5px solid #212121;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+}
+
+button {
+    background: #212121;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header id="home">
+
+<h1>My Professional Showcase</h1>
+
+<p>Software Developer | Web Developer | Programmer</p>
+
+</header>
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#about">About Me</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#resume">Resume</a>
+<a href="#blog">Blog</a>
+<a href="#contact">Contact</a>
+
+</nav>
+
+<section id="about">
+
+<h2>About Me</h2>
+
+<p>
+I am a passionate software developer interested in
+web development, programming and technology.
+</p>
+
+<h3>Skills</h3>
+
+<div class="skills">
+
+<span class="skill">HTML</span>
+<span class="skill">CSS</span>
+<span class="skill">JavaScript</span>
+<span class="skill">Java</span>
+<span class="skill">SQL</span>
+
+</div>
+
+</section>
+
+<section id="portfolio">
+
+<h2>Portfolio</h2>
+
+<div class="project">
+
+<h3>Job Portal</h3>
+
+<p>
+A web-based job portal where users can search
+and apply for vacancies.
+</p>
+
+</div>
+
+<div class="project">
+
+<h3>Online Shopping</h3>
+
+<p>
+An e-commerce website with products and cart
+functionality.
+</p>
+
+</div>
+
+</section>
+
+<section id="resume">
+
+<h2>Resume</h2>
+
+<p>
+Education: Bachelor of Engineering
+</p>
+
+<p>
+Skills: Java, HTML, CSS, JavaScript, SQL
+</p>
+
+<button onclick="downloadResume()">
+Download Resume
+</button>
+
+</section>
+
+<section id="blog">
+
+<h2>Blog</h2>
+
+<h3>My Journey in Web Development</h3>
+
+<p>
+Learning web development helps build creative
+and useful applications.
+</p>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact Me</h2>
+
+<form onsubmit="saveContact(event)">
+
+<input id="name"
+       placeholder="Your Name"
+       required>
+
+<input type="email"
+       id="email"
+       placeholder="Your Email"
+       required>
+
+<textarea id="message"
+          placeholder="Your Message"
+          required></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+<p id="result"></p>
+
+</section>
+
+<footer>
+
+© 2026 MyProfessionalShowcase
+
+</footer>
+
+<script>
+
+function saveContact(event) {
+
+    event.preventDefault();
+
+    let contacts =
+        JSON.parse(localStorage.getItem("portfolioContacts")) || [];
+
+    contacts.push({
+
+        name:
+            document.getElementById("name").value,
+
+        email:
+            document.getElementById("email").value,
+
+        message:
+            document.getElementById("message").value
+
+    });
+
+    localStorage.setItem(
+        "portfolioContacts",
+        JSON.stringify(contacts)
+    );
+
+    document.getElementById("result").innerHTML =
+        "Message sent successfully!";
+
+    event.target.reset();
+
+}
+
+function downloadResume() {
+
+    alert("Resume download option selected.");
+
+}
+
+</script>
+
+</body>
+</html>

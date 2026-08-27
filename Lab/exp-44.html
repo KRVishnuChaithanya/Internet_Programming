@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Painting Review Gallery</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f7f3f0;
+        }
+
+        header {
+            background: #6a1b9a;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px #ccc;
+        }
+
+        .painting {
+            text-align: center;
+        }
+
+        .painting img {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .stars {
+            font-size: 30px;
+            color: #ffb300;
+            cursor: pointer;
+        }
+
+        textarea,
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+        }
+
+        button {
+            background: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .review {
+            background: #f3e5f5;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+
+        footer {
+            background: #6a1b9a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🎨 Art Review Gallery</h1>
+
+    <p>View and review featured paintings</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="card painting">
+
+        <h2>Featured Painting</h2>
+
+        <img
+            src="https://images.unsplash.com/photo-1549490349-8643362247b5">
+
+        <h3>Abstract Dreams</h3>
+
+        <p>
+            A modern abstract artwork available
+            for customer review.
+        </p>
+
+        <h3>
+            Average Rating:
+            <span id="average">0</span> ⭐
+        </h3>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>⭐ Submit Your Review</h2>
+
+        <input
+            id="reviewer"
+            placeholder="Your name">
+
+        <div class="stars">
+
+            <span onclick="setRating(1)">★</span>
+            <span onclick="setRating(2)">★</span>
+            <span onclick="setRating(3)">★</span>
+            <span onclick="setRating(4)">★</span>
+            <span onclick="setRating(5)">★</span>
+
+        </div>
+
+        <p>
+            Selected rating:
+            <span id="rating">0</span>
+        </p>
+
+        <textarea
+            id="review"
+            placeholder="Write your review">
+        </textarea>
+
+        <button onclick="submitReview()">
+            Submit Review
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Customer Reviews</h2>
+
+        <div id="reviews"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Owner Registration</h2>
+
+        <input
+            id="owner"
+            placeholder="Owner name">
+
+        <input
+            id="paintingName"
+            placeholder="Painting name">
+
+        <select
+            id="package"
+            style="width:100%;padding:12px;">
+
+            <option>7 Days - ₹500</option>
+            <option>15 Days - ₹900</option>
+            <option>30 Days - ₹1500</option>
+
+        </select>
+
+        <button onclick="registerOwner()">
+            Register & Pay
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 Art Review Gallery
+
+</footer>
+
+
+<script>
+
+    let selectedRating = 0;
+
+
+    function setRating(value) {
+
+        selectedRating = value;
+
+        document.getElementById(
+            "rating"
+        ).textContent = value;
+
+    }
+
+
+    function submitReview() {
+
+        let name =
+            document.getElementById(
+                "reviewer"
+            ).value;
+
+        let text =
+            document.getElementById(
+                "review"
+            ).value;
+
+
+        if (
+            name === "" ||
+            text === "" ||
+            selectedRating === 0
+        ) {
+
+            alert(
+                "Please enter all review details."
+            );
+
+            return;
+
+        }
+
+
+        let reviews =
+            JSON.parse(
+                localStorage.getItem(
+                    "paintingReviews"
+                )
+            ) || [];
+
+
+        reviews.push({
+
+            name: name,
+            rating: selectedRating,
+            text: text
+
+        });
+
+
+        localStorage.setItem(
+            "paintingReviews",
+            JSON.stringify(reviews)
+        );
+
+
+        document.getElementById(
+            "reviewer"
+        ).value = "";
+
+        document.getElementById(
+            "review"
+        ).value = "";
+
+        selectedRating = 0;
+
+        document.getElementById(
+            "rating"
+        ).textContent = "0";
+
+
+        loadReviews();
+
+    }
+
+
+    function loadReviews() {
+
+        let reviews =
+            JSON.parse(
+                localStorage.getItem(
+                    "paintingReviews"
+                )
+            ) || [];
+
+
+        let container =
+            document.getElementById(
+                "reviews"
+            );
+
+
+        container.innerHTML = "";
+
+
+        let total = 0;
+
+
+        reviews.forEach(function(review) {
+
+            total += review.rating;
+
+
+            let div =
+                document.createElement("div");
+
+            div.className = "review";
+
+
+            div.innerHTML =
+
+                "<strong>" +
+                escapeHTML(review.name) +
+                "</strong>" +
+
+                " - " +
+                "⭐".repeat(review.rating) +
+
+                "<p>" +
+                escapeHTML(review.text) +
+                "</p>";
+
+
+            container.appendChild(div);
+
+        });
+
+
+        let average =
+            reviews.length
+            ? total / reviews.length
+            : 0;
+
+
+        document.getElementById(
+            "average"
+        ).textContent =
+            average.toFixed(1);
+
+    }
+
+
+    function registerOwner() {
+
+        let owner =
+            document.getElementById(
+                "owner"
+            ).value;
+
+        let painting =
+            document.getElementById(
+                "paintingName"
+            ).value;
+
+        let packageName =
+            document.getElementById(
+                "package"
+            ).value;
+
+
+        if (!owner || !painting) {
+
+            alert(
+                "Please enter all details."
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "paintingOwner",
+            JSON.stringify({
+
+                owner: owner,
+                painting: painting,
+                package: packageName
+
+            })
+        );
+
+
+        alert(
+            "Owner registered and payment recorded successfully."
+        );
+
+    }
+
+
+    function escapeHTML(text) {
+
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    loadReviews();
+
+</script>
+
+</body>
+
+</html>

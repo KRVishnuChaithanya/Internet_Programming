@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Phone Bill Payment</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f3f7fb;
+        }
+
+        header {
+            background: #4527a0;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px #ccc;
+        }
+
+        .bill {
+            background: #ede7f6;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            margin-top: 18px;
+            padding: 12px 20px;
+            background: #4527a0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #311b92;
+        }
+
+        .history {
+            padding: 12px;
+            background: #f3e5f5;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+
+        footer {
+            background: #4527a0;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📱 Phone Bill Payment</h1>
+
+    <p>Manage your monthly phone bills</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="card">
+
+        <h2>Account Dashboard</h2>
+
+        <div class="bill">
+
+            <p>
+                <strong>Customer:</strong>
+                Rahul Kumar
+            </p>
+
+            <p>
+                <strong>Due Date:</strong>
+                30 August 2026
+            </p>
+
+            <p>
+                <strong>Outstanding Amount:</strong>
+                ₹799
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Make Payment</h2>
+
+
+        <label>
+            Payment Amount
+        </label>
+
+        <input
+            type="number"
+            id="amount"
+            value="799"
+            min="1">
+
+
+        <label>
+            Payment Method
+        </label>
+
+        <select id="method">
+
+            <option>
+                Credit Card
+            </option>
+
+            <option>
+                Debit Card
+            </option>
+
+            <option>
+                Net Banking
+            </option>
+
+            <option>
+                Mobile Wallet
+            </option>
+
+        </select>
+
+
+        <button onclick="payBill()">
+            Pay Bill
+        </button>
+
+        <div
+            id="message"
+            style="margin-top:20px;">
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🔄 Recurring Payment</h2>
+
+        <p>
+            Automatically pay your monthly phone bill.
+        </p>
+
+        <button onclick="enableRecurring()">
+            Enable Recurring Payment
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🔔 Bill Notifications</h2>
+
+        <button onclick="enableNotification()">
+            Enable Due-Date Notification
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📋 Billing History</h2>
+
+        <div id="history"></div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 Phone Bill Payment Portal
+
+</footer>
+
+
+<script>
+
+
+    function payBill() {
+
+        let amount =
+            Number(
+                document.getElementById(
+                    "amount"
+                ).value
+            );
+
+
+        let method =
+            document.getElementById(
+                "method"
+            ).value;
+
+
+        if (amount <= 0) {
+
+            alert(
+                "Please enter a valid amount."
+            );
+
+            return;
+
+        }
+
+
+        let payments =
+            JSON.parse(
+                localStorage.getItem(
+                    "phonePayments"
+                )
+            ) || [];
+
+
+        let payment = {
+
+            amount: amount,
+
+            method: method,
+
+            date:
+                new Date()
+                .toLocaleString(),
+
+            status: "Successful"
+
+        };
+
+
+        payments.push(payment);
+
+
+        localStorage.setItem(
+
+            "phonePayments",
+
+            JSON.stringify(payments)
+
+        );
+
+
+        document.getElementById(
+            "message"
+        ).innerHTML =
+
+            "<div class='bill'>" +
+
+            "<h3>✅ Payment Successful</h3>" +
+
+            "<p>Amount Paid: ₹" +
+            amount +
+            "</p>" +
+
+            "<p>Payment Method: " +
+            method +
+            "</p>" +
+
+            "<p>Receipt has been generated.</p>" +
+
+            "</div>";
+
+
+        loadHistory();
+
+    }
+
+
+    function loadHistory() {
+
+        let payments =
+            JSON.parse(
+                localStorage.getItem(
+                    "phonePayments"
+                )
+            ) || [];
+
+
+        let history =
+            document.getElementById(
+                "history"
+            );
+
+
+        history.innerHTML = "";
+
+
+        if (payments.length === 0) {
+
+            history.innerHTML =
+                "<p>No previous payments.</p>";
+
+            return;
+
+        }
+
+
+        payments.forEach(function(payment) {
+
+            let div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className = "history";
+
+
+            div.innerHTML =
+
+                "<strong>₹" +
+                payment.amount +
+                "</strong>" +
+
+                " — " +
+                payment.method +
+
+                "<br>" +
+
+                "<small>" +
+                payment.date +
+                "</small>" +
+
+                "<br>" +
+
+                "Status: " +
+                payment.status;
+
+
+            history.appendChild(div);
+
+        });
+
+    }
+
+
+    function enableRecurring() {
+
+        localStorage.setItem(
+            "phoneRecurringPayment",
+            "enabled"
+        );
+
+        alert(
+            "Recurring payment enabled successfully."
+        );
+
+    }
+
+
+    function enableNotification() {
+
+        localStorage.setItem(
+            "phoneBillNotification",
+            "enabled"
+        );
+
+        alert(
+            "Bill due-date notification enabled."
+        );
+
+    }
+
+
+    loadHistory();
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>WanderWorld - Travel Blog</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            color: #333;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(135deg, #0077b6, #023e8a);
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* HERO */
+
+        .hero {
+            height: 480px;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.45)
+                ),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee")
+                center/cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 750px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 13px 28px;
+            background: #00b4d8;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .hero-button:hover {
+            background: #0096c7;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #023e8a;
+            margin-bottom: 30px;
+        }
+
+        /* ARTICLES */
+
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px #ccc;
+        }
+
+        .article img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article h3 {
+            color: #0077b6;
+            margin-top: 0;
+        }
+
+        .article p {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .read-more {
+            color: #0077b6;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* DESTINATIONS */
+
+        .destination-section {
+            margin-top: 60px;
+        }
+
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .filter-buttons button {
+            padding: 10px 18px;
+            margin: 5px;
+            border: none;
+            border-radius: 20px;
+            background: #0077b6;
+            color: white;
+            cursor: pointer;
+        }
+
+        .filter-buttons button:hover {
+            background: #023e8a;
+        }
+
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .destination {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #ccc;
+        }
+
+        .destination img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .destination h3 {
+            color: #0077b6;
+        }
+
+        /* MAP */
+
+        .map-section {
+            margin-top: 60px;
+        }
+
+        .map {
+            position: relative;
+            height: 400px;
+            background:
+                linear-gradient(
+                    rgba(255,255,255,0.7),
+                    rgba(255,255,255,0.7)
+                ),
+                url("https://images.unsplash.com/photo-1524666041070-9cff2a2c4a2a")
+                center/cover;
+
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #ccc;
+        }
+
+        .map-title {
+            text-align: center;
+            padding-top: 25px;
+            color: #023e8a;
+        }
+
+        .marker {
+            position: absolute;
+            background: #d62828;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .marker:hover {
+            background: #9d0208;
+        }
+
+        .marker1 {
+            top: 35%;
+            left: 25%;
+        }
+
+        .marker2 {
+            top: 50%;
+            left: 55%;
+        }
+
+        .marker3 {
+            top: 25%;
+            right: 15%;
+        }
+
+        /* PHOTO GALLERY */
+
+        .gallery-section {
+            margin-top: 60px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.04);
+        }
+
+        /* COMMENTS */
+
+        .comments-section {
+            margin-top: 60px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #ccc;
+        }
+
+        .comment {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .comment strong {
+            color: #0077b6;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .comment-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .comment-form button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: none;
+            background: #0077b6;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .comment-form button:hover {
+            background: #023e8a;
+        }
+
+        /* ABOUT */
+
+        .about {
+            margin-top: 60px;
+            background: linear-gradient(135deg, #caf0f8, #eafcff);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .about img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .about h2 {
+            color: #023e8a;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        /* RESOURCES */
+
+        .resources {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .resource {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #ccc;
+            text-align: center;
+        }
+
+        .resource h3 {
+            color: #0077b6;
+        }
+
+        /* SOCIAL */
+
+        .social {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .social a {
+            display: inline-block;
+            margin: 8px;
+            padding: 10px 18px;
+            background: #0077b6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 60px;
+            background: #023e8a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 900px) {
+
+            .articles {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .destinations {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .resources {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media(max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .articles,
+            .destinations,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        🌍 WanderWorld
+    </div>
+
+    <nav>
+
+        <a href="#home">Home</a>
+        <a href="#articles">Articles</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO / HOMEPAGE -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>Explore The World</h1>
+
+        <p>
+            Discover beautiful destinations, travel stories,
+            useful travel guides and unforgettable adventures.
+        </p>
+
+        <a href="#articles" class="hero-button">
+            Explore Articles
+        </a>
+
+    </div>
+
+</section>
+
+
+<div class="container">
+
+
+<!-- BLOG ARTICLES -->
+
+<section id="articles">
+
+    <h2 class="section-title">
+        ✈️ Featured Travel Articles
+    </h2>
+
+    <div class="articles">
+
+
+        <div class="article">
+
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34">
+
+            <div class="article-content">
+
+                <h3>Beautiful Paris</h3>
+
+                <p>
+                    Explore the streets of Paris and discover
+                    famous landmarks, delicious food and
+                    unforgettable experiences.
+                </p>
+
+                <a href="#" class="read-more">
+                    Read Article →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="article">
+
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4">
+
+            <div class="article-content">
+
+                <h3>Discover Bali</h3>
+
+                <p>
+                    Experience tropical beaches, temples,
+                    local culture and peaceful landscapes
+                    in beautiful Bali.
+                </p>
+
+                <a href="#" class="read-more">
+                    Read Article →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="article">
+
+            <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be">
+
+            <div class="article-content">
+
+                <h3>Adventure in Australia</h3>
+
+                <p>
+                    Discover Australia's amazing cities,
+                    beaches, wildlife and exciting outdoor
+                    adventures.
+                </p>
+
+                <a href="#" class="read-more">
+                    Read Article →
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- DESTINATIONS -->
+
+<section class="destination-section" id="destinations">
+
+    <h2 class="section-title">
+        🌎 Travel Destinations
+    </h2>
+
+
+    <div class="filter-buttons">
+
+        <button onclick="filterDestination('all')">
+            All
+        </button>
+
+        <button onclick="filterDestination('asia')">
+            Asia
+        </button>
+
+        <button onclick="filterDestination('europe')">
+            Europe
+        </button>
+
+        <button onclick="filterDestination('america')">
+            America
+        </button>
+
+    </div>
+
+
+    <div class="destinations">
+
+
+        <div class="destination asia">
+
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e">
+
+            <h3>Japan</h3>
+
+            <p>Asia</p>
+
+        </div>
+
+
+        <div class="destination asia">
+
+            <img src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8">
+
+            <h3>Bali</h3>
+
+            <p>Asia</p>
+
+        </div>
+
+
+        <div class="destination europe">
+
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34">
+
+            <h3>Paris</h3>
+
+            <p>Europe</p>
+
+        </div>
+
+
+        <div class="destination america">
+
+            <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee">
+
+            <h3>New York</h3>
+
+            <p>America</p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- INTERACTIVE MAP -->
+
+<section class="map-section">
+
+    <h2 class="section-title">
+        🗺️ Visited Destinations
+    </h2>
+
+
+    <div class="map">
+
+        <h3 class="map-title">
+            Click a destination marker
+        </h3>
+
+
+        <div class="marker marker1"
+             onclick="showDestination('Paris')">
+            📍 Paris
+        </div>
+
+
+        <div class="marker marker2"
+             onclick="showDestination('Bali')">
+            📍 Bali
+        </div>
+
+
+        <div class="marker marker3"
+             onclick="showDestination('New York')">
+            📍 New York
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTO GALLERY -->
+
+<section class="gallery-section" id="gallery">
+
+    <h2 class="section-title">
+        📸 Travel Photo Gallery
+    </h2>
+
+
+    <div class="gallery">
+
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+             onclick="openPhoto(this.src)">
+
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+             onclick="openPhoto(this.src)">
+
+        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
+             onclick="openPhoto(this.src)">
+
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4"
+             onclick="openPhoto(this.src)">
+
+    </div>
+
+</section>
+
+
+<!-- COMMENTS -->
+
+<section class="comments-section">
+
+    <h2 class="section-title">
+        💬 Reader Comments
+    </h2>
+
+
+    <div class="comment">
+
+        <strong>Rahul</strong>
+
+        <p>
+            Amazing travel stories! Paris looks beautiful.
+        </p>
+
+    </div>
+
+
+    <div class="comment">
+
+        <strong>Priya</strong>
+
+        <p>
+            I really enjoyed the Bali travel guide.
+        </p>
+
+    </div>
+
+
+    <div class="comment-form">
+
+        <h3>Leave a Comment</h3>
+
+        <input
+            type="text"
+            id="commentName"
+            placeholder="Your Name">
+
+        <textarea
+            id="commentText"
+            placeholder="Write your comment...">
+        </textarea>
+
+        <button onclick="addComment()">
+            Post Comment
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT TRAVELER -->
+
+<section class="about" id="about">
+
+    <img
+        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e">
+
+    <h2>About the Traveler</h2>
+
+    <p>
+        Hello! I am Alex, a passionate traveler and blogger.
+        I created WanderWorld to share my travel experiences,
+        photography, useful travel tips and cultural discoveries
+        with people around the world.
+    </p>
+
+</section>
+
+
+<!-- RESOURCES -->
+
+<section>
+
+    <h2 class="section-title">
+        🎒 Travel Resources
+    </h2>
+
+
+    <div class="resources">
+
+
+        <div class="resource">
+
+            <h3>🎒 Packing Lists</h3>
+
+            <p>
+                Useful packing checklists for different
+                destinations and types of trips.
+            </p>
+
+        </div>
+
+
+        <div class="resource">
+
+            <h3>🧭 Travel Guides</h3>
+
+            <p>
+                Helpful guides for planning your next
+                adventure.
+            </p>
+
+        </div>
+
+
+        <div class="resource">
+
+            <h3>🏨 Booking Tips</h3>
+
+            <p>
+                Tips for selecting hotels, flights and
+                other travel services.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- SOCIAL SHARING -->
+
+<section class="social">
+
+    <h2 class="section-title">
+        📱 Share This Travel Blog
+    </h2>
+
+    <a href="#" onclick="shareBlog('Facebook')">
+        Facebook
+    </a>
+
+    <a href="#" onclick="shareBlog('Instagram')">
+        Instagram
+    </a>
+
+    <a href="#" onclick="shareBlog('Twitter')">
+        Twitter
+    </a>
+
+</section>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 WanderWorld Travel Blog
+    </p>
+
+    <p>
+        Explore • Travel • Discover
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* DESTINATION FILTER */
+
+function filterDestination(category) {
+
+    let destinations =
+        document.querySelectorAll(".destination");
+
+
+    destinations.forEach(function(destination) {
+
+        if (category === "all") {
+
+            destination.style.display = "block";
+
+        }
+
+        else if (
+            destination.classList.contains(category)
+        ) {
+
+            destination.style.display = "block";
+
+        }
+
+        else {
+
+            destination.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* MAP MARKER */
+
+function showDestination(destination) {
+
+    alert(
+        "You selected " +
+        destination +
+        ". Open the related travel article to explore more!"
+    );
+
+}
+
+
+/* PHOTO GALLERY */
+
+function openPhoto(src) {
+
+    window.open(
+        src,
+        "_blank"
+    );
+
+}
+
+
+/* COMMENTS */
+
+function addComment() {
+
+    let name =
+        document.getElementById("commentName").value;
+
+    let text =
+        document.getElementById("commentText").value;
+
+
+    if (
+        name.trim() === "" ||
+        text.trim() === ""
+    ) {
+
+        alert("Please enter your name and comment.");
+
+        return;
+
+    }
+
+
+    let comment =
+        document.createElement("div");
+
+    comment.className = "comment";
+
+
+    comment.innerHTML =
+        "<strong>" +
+        name +
+        "</strong>" +
+        "<p>" +
+        text +
+        "</p>";
+
+
+    let form =
+        document.querySelector(".comment-form");
+
+
+    form.parentNode.insertBefore(
+        comment,
+        form
+    );
+
+
+    document.getElementById(
+        "commentName"
+    ).value = "";
+
+
+    document.getElementById(
+        "commentText"
+    ).value = "";
+
+
+    alert("Comment posted successfully!");
+
+}
+
+
+/* SOCIAL SHARING */
+
+function shareBlog(platform) {
+
+    alert(
+        "Travel blog shared on " +
+        platform +
+        "!"
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

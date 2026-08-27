@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>LearnWell Tuition Centre</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f8ff;
+}
+
+header {
+    background: #3949ab;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+nav {
+    background: #283593;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+}
+
+.hero {
+    padding: 45px;
+    text-align: center;
+    background: #e8eaf6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #bbb;
+}
+
+.card h2 {
+    color: #3949ab;
+}
+
+.form {
+    background: white;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+}
+
+button {
+    background: #3949ab;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 40px;
+    background: #283593;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📚 LearnWell Tuition Centre</h1>
+
+<p>Learn Better. Grow Better.</p>
+
+</header>
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#courses">Courses</a>
+<a href="#announcements">Announcements</a>
+<a href="#register">Registration</a>
+<a href="#feedback">Feedback</a>
+
+</nav>
+
+<section class="hero" id="home">
+
+<h2>Welcome to LearnWell</h2>
+
+<p>Quality online and offline education.</p>
+
+</section>
+
+<div class="container">
+
+<div class="card" id="announcements">
+
+<h2>Announcements</h2>
+
+<p>New batches are starting soon.</p>
+<p>Monthly tests will be conducted regularly.</p>
+
+</div>
+
+<h2 id="courses">Subjects</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h2>Mathematics</h2>
+<p>Duration: 3 Months</p>
+<p>Fees: ₹5,000</p>
+
+</div>
+
+<div class="card">
+
+<h2>Computer Science</h2>
+<p>Duration: 4 Months</p>
+<p>Fees: ₹7,000</p>
+
+</div>
+
+<div class="card">
+
+<h2>Physics</h2>
+<p>Duration: 3 Months</p>
+<p>Fees: ₹5,500</p>
+
+</div>
+
+</div>
+
+<div class="form" id="register">
+
+<h2>Online Registration</h2>
+
+<form onsubmit="saveStudent(event)">
+
+<label>Student Name</label>
+<input id="student" required>
+
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Subject</label>
+
+<select id="subject" required>
+
+<option value="">Select Subject</option>
+<option>Mathematics</option>
+<option>Computer Science</option>
+<option>Physics</option>
+
+</select>
+
+<label>Mode</label>
+
+<select id="mode" required>
+
+<option>Online</option>
+<option>Offline</option>
+
+</select>
+
+<button type="submit">
+Register
+</button>
+
+</form>
+
+<p id="result"></p>
+
+</div>
+
+<div class="form" id="feedback">
+
+<h2>Student Feedback</h2>
+
+<form onsubmit="saveFeedback(event)">
+
+<input id="feedbackName"
+       placeholder="Student Name"
+       required>
+
+<textarea id="feedbackText"
+          placeholder="Enter feedback"
+          required></textarea>
+
+<button type="submit">
+Submit Feedback
+</button>
+
+</form>
+
+<p id="feedbackResult"></p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 LearnWell Tuition Centre
+
+</footer>
+
+<script>
+
+function saveStudent(event) {
+
+    event.preventDefault();
+
+    let students =
+        JSON.parse(localStorage.getItem("learnwellStudents")) || [];
+
+    students.push({
+
+        name:
+            document.getElementById("student").value,
+
+        email:
+            document.getElementById("email").value,
+
+        subject:
+            document.getElementById("subject").value,
+
+        mode:
+            document.getElementById("mode").value
+
+    });
+
+    localStorage.setItem(
+        "learnwellStudents",
+        JSON.stringify(students)
+    );
+
+    document.getElementById("result").innerHTML =
+        "Student registered successfully!";
+
+    event.target.reset();
+
+}
+
+function saveFeedback(event) {
+
+    event.preventDefault();
+
+    let feedback =
+        JSON.parse(localStorage.getItem("learnwellFeedback")) || [];
+
+    feedback.push({
+
+        name:
+            document.getElementById("feedbackName").value,
+
+        message:
+            document.getElementById("feedbackText").value
+
+    });
+
+    localStorage.setItem(
+        "learnwellFeedback",
+        JSON.stringify(feedback)
+    );
+
+    document.getElementById("feedbackResult").innerHTML =
+        "Feedback submitted successfully!";
+
+    event.target.reset();
+
+}
+
+</script>
+
+</body>
+</html>

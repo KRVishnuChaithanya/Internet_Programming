@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Gourmet Haven</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #fffaf5;
+}
+
+header {
+    background: #3e2723;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+nav {
+    background: #21110e;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+}
+
+.hero {
+    background: #efebe9;
+    text-align: center;
+    padding: 45px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+
+.dish {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #bbb;
+}
+
+.dish h2 {
+    color: #5d4037;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form {
+    background: white;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+}
+
+button {
+    background: #5d4037;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+footer {
+    background: #21110e;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🍽️ Gourmet Haven</h1>
+
+<p>Fine Dining & Culinary Excellence</p>
+
+</header>
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#menu">Menu</a>
+<a href="#about">About Us</a>
+<a href="#reservation">Reservation</a>
+<a href="#offers">Offers</a>
+<a href="#contact">Contact</a>
+
+</nav>
+
+<section class="hero" id="home">
+
+<h2>Welcome to Gourmet Haven</h2>
+
+<p>A memorable fine dining experience.</p>
+
+</section>
+
+<div class="container">
+
+<section id="menu">
+
+<h2>Our Menu</h2>
+
+<div class="menu">
+
+<div class="dish">
+
+<h2>Paneer Tikka</h2>
+
+<p>Grilled Indian cottage cheese.</p>
+
+<p class="price">₹350</p>
+
+</div>
+
+<div class="dish">
+
+<h2>Italian Pasta</h2>
+
+<p>Fresh pasta with special sauce.</p>
+
+<p class="price">₹450</p>
+
+</div>
+
+<div class="dish">
+
+<h2>Chocolate Dessert</h2>
+
+<p>Premium chocolate dessert.</p>
+
+<p class="price">₹250</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<h2>About Us</h2>
+
+<p>
+Gourmet Haven offers a premium dining experience
+with carefully prepared dishes and excellent service.
+</p>
+
+</section>
+
+<div class="form" id="reservation">
+
+<h2>Reserve a Table</h2>
+
+<form onsubmit="reserve(event)">
+
+<input id="name"
+       placeholder="Your Name"
+       required>
+
+<input type="date"
+       id="date"
+       required>
+
+<input type="time"
+       id="time"
+       required>
+
+<input type="number"
+       id="guests"
+       placeholder="Number of Guests"
+       min="1"
+       required>
+
+<button type="submit">
+Reserve Table
+</button>
+
+</form>
+
+<p id="reservationResult"></p>
+
+</div>
+
+<section id="offers">
+
+<h2>Special Offers</h2>
+
+<p>Weekend Special Dinner - 15% OFF</p>
+
+<p>Birthday Celebration Package Available</p>
+
+</section>
+
+<div class="form" id="contact">
+
+<h2>Customer Review</h2>
+
+<form onsubmit="saveReview(event)">
+
+<input id="reviewName"
+       placeholder="Your Name"
+       required>
+
+<textarea id="review"
+          placeholder="Your Review"
+          required></textarea>
+
+<button type="submit">
+Submit Review
+</button>
+
+</form>
+
+<p id="reviewResult"></p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Gourmet Haven | Fine Dining Restaurant
+
+</footer>
+
+<script>
+
+function reserve(event) {
+
+    event.preventDefault();
+
+    let reservations =
+        JSON.parse(localStorage.getItem("gourmetReservations")) || [];
+
+    reservations.push({
+
+        name:
+            document.getElementById("name").value,
+
+        date:
+            document.getElementById("date").value,
+
+        time:
+            document.getElementById("time").value,
+
+        guests:
+            document.getElementById("guests").value
+
+    });
+
+    localStorage.setItem(
+        "gourmetReservations",
+        JSON.stringify(reservations)
+    );
+
+    document.getElementById("reservationResult").innerHTML =
+        "Table reserved successfully!";
+
+    event.target.reset();
+
+}
+
+function saveReview(event) {
+
+    event.preventDefault();
+
+    let reviews =
+        JSON.parse(localStorage.getItem("gourmetReviews")) || [];
+
+    reviews.push({
+
+        name:
+            document.getElementById("reviewName").value,
+
+        review:
+            document.getElementById("review").value
+
+    });
+
+    localStorage.setItem(
+        "gourmetReviews",
+        JSON.stringify(reviews)
+    );
+
+    document.getElementById("reviewResult").innerHTML =
+        "Thank you for your review!";
+
+    event.target.reset();
+
+}
+
+</script>
+
+</body>
+</html>

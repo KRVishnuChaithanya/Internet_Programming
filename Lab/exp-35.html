@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Smart Bus Pass</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f5f9ff;
+}
+
+header {
+    background: #00695c;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+nav {
+    background: #004d40;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+}
+
+.hero {
+    padding: 45px;
+    text-align: center;
+    background: #e0f2f1;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #bbb;
+}
+
+.card h2 {
+    color: #00695c;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+}
+
+button {
+    background: #00695c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pass {
+    border: 2px dashed #00695c;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+footer {
+    background: #004d40;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🚌 Smart Bus Pass</h1>
+
+<p>Online Bus Pass & E-Ticket System</p>
+
+</header>
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#pass">Apply Pass</a>
+<a href="#route">Routes</a>
+<a href="#ticket">E-Ticket</a>
+<a href="#status">Status</a>
+
+</nav>
+
+<section class="hero" id="home">
+
+<h2>Smart and Easy Bus Travel</h2>
+
+<p>Apply, renew and manage your bus pass online.</p>
+
+</section>
+
+<div class="container">
+
+<div class="card" id="pass">
+
+<h2>Apply New Bus Pass</h2>
+
+<form onsubmit="applyPass(event)">
+
+<input id="name"
+       placeholder="Candidate Name"
+       required>
+
+<input id="address"
+       placeholder="Address"
+       required>
+
+<input type="date"
+       id="dob"
+       required>
+
+<input type="email"
+       id="email"
+       placeholder="Email"
+       required>
+
+<input id="organization"
+       placeholder="School / Organization"
+       required>
+
+<select id="passType">
+
+<option>Student Pass</option>
+<option>Route Pass</option>
+<option>Working Organization Pass</option>
+
+</select>
+
+<button type="submit">
+Apply Pass
+</button>
+
+</form>
+
+<div class="pass" id="passResult"></div>
+
+</div>
+
+<div class="card" id="route">
+
+<h2>Route Information</h2>
+
+<p>Route 1: Kodaikanal → Town</p>
+<p>Route 2: Town → Bus Stand</p>
+<p>Route 3: Bus Stand → College</p>
+
+</div>
+
+<div class="card" id="ticket">
+
+<h2>Buy Bus E-Ticket</h2>
+
+<form onsubmit="buyTicket(event)">
+
+<input id="from"
+       placeholder="From"
+       required>
+
+<input id="to"
+       placeholder="To"
+       required>
+
+<button type="submit">
+Buy Ticket
+</button>
+
+</form>
+
+<p id="ticketResult"></p>
+
+</div>
+
+<div class="card" id="status">
+
+<h2>Bus Pass Status</h2>
+
+<button onclick="showStatus()">
+Check Status
+</button>
+
+<p id="statusResult"></p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Smart Bus Pass System
+
+</footer>
+
+<script>
+
+function applyPass(event) {
+
+    event.preventDefault();
+
+    let passes =
+        JSON.parse(localStorage.getItem("busPasses")) || [];
+
+    let id =
+        "BUS" + Date.now();
+
+    let pass = {
+
+        id: id,
+
+        name:
+            document.getElementById("name").value,
+
+        address:
+            document.getElementById("address").value,
+
+        dob:
+            document.getElementById("dob").value,
+
+        email:
+            document.getElementById("email").value,
+
+        organization:
+            document.getElementById("organization").value,
+
+        type:
+            document.getElementById("passType").value,
+
+        status: "Pending"
+
+    };
+
+    passes.push(pass);
+
+    localStorage.setItem(
+        "busPasses",
+        JSON.stringify(passes)
+    );
+
+    document.getElementById("passResult").innerHTML =
+        "<h3>Application Submitted</h3>" +
+        "<p>Pass ID: " + id + "</p>" +
+        "<p>Status: Pending</p>";
+
+    event.target.reset();
+
+}
+
+function buyTicket(event) {
+
+    event.preventDefault();
+
+    let tickets =
+        JSON.parse(localStorage.getItem("busTickets")) || [];
+
+    tickets.push({
+
+        from:
+            document.getElementById("from").value,
+
+        to:
+            document.getElementById("to").value,
+
+        date:
+            new Date().toLocaleString()
+
+    });
+
+    localStorage.setItem(
+        "busTickets",
+        JSON.stringify(tickets)
+    );
+
+    document.getElementById("ticketResult").innerHTML =
+        "Bus e-ticket generated successfully!";
+
+    event.target.reset();
+
+}
+
+function showStatus() {
+
+    let passes =
+        JSON.parse(localStorage.getItem("busPasses")) || [];
+
+    if (passes.length === 0) {
+
+        document.getElementById("statusResult").innerHTML =
+            "No bus pass application found.";
+
+        return;
+
+    }
+
+    let last =
+        passes[passes.length - 1];
+
+    document.getElementById("statusResult").innerHTML =
+        "Pass ID: " + last.id +
+        "<br>Status: " + last.status;
+
+}
+
+</script>
+
+</body>
+</html>

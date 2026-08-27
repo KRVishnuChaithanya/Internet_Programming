@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>RecipeBook</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff8f0;
+            color: #333;
+        }
+
+        header {
+            background: #e65100;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(
+                rgba(0,0,0,.45),
+                rgba(0,0,0,.45)
+            ),
+            url("https://images.unsplash.com/photo-1498837167922-ddd27525d352")
+            center/cover;
+
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .search {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .recipes {
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px #ccc;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h2 {
+            color: #e65100;
+        }
+
+        button {
+            background: #e65100;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recipe-detail,
+        .planner,
+        .shopping {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #ccc;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        textarea,
+        input {
+            padding: 10px;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        footer {
+            background: #bf360c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media(max-width:800px) {
+
+            .recipes {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">🍳 RecipeBook</div>
+
+    <nav>
+
+        <a href="#">Home</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#planner">Meal Planner</a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div>
+
+        <h1>Discover Delicious Recipes</h1>
+
+        <p>
+            Cook. Share. Enjoy.
+        </p>
+
+    </div>
+
+</section>
+
+
+<div class="container">
+
+    <input
+        class="search"
+        id="search"
+        placeholder="Search recipes..."
+        onkeyup="searchRecipes()"
+    >
+
+
+    <div class="recipes" id="recipes">
+
+        <div class="card recipe"
+             data-name="Pasta">
+
+            <img src="https://images.unsplash.com/photo-1551892374-ecf8754cf8b0">
+
+            <div class="card-content">
+
+                <h2>🍝 Pasta</h2>
+
+                <p>
+                    Delicious Italian pasta recipe.
+                </p>
+
+                <button onclick="showRecipe('Pasta')">
+                    View Recipe
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card recipe"
+             data-name="Pizza">
+
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+
+            <div class="card-content">
+
+                <h2>🍕 Pizza</h2>
+
+                <p>
+                    Homemade cheesy pizza.
+                </p>
+
+                <button onclick="showRecipe('Pizza')">
+                    View Recipe
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card recipe"
+             data-name="Salad">
+
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd">
+
+            <div class="card-content">
+
+                <h2>🥗 Salad</h2>
+
+                <p>
+                    Healthy fresh vegetable salad.
+                </p>
+
+                <button onclick="showRecipe('Salad')">
+                    View Recipe
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="recipe-detail"
+         id="recipeDetail">
+
+        <h2>Recipe Details</h2>
+
+        <p>
+            Select a recipe above to see ingredients
+            and cooking instructions.
+        </p>
+
+    </div>
+
+
+    <div class="planner" id="planner">
+
+        <h2>📅 Weekly Meal Planner</h2>
+
+        <input
+            id="meal"
+            placeholder="Enter meal">
+
+        <button onclick="addMeal()">
+            Add Meal
+        </button>
+
+        <ul id="mealList"></ul>
+
+    </div>
+
+
+    <div class="shopping">
+
+        <h2>🛒 Shopping List</h2>
+
+        <input
+            id="ingredient"
+            placeholder="Enter ingredient">
+
+        <button onclick="addIngredient()">
+            Add Ingredient
+        </button>
+
+        <ul id="shoppingList"></ul>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 RecipeBook
+
+</footer>
+
+
+<script>
+
+    let recipeData = {
+
+        Pasta: {
+            ingredients: [
+                "Pasta",
+                "Tomato Sauce",
+                "Cheese",
+                "Olive Oil"
+            ],
+            instructions:
+                "Boil pasta. Prepare sauce. Mix pasta with sauce and cheese."
+        },
+
+        Pizza: {
+            ingredients: [
+                "Pizza Base",
+                "Tomato Sauce",
+                "Cheese",
+                "Vegetables"
+            ],
+            instructions:
+                "Spread sauce on base. Add cheese and toppings. Bake until ready."
+        },
+
+        Salad: {
+            ingredients: [
+                "Lettuce",
+                "Tomato",
+                "Cucumber",
+                "Olive Oil"
+            ],
+            instructions:
+                "Cut vegetables, mix them together and add dressing."
+        }
+
+    };
+
+
+    function showRecipe(name) {
+
+        let recipe = recipeData[name];
+
+        document.getElementById(
+            "recipeDetail"
+        ).innerHTML =
+
+            "<h2>" + name + "</h2>" +
+
+            "<h3>Ingredients</h3>" +
+
+            "<ul>" +
+
+            recipe.ingredients
+            .map(item =>
+                "<li>" + item + "</li>"
+            )
+            .join("") +
+
+            "</ul>" +
+
+            "<h3>Instructions</h3>" +
+
+            "<p>" +
+            recipe.instructions +
+            "</p>";
+
+    }
+
+
+    function searchRecipes() {
+
+        let value =
+            document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+        let recipes =
+            document.querySelectorAll(".recipe");
+
+        recipes.forEach(function(recipe) {
+
+            let name =
+                recipe.dataset.name
+                .toLowerCase();
+
+            recipe.style.display =
+                name.includes(value)
+                ? "block"
+                : "none";
+
+        });
+
+    }
+
+
+    function addMeal() {
+
+        let meal =
+            document.getElementById("meal").value;
+
+        if (meal === "") return;
+
+        let meals =
+            JSON.parse(
+                localStorage.getItem("meals")
+            ) || [];
+
+        meals.push(meal);
+
+        localStorage.setItem(
+            "meals",
+            JSON.stringify(meals)
+        );
+
+        document.getElementById("meal").value = "";
+
+        loadMeals();
+
+    }
+
+
+    function loadMeals() {
+
+        let meals =
+            JSON.parse(
+                localStorage.getItem("meals")
+            ) || [];
+
+        let list =
+            document.getElementById("mealList");
+
+        list.innerHTML = "";
+
+        meals.forEach(function(meal) {
+
+            let li =
+                document.createElement("li");
+
+            li.textContent = meal;
+
+            list.appendChild(li);
+
+        });
+
+    }
+
+
+    function addIngredient() {
+
+        let item =
+            document.getElementById(
+                "ingredient"
+            ).value;
+
+        if (item === "") return;
+
+        let list =
+            JSON.parse(
+                localStorage.getItem(
+                    "shoppingList"
+                )
+            ) || [];
+
+        list.push(item);
+
+        localStorage.setItem(
+            "shoppingList",
+            JSON.stringify(list)
+        );
+
+        document.getElementById(
+            "ingredient"
+        ).value = "";
+
+        loadShoppingList();
+
+    }
+
+
+    function loadShoppingList() {
+
+        let items =
+            JSON.parse(
+                localStorage.getItem(
+                    "shoppingList"
+                )
+            ) || [];
+
+        let list =
+            document.getElementById(
+                "shoppingList"
+            );
+
+        list.innerHTML = "";
+
+        items.forEach(function(item) {
+
+            let li =
+                document.createElement("li");
+
+            li.textContent = item;
+
+            list.appendChild(li);
+
+        });
+
+    }
+
+
+    loadMeals();
+    loadShoppingList();
+
+</script>
+
+</body>
+</html>

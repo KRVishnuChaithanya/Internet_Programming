@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>WanderWorld - Travel Blog</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            color: white;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .hero {
+            height: 400px;
+            background: linear-gradient(
+                rgba(0,0,0,0.45),
+                rgba(0,0,0,0.45)
+            ),
+            url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee")
+            center/cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #00796b;
+            margin-bottom: 30px;
+        }
+
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px #ccc;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            color: #00796b;
+        }
+
+        .button {
+            background: #00796b;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .map {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px #ccc;
+        }
+
+        .destinations {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .destination {
+            padding: 20px 30px;
+            background: #e0f2f1;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .about {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px #ccc;
+        }
+
+        .comments {
+            background: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .comment {
+            background: #f1f8f7;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #004d40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media(max-width: 800px) {
+
+            .articles {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">🌍 WanderWorld</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#articles">Articles</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#about">About</a>
+    </nav>
+
+</header>
+
+
+<section class="hero" id="home">
+
+    <div>
+
+        <h1>Explore The World</h1>
+
+        <p>Travel stories, guides and unforgettable adventures</p>
+
+    </div>
+
+</section>
+
+
+<div class="container">
+
+    <h2 class="section-title" id="articles">
+        Latest Travel Articles
+    </h2>
+
+    <div class="articles">
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+
+            <div class="card-content">
+
+                <h3>Beautiful Beaches</h3>
+
+                <p>
+                    Explore some of the world's most beautiful
+                    beaches and discover useful travel tips.
+                </p>
+
+                <button class="button"
+                        onclick="showArticle('Beautiful Beaches')">
+                    Read More
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+
+            <div class="card-content">
+
+                <h3>Mountain Adventures</h3>
+
+                <p>
+                    Discover amazing mountain destinations
+                    for your next adventure.
+                </p>
+
+                <button class="button"
+                        onclick="showArticle('Mountain Adventures')">
+                    Read More
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a">
+
+            <div class="card-content">
+
+                <h3>European Travel</h3>
+
+                <p>
+                    Explore beautiful European cities,
+                    culture and food experiences.
+                </p>
+
+                <button class="button"
+                        onclick="showArticle('European Travel')">
+                    Read More
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <h2 class="section-title" id="destinations">
+        📍 Travel Destinations
+    </h2>
+
+    <div class="map">
+
+        <p>
+            Select a destination to explore travel articles.
+        </p>
+
+        <div class="destinations">
+
+            <div class="destination"
+                 onclick="showArticle('India')">
+                🇮🇳 India
+            </div>
+
+            <div class="destination"
+                 onclick="showArticle('Paris')">
+                🇫🇷 Paris
+            </div>
+
+            <div class="destination"
+                 onclick="showArticle('Japan')">
+                🇯🇵 Japan
+            </div>
+
+            <div class="destination"
+                 onclick="showArticle('Australia')">
+                🇦🇺 Australia
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="comments">
+
+        <h2>💬 Comments</h2>
+
+        <input type="text"
+               id="commentName"
+               placeholder="Your name">
+
+        <textarea id="commentText"
+                  placeholder="Write your comment"></textarea>
+
+        <button class="button"
+                onclick="addComment()">
+            Post Comment
+        </button>
+
+        <div id="commentList"></div>
+
+    </div>
+
+
+    <div class="about" id="about">
+
+        <h2 class="section-title">
+            About the Traveler
+        </h2>
+
+        <p>
+            Welcome to WanderWorld! I am a passionate traveler
+            who loves exploring new destinations, cultures,
+            food and adventures.
+        </p>
+
+        <p>
+            This blog shares travel experiences, destination
+            guides, photography and useful travel tips.
+        </p>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 WanderWorld | Travel Blog
+
+</footer>
+
+
+<script>
+
+    function showArticle(title) {
+
+        alert(
+            "Opening travel article: " + title
+        );
+
+    }
+
+
+    function addComment() {
+
+        let name =
+            document.getElementById("commentName").value;
+
+        let text =
+            document.getElementById("commentText").value;
+
+        if (name === "" || text === "") {
+
+            alert("Please enter your name and comment.");
+
+            return;
+
+        }
+
+        let comments =
+            JSON.parse(
+                localStorage.getItem("travelComments")
+            ) || [];
+
+        comments.push({
+            name: name,
+            text: text
+        });
+
+        localStorage.setItem(
+            "travelComments",
+            JSON.stringify(comments)
+        );
+
+        document.getElementById("commentName").value = "";
+        document.getElementById("commentText").value = "";
+
+        loadComments();
+
+    }
+
+
+    function loadComments() {
+
+        let comments =
+            JSON.parse(
+                localStorage.getItem("travelComments")
+            ) || [];
+
+        let list =
+            document.getElementById("commentList");
+
+        list.innerHTML = "";
+
+        comments.forEach(function(comment) {
+
+            let div =
+                document.createElement("div");
+
+            div.className = "comment";
+
+            div.innerHTML =
+                "<strong>" +
+                escapeHTML(comment.name) +
+                "</strong><br>" +
+                escapeHTML(comment.text);
+
+            list.appendChild(div);
+
+        });
+
+    }
+
+
+    function escapeHTML(text) {
+
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    loadComments();
+
+</script>
+
+</body>
+</html>
