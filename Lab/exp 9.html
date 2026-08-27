@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TechSavvy - Online Gadget Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 25px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #bbb;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .cart-item {
+            background: #fafafa;
+            border-left: 5px solid #222;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .delete {
+            background: #d32f2f;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>TechSavvy</h1>
+    <p>Online Gadget Shopping</p>
+</header>
+
+<div class="container">
+
+    <!-- ADD PRODUCT -->
+
+    <div class="card">
+
+        <h2>Add Product</h2>
+
+        <input type="text"
+               id="productName"
+               placeholder="Product Name">
+
+        <input type="number"
+               id="productPrice"
+               placeholder="Price">
+
+        <select id="category">
+            <option value="Smartphone">Smartphone</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Accessories">Accessories</option>
+        </select>
+
+        <button onclick="addProduct()">
+            Add Product
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="card">
+
+        <h2>Search Products</h2>
+
+        <input type="text"
+               id="search"
+               placeholder="Search product..."
+               onkeyup="displayProducts()">
+
+        <div id="productList"></div>
+
+    </div>
+
+
+    <!-- CART -->
+
+    <div class="card">
+
+        <h2>Shopping Cart</h2>
+
+        <div id="cartList"></div>
+
+        <h3>
+            Total: ₹<span id="total">0</span>
+        </h3>
+
+        <button onclick="checkout()">
+            Checkout
+        </button>
+
+    </div>
+
+
+    <!-- ORDERS -->
+
+    <div class="card">
+
+        <h2>Order History</h2>
+
+        <div id="orderList"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let products =
+    JSON.parse(localStorage.getItem("products")) || [];
+
+let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+function addProduct() {
+
+    let name =
+        document.getElementById("productName").value;
+
+    let price =
+        document.getElementById("productPrice").value;
+
+    let category =
+        document.getElementById("category").value;
+
+    if (name === "" || price === "") {
+        alert("Please enter product details");
+        return;
+    }
+
+    let product = {
+        name: name,
+        price: Number(price),
+        category: category
+    };
+
+    products.push(product);
+
+    localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+    );
+
+    document.getElementById("productName").value = "";
+    document.getElementById("productPrice").value = "";
+
+    displayProducts();
+
+    alert("Product added!");
+}
+
+
+function displayProducts() {
+
+    let list =
+        document.getElementById("productList");
+
+    let search =
+        document.getElementById("search")
+        .value.toLowerCase();
+
+    list.innerHTML = "";
+
+    products.forEach(function(product, index) {
+
+        if (product.name.toLowerCase()
+            .includes(search)) {
+
+            list.innerHTML += `
+                <div class="product">
+
+                    <h3>${product.name}</h3>
+
+                    <p>
+                        Category: ${product.category}
+                    </p>
+
+                    <p>
+                        Price: ₹${product.price}
+                    </p>
+
+                    <button
+                        onclick="addToCart(${index})">
+                        Add to Cart
+                    </button>
+
+                    <button
+                        class="delete"
+                        onclick="deleteProduct(${index})">
+                        Delete
+                    </button>
+
+                </div>
+            `;
+        }
+
+    });
+}
+
+
+function deleteProduct(index) {
+
+    products.splice(index, 1);
+
+    localStorage.setItem(
+        "products",
+        JSON.stringify(products)
+    );
+
+    displayProducts();
+}
+
+
+function addToCart(index) {
+
+    cart.push(products[index]);
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    displayCart();
+
+    alert("Added to cart!");
+}
+
+
+function displayCart() {
+
+    let list =
+        document.getElementById("cartList");
+
+    let total = 0;
+
+    list.innerHTML = "";
+
+    if (cart.length === 0) {
+        list.innerHTML = "<p>Cart is empty.</p>";
+    }
+
+    cart.forEach(function(item, index) {
+
+        total += item.price;
+
+        list.innerHTML += `
+            <div class="cart-item">
+
+                <h3>${item.name}</h3>
+
+                <p>
+                    Category: ${item.category}
+                </p>
+
+                <p>
+                    Price: ₹${item.price}
+                </p>
+
+                <button
+                    class="delete"
+                    onclick="removeFromCart(${index})">
+                    Remove
+                </button>
+
+            </div>
+        `;
+    });
+
+    document.getElementById("total")
+        .innerText = total;
+}
+
+
+function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    displayCart();
+}
+
+
+function checkout() {
+
+    if (cart.length === 0) {
+        alert("Cart is empty!");
+        return;
+    }
+
+    let order = {
+        id: Date.now(),
+        products: cart,
+        total: cart.reduce(
+            (sum, item) => sum + item.price,
+            0
+        ),
+        status: "Order Placed"
+    };
+
+    orders.push(order);
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+    cart = [];
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    displayCart();
+    displayOrders();
+
+    alert("Order placed successfully!");
+}
+
+
+function displayOrders() {
+
+    let list =
+        document.getElementById("orderList");
+
+    list.innerHTML = "";
+
+    if (orders.length === 0) {
+        list.innerHTML =
+            "<p>No orders found.</p>";
+        return;
+    }
+
+    orders.forEach(function(order) {
+
+        list.innerHTML += `
+            <div class="cart-item">
+
+                <h3>
+                    Order ID: ${order.id}
+                </h3>
+
+                <p>
+                    Total: ₹${order.total}
+                </p>
+
+                <p class="success">
+                    Status: ${order.status}
+                </p>
+
+            </div>
+        `;
+    });
+}
+
+
+displayProducts();
+displayCart();
+displayOrders();
+
+</script>
+
+</body>
+</html>
