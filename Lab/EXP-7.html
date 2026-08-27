@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Beauty Parlour Appointment Booking System</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#fff5f7;
+}
+
+header{
+background:#e91e63;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+header h1{
+font-size:34px;
+}
+
+header p{
+margin-top:10px;
+}
+
+nav{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+background:#f06292;
+}
+
+nav button{
+padding:15px 18px;
+background:none;
+border:none;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+nav button:hover{
+background:#c2185b;
+}
+
+section{
+display:none;
+padding:30px;
+animation:fade .5s;
+}
+
+.active{
+display:block;
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+.banner{
+background:white;
+padding:40px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 0 10px lightgray;
+}
+
+.banner h2{
+color:#e91e63;
+margin-bottom:20px;
+}
+
+.banner p{
+font-size:18px;
+line-height:28px;
+}
+
+.banner button{
+margin-top:20px;
+padding:12px 25px;
+background:#e91e63;
+color:white;
+border:none;
+border-radius:5px;
+font-size:18px;
+cursor:pointer;
+}
+
+.banner button:hover{
+background:#c2185b;
+}
+
+.cards{
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.card{
+width:280px;
+background:white;
+margin:15px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:180px;
+border-radius:10px;
+}
+
+.card h3{
+margin:15px 0;
+color:#e91e63;
+}
+
+.card p{
+line-height:25px;
+}
+
+.card button{
+margin-top:15px;
+padding:10px 20px;
+background:#e91e63;
+color:white;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+
+.card button:hover{
+background:#c2185b;
+}
+
+form{
+width:450px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+form h2{
+text-align:center;
+margin-bottom:20px;
+color:#e91e63;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid gray;
+border-radius:5px;
+}
+
+input[type=button]{
+background:#e91e63;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+input[type=button]:hover{
+background:#c2185b;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
+}
+
+table th{
+background:#e91e63;
+color:white;
+padding:12px;
+}
+
+table td{
+padding:12px;
+border:1px solid gray;
+text-align:center;
+}
+
+footer{
+background:#e91e63;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>BEAUTY PARLOUR APPOINTMENT BOOKING SYSTEM</h1>
+
+<p>Book Beauty Services Online Anytime</p>
+
+</header>
+
+<nav>
+
+<button onclick="showSection('home')">Home</button>
+
+<button onclick="showSection('register')">Register</button>
+
+<button onclick="showSection('login')">Login</button>
+
+<button onclick="showSection('services')">Services</button>
+
+<button onclick="showSection('stylists')">Stylists</button>
+
+<button onclick="showSection('appointment')">Appointment</button>
+
+<button onclick="showSection('calendar')">Calendar</button>
+
+<button onclick="showSection('payment')">Payment</button>
+
+<button onclick="showSection('history')">History</button>
+
+<button onclick="showSection('admin')">Admin</button>
+
+</nav>
+
+<!-- HOME -->
+
+<section id="home" class="active">
+
+<div class="banner">
+
+<h2>Welcome To Beauty Glow Salon</h2>
+
+<p>
+
+Book appointments with professional beauticians,
+explore beauty services, make secure payments,
+and manage your appointments easily.
+
+</p>
+
+<button onclick="showSection('services')">
+
+Explore Services
+
+</button>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f">
+
+<h3>Hair Styling</h3>
+
+<p>
+
+Hair Cut<br>
+
+Hair Spa<br>
+
+Hair Coloring
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book Now
+
+</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e">
+
+<h3>Facial Care</h3>
+
+<p>
+
+Gold Facial<br>
+
+Diamond Facial<br>
+
+Cleanup
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book Now
+
+</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f">
+
+<h3>Bridal Makeup</h3>
+
+<p>
+
+HD Makeup<br>
+
+Airbrush Makeup<br>
+
+Party Makeup
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book Now
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- REGISTER -->
+
+<section id="register">
+
+<form>
+
+<h2>User Registration</h2>
+
+<input type="text" placeholder="Full Name">
+
+<input type="email" placeholder="Email Address">
+
+<input type="tel" placeholder="Mobile Number">
+
+<input type="password" placeholder="Password">
+
+<input type="password" placeholder="Confirm Password">
+
+<input
+type="button"
+value="Register"
+onclick="alert('Registration Successful')">
+
+</form>
+
+</section>
+
+<!-- LOGIN -->
+
+<section id="login">
+
+<form>
+
+<h2>User Login</h2>
+
+<input
+type="text"
+id="username"
+placeholder="Username">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<input
+type="button"
+value="Login"
+onclick="loginUser()">
+
+</form>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Hair Spa</h3>
+
+<p>
+
+Duration : 60 Minutes<br>
+
+Price : $25
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Facial</h3>
+
+<p>
+
+Duration : 45 Minutes<br>
+
+Price : $20
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Bridal Makeup</h3>
+
+<p>
+
+Duration : 3 Hours<br>
+
+Price : $120
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+<!-- STYLISTS -->
+
+<section id="stylists">
+
+<h2 align="center">Our Professional Stylists</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Emma Johnson</h3>
+
+<p>
+
+Hair Specialist<br>
+Experience : 8 Years<br>
+Rating : ★★★★★
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book Stylist
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Sophia Williams</h3>
+
+<p>
+
+Facial Expert<br>
+Experience : 6 Years<br>
+Rating : ★★★★★
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book Stylist
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Olivia Brown</h3>
+
+<p>
+
+Makeup Artist<br>
+Experience : 10 Years<br>
+Rating : ★★★★★
+
+</p>
+
+<button onclick="showSection('appointment')">
+
+Book Stylist
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- APPOINTMENT -->
+
+<section id="appointment">
+
+<form>
+
+<h2>Book Appointment</h2>
+
+<input
+type="text"
+placeholder="Customer Name">
+
+<input
+type="tel"
+placeholder="Mobile Number">
+
+<select>
+
+<option>Select Service</option>
+<option>Hair Spa</option>
+<option>Hair Styling</option>
+<option>Facial</option>
+<option>Cleanup</option>
+<option>Bridal Makeup</option>
+
+</select>
+
+<select>
+
+<option>Select Stylist</option>
+<option>Emma Johnson</option>
+<option>Sophia Williams</option>
+<option>Olivia Brown</option>
+
+</select>
+
+<input type="date">
+
+<input type="time">
+
+<textarea
+rows="4"
+placeholder="Special Request"></textarea>
+
+<input
+type="button"
+value="Confirm Appointment"
+onclick="bookAppointment()">
+
+</form>
+
+</section>
+
+<!-- RESERVATION CALENDAR -->
+
+<section id="calendar">
+
+<h2 align="center">Reservation Calendar</h2>
+
+<table>
+
+<tr>
+
+<th>Date</th>
+<th>Time</th>
+<th>Stylist</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>01-08-2026</td>
+<td>10:00 AM</td>
+<td>Emma Johnson</td>
+<td>Available</td>
+
+</tr>
+
+<tr>
+
+<td>01-08-2026</td>
+<td>12:00 PM</td>
+<td>Sophia Williams</td>
+<td>Booked</td>
+
+</tr>
+
+<tr>
+
+<td>01-08-2026</td>
+<td>03:00 PM</td>
+<td>Olivia Brown</td>
+<td>Available</td>
+
+</tr>
+
+<tr>
+
+<td>02-08-2026</td>
+<td>11:00 AM</td>
+<td>Emma Johnson</td>
+<td>Available</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<!-- PAYMENT -->
+
+<section id="payment">
+
+<form>
+
+<h2>Online Payment</h2>
+
+<input
+type="text"
+placeholder="Card Holder Name">
+
+<input
+type="text"
+placeholder="Card Number">
+
+<input
+type="month">
+
+<input
+type="password"
+placeholder="CVV">
+
+<select>
+
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>UPI</option>
+<option>Net Banking</option>
+
+</select>
+
+<input
+type="button"
+value="Pay Now"
+onclick="paymentSuccess()">
+
+</form>
+
+</section>
+
+<!-- APPOINTMENT HISTORY -->
+
+<section id="history">
+
+<h2 align="center">Appointment History</h2>
+
+<table>
+
+<tr>
+
+<th>Appointment ID</th>
+<th>Service</th>
+<th>Stylist</th>
+<th>Date</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>BP1001</td>
+<td>Hair Spa</td>
+<td>Emma Johnson</td>
+<td>01-08-2026</td>
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>BP1002</td>
+<td>Facial</td>
+<td>Sophia Williams</td>
+<td>15-07-2026</td>
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>BP1003</td>
+<td>Bridal Makeup</td>
+<td>Olivia Brown</td>
+<td>20-06-2026</td>
+<td>Completed</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<!-- ADMIN -->
+
+<section id="admin">
+
+<h2 align="center">Admin Dashboard</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Total Customers</h3>
+
+<h1>250</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Total Appointments</h3>
+
+<h1>480</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Available Stylists</h3>
+
+<h1>12</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Today's Revenue</h3>
+
+<h1>$1,250</h1>
+
+</div>
+
+</div>
+
+</section>
+<footer>
+
+<h3>Beauty Parlour Appointment Booking System</h3>
+
+<p>Professional Beauty Services | Easy Online Booking | Secure Payments</p>
+
+<p>© 2026 Beauty Glow Salon. All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+function showSection(id){
+
+let sections=document.querySelectorAll("section");
+
+for(let i=0;i<sections.length;i++){
+
+sections[i].classList.remove("active");
+
+}
+
+document.getElementById(id).classList.add("active");
+
+}
+
+function loginUser(){
+
+let user=document.getElementById("username").value;
+
+let pass=document.getElementById("password").value;
+
+if(user=="admin" && pass=="admin123"){
+
+alert("Administrator Login Successful");
+
+showSection("admin");
+
+}
+
+else if(user=="user" && pass=="user123"){
+
+alert("Login Successful");
+
+showSection("services");
+
+}
+
+else{
+
+alert("Invalid Username or Password");
+
+}
+
+}
+
+function bookAppointment(){
+
+alert("Appointment Booked Successfully");
+
+showSection("payment");
+
+}
+
+function paymentSuccess(){
+
+alert("Payment Successful!\n\nYour Appointment Has Been Confirmed.");
+
+showSection("history");
+
+}
+
+window.onload=function(){
+
+showSection("home");
+
+}
+
+</script>
+
+</body>
+
+</html>
