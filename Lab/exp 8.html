@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedCare Hospital - Appointment Booking</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef5ff;
+        }
+
+        header {
+            background: #1769aa;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #0d47a1;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav button {
+            background: white;
+            color: #0d47a1;
+            border: none;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #bbb;
+        }
+
+        h2 {
+            color: #1769aa;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #0d47a1;
+        }
+
+        .appointment {
+            background: #f5f9ff;
+            border-left: 5px solid #1769aa;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .delete-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>MedCare Hospital</h1>
+    <p>Online Doctor Appointment System</p>
+</header>
+
+<nav>
+    <button onclick="showForm()">Book Appointment</button>
+    <button onclick="showAppointments()">View Appointments</button>
+</nav>
+
+<div class="container">
+
+    <div class="card" id="formSection">
+        <h2>Book an Appointment</h2>
+
+        <form id="appointmentForm">
+
+            <label>Patient Name</label>
+            <input type="text" id="patientName" required>
+
+            <label>Email</label>
+            <input type="email" id="email" required>
+
+            <label>Phone Number</label>
+            <input type="tel" id="phone" required>
+
+            <label>Doctor</label>
+            <select id="doctor" required>
+                <option value="">Select Doctor</option>
+                <option>Dr. Arun - Cardiologist</option>
+                <option>Dr. Priya - Dermatologist</option>
+                <option>Dr. Ravi - Neurologist</option>
+                <option>Dr. Sneha - Pediatrician</option>
+            </select>
+
+            <label>Appointment Date</label>
+            <input type="date" id="date" required>
+
+            <label>Appointment Time</label>
+            <input type="time" id="time" required>
+
+            <button class="submit-btn" type="submit">
+                Book Appointment
+            </button>
+
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Stored Appointments</h2>
+        <div id="appointmentList"></div>
+    </div>
+
+</div>
+
+<script>
+
+    let appointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
+
+    document.getElementById("appointmentForm")
+        .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let appointment = {
+            patientName: document.getElementById("patientName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            doctor: document.getElementById("doctor").value,
+            date: document.getElementById("date").value,
+            time: document.getElementById("time").value
+        };
+
+        appointments.push(appointment);
+
+        localStorage.setItem(
+            "appointments",
+            JSON.stringify(appointments)
+        );
+
+        alert("Appointment booked successfully!");
+
+        this.reset();
+
+        displayAppointments();
+    });
+
+
+    function displayAppointments() {
+
+        let list = document.getElementById("appointmentList");
+
+        list.innerHTML = "";
+
+        if (appointments.length === 0) {
+            list.innerHTML = "<p>No appointments found.</p>";
+            return;
+        }
+
+        appointments.forEach(function(appointment, index) {
+
+            list.innerHTML += `
+                <div class="appointment">
+
+                    <h3>${appointment.patientName}</h3>
+
+                    <p>
+                        <b>Email:</b> ${appointment.email}
+                    </p>
+
+                    <p>
+                        <b>Phone:</b> ${appointment.phone}
+                    </p>
+
+                    <p>
+                        <b>Doctor:</b> ${appointment.doctor}
+                    </p>
+
+                    <p>
+                        <b>Date:</b> ${appointment.date}
+                    </p>
+
+                    <p>
+                        <b>Time:</b> ${appointment.time}
+                    </p>
+
+                    <button class="delete-btn"
+                        onclick="deleteAppointment(${index})">
+                        Delete
+                    </button>
+
+                </div>
+            `;
+        });
+    }
+
+
+    function deleteAppointment(index) {
+
+        appointments.splice(index, 1);
+
+        localStorage.setItem(
+            "appointments",
+            JSON.stringify(appointments)
+        );
+
+        displayAppointments();
+    }
+
+
+    function showForm() {
+        document.getElementById("formSection")
+            .scrollIntoView();
+    }
+
+
+    function showAppointments() {
+        document.getElementById("appointmentList")
+            .scrollIntoView();
+    }
+
+
+    displayAppointments();
+
+</script>
+
+</body>
+</html>
